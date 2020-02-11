@@ -1,0 +1,22 @@
+{
+  "name": "@vkontakte/vkjs",
+  "version": "0.0.1",
+  "description": "VK shared JS libs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VKCOM/vk-js.git"
+  },
+  "author": "VK Team <https://vk.com/team>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VKCOM/vk-js/issues"
+  },
+  "homepage": "https://github.com/VKCOM/vk-js#readme"
+}
