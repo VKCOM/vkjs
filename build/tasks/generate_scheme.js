@@ -42,8 +42,7 @@ function opacify(hex, opacity) {
   return `rgba(${parseInt(hex.slice(0, 2), 16)}, ${parseInt(hex.slice(2, 4), 16)}, ${parseInt(hex.slice(4), 16)}, ${opacity.toFixed(2)})`;
 }
 
-function generateScheme(options, onReady) {
-
+function generateScheme(options) {
   Object.keys(scheme).forEach((schemeId) => {
     const clusters = scheme[schemeId].colors;
     let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
@@ -54,7 +53,6 @@ function generateScheme(options, onReady) {
     css += '}\n/* stylelint-enable */';
     fs.writeFileSync(path.resolve(__dirname, options.dir, `${schemeId}.css`), css);
   });
-  onReady();
 }
 
 module.exports = generateScheme;

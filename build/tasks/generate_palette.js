@@ -33,7 +33,7 @@ function opacify(hex, opacity) {
   return `rgba(${parseInt(hex.slice(0, 2), 16)}, ${parseInt(hex.slice(2, 4), 16)}, ${parseInt(hex.slice(4), 16)}, ${opacity.toFixed(2)})`;
 }
 
-function generatePalette(options, onReady) {
+function generatePalette(options) {
     let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
     css += ':root {\n';
 
@@ -41,8 +41,7 @@ function generatePalette(options, onReady) {
       css += `  --${colorName}: ${resolveColor(palette[colorName]).toLowerCase()};\n`;
     });
     css += '}\n/* stylelint-enable */';
-    fs.writeFileSync(path.resolve(__dirname, options.dir, options.file || palette.css), css);
-    onReady();
+    fs.writeFileSync(path.resolve(__dirname, options.dir, options.file || 'palette.css'), css);
 }
 
 module.exports = generatePalette;
