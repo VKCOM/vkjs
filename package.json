@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VKCOM/vk-js.git"
+    "url": "git+https://github.com/VKCOM/vkjs.git"
   },
   "author": "VK Team <https://vk.com/team>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/VKCOM/vk-js/issues"
+    "url": "https://github.com/VKCOM/vkjs/issues"
   },
-  "homepage": "https://github.com/VKCOM/vk-js#readme"
+  "homepage": "https://github.com/VKCOM/vkjs#readme"
 }
