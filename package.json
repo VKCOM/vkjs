@@ -6,8 +6,11 @@
   "directories": {
     "lib": "lib"
   },
+  "types": "lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clear": "rm -rf lib",
+    "build": "yarn clear && rollup -c && yarn types",
+    "types": "tsc --emitDeclarationOnly"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/VKCOM/vkjs/issues"
   },
-  "homepage": "https://github.com/VKCOM/vkjs#readme"
+  "homepage": "https://github.com/VKCOM/vkjs#readme",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^5.0.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-multi-input": "^1.1.1",
+    "rollup-plugin-terser": "^6.1.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.6"
+  }
 }
