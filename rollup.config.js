@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import multiInput from 'rollup-plugin-multi-input';
 import { terser } from 'rollup-plugin-terser';
 
@@ -8,5 +9,5 @@ export default {
     dir: 'lib',
     format: 'cjs'
   },
-  plugins: [typescript(), multiInput(), terser()],
+  plugins: [nodeResolve(), typescript(), multiInput(), terser()],
 };

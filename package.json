@@ -1,16 +1,23 @@
 {
   "name": "@vkontakte/vkjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "VK shared JS libs",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
-  "types": "lib",
+  "types": "lib/types",
+  "files": [
+    "lib",
+    "src",
+    "build"
+  ],
   "scripts": {
     "clear": "rm -rf lib",
     "build": "yarn clear && rollup -c && yarn types",
-    "types": "tsc --emitDeclarationOnly"
+    "types": "tsc --emitDeclarationOnly",
+    "prepublishOnly": "yarn clear && yarn build",
+    "publish-package": "yarn install --check-files && yarn publish --non-interactive"
   },
   "repository": {
     "type": "git",
