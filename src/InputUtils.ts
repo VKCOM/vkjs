@@ -16,8 +16,8 @@ if (isIOS && !isIPadOS) {
     ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
 
   if (hasTouchEvents) {
-    hasMouse = window.matchMedia && matchMedia('(any-pointer)').matches ?
-      matchMedia('(any-pointer: fine)').matches :
+    hasMouse = window.matchMedia && matchMedia('(pointer)').matches ?
+      matchMedia('(pointer: fine)').matches :
       /android|mobile|tablet/i.test(navigator.userAgent);
 
     hasHover = hasMouse && (window.matchMedia && matchMedia('(hover)').matches ?
