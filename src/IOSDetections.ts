@@ -13,8 +13,8 @@ const isIPhone = !isIPad && ua.search(/iphone|ipod/) !== -1;
 const isIOS = isIPhone || isIPad;
 
 let iosVersion = isIOS && navigator.userAgent.match(/OS ([\d_]+) like Mac OS X/i);
-let iosMajor: number = 0;
-let iosMinor: number = 0;
+let iosMajor = 0;
+let iosMinor = 0;
 
 if (isIPadOS) {
   iosMajor = 13;
@@ -44,25 +44,25 @@ export {
 };
 
 export function isLandscapePhone() {
-  return Math.abs(<number>window.orientation) === 90 && !isIPad;
+  return Math.abs(window.orientation as number) === 90 && !isIPad;
 }
 
 // Reference:
 // https://stackoverflow.com/questions/28795476/detect-if-page-is-loaded-inside-wkwebview-in-javascript/30495399#30495399
 function checkWKWebView(ua: string) {
-  const webkit = (<any>window).webkit;
+  const webkit = (window as any).webkit;
 
   if (webkit && webkit.messageHandlers) {
     return true;
   }
 
-  const lte9 = /constructor/i.test(window.HTMLElement + '');
+  const lte9 = /constructor/i.test(String(window.HTMLElement));
   const idb = !!window.indexedDB;
 
   if (
     ua.indexOf('safari') !== -1 &&
     ua.indexOf('version') !== -1 &&
-    !(<any>navigator).standalone
+    !(navigator as any).standalone
   ) {
     // Safari (WKWebView/Nitro since 6+)
   } else if ((!idb && lte9) || !(window.statusbar && window.statusbar.visible)) {
@@ -79,7 +79,7 @@ export function checkIPadOS(ua: string) {
   const notIOS = !/ipad|iphone|ipod/.test(ua);
   const macOS = /mac os/.test(ua);
 
-  if (macOS && notIOS && typeof (<any>navigator).standalone === 'boolean') {
+  if (macOS && notIOS && typeof (navigator as any).standalone === 'boolean') {
     return true;
   }
 
