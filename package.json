@@ -2,7 +2,9 @@
   "name": "@vkontakte/vkjs",
   "version": "0.0.5",
   "description": "VK shared JS libs",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "lib/es6/index.js",
+  "typings": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
@@ -14,11 +16,16 @@
   ],
   "scripts": {
     "clear": "rm -rf lib",
-    "build": "yarn clear && rollup -c && yarn types",
-    "types": "tsc --emitDeclarationOnly",
+    "build": "yarn clear && yarn build-cjs && yarn build-es6",
+    "test": "eslint ./src --ext .ts && tsc --noEmit",
     "prepublishOnly": "yarn clear && yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
-    "test": "eslint ./src --ext .ts && tsc --noEmit"
+    "babel": "NODE_ENV=production babel src/ --out-dir lib/ --source-maps --extensions .tsx,.jsx,.ts,.js",
+    "babel-es6": "NODE_ENV=production babel --config-file ./babel.es6.config.js src/ --out-dir lib/es6/ --source-maps --extensions .tsx,.jsx,.ts,.js",
+    "tsc": "NODE_ENV=production tsc --emitDeclarationOnly --declaration",
+    "tsc-es6": "NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir lib/es6/",
+    "build-cjs": "yarn babel && yarn tsc",
+    "build-es6": "yarn babel-es6 && yarn tsc-es6"
   },
   "pre-commit": [
     "test"
@@ -34,16 +41,20 @@
   },
   "homepage": "https://github.com/VKCOM/vkjs#readme",
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@babel/runtime": "^7.11.2",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "2.28.0",
     "@vkontakte/eslint-config": "2.5.0",
     "eslint": "7.7.0",
     "pre-commit": "1.2.2",
-    "rollup": "^2.21.0",
-    "rollup-plugin-multi-input": "^1.1.1",
-    "rollup-plugin-terser": "^6.1.0",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.6"
+    "typescript": "^4.0.3"
   }
 }
