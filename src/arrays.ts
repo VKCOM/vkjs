@@ -1,0 +1,69 @@
+/**
+ * Возвращает новый массив с уникальными элементами
+ */
+export function uniqueArray<T>(array: T[]): T[] {
+  return array.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
+}
+
+/**
+ * Перемешивает исходный массив и возвращает новый
+ */
+export function shuffleArray<T>(array: T[]): T[] {
+  return array
+    .map<[number, T]>((a) => [Math.random(), a])
+    .sort((a, b) => a[0] - b[0])
+    .map<T>((a) => a[1]);
+}
+
+/**
+ * Разбивает массив на чанки
+ */
+export function chunkArray<T>(array: T[], size: number): T[][] {
+  if (!array.length) {
+    return [];
+  }
+  const head = array.slice(0, size);
+  const tail = array.slice(size);
+
+  return [head, ...chunkArray(tail, size)];
+}
+
+/**
+ * Удаляет из массива элемент по значению.
+ * Если элемент был удалён – возвращает новый массив.
+ *
+ * @example
+ *
+ * omitFromArray([1, 2, 3], 3) // [1, 2]
+ * omitFromArray([1, 2, 3], 5) // [1, 2, 3]
+ */
+export function omitFromArray<T>(array: T[] = [], value: T): T[] {
+  const index = array.indexOf(value);
+
+  if (index < 0) {
+    return array;
+  } else {
+    return [...array.slice(0, index), ...array.slice(index + 1)];
+  }
+}
+
+/**
+ * Возвращает разницу между двумя массивами.
+ * Вернёт элементы, которых не хватает во втором массиве.
+ *
+ * @example
+ *
+ * difference([1, 2, 3], [1, 2, 3]) // []
+ * difference([1, 2, 3], [1]) // [2, 3]
+ * difference([1, 2, 3], [1, 10, 100]) // [2, 3]
+ */
+export function difference<T>(array1: T[] = [], array2: T[] = []) {
+  return array1.reduce<T[]>((res, item) => {
+    if (array2.indexOf(item) < 0) {
+      res.push(item);
+    }
+    return res;
+  }, []);
+}
