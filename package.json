@@ -8,7 +8,6 @@
   "directories": {
     "lib": "lib"
   },
-  "types": "lib/types",
   "files": [
     "lib",
     "src",
