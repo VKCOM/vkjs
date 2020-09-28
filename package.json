@@ -53,6 +53,6 @@
     "@vkontakte/eslint-config": "2.5.0",
     "eslint": "7.7.0",
     "pre-commit": "1.2.2",
-    "typescript": "^4.0.3"
+    "typescript": "3.9.7"
   }
 }
