@@ -5,6 +5,13 @@ export {
   copyTextToClipboard,
 } from './clipboard';
 
+/**
+ * equal
+ */
+export {
+  isEqual,
+} from './equal';
+
 export {
   uniqueArray,
   shuffleArray,
