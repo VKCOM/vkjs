@@ -15,13 +15,14 @@ if (isIOS && !isIPadOS) {
   hasTouch = hasTouchEvents ||
     ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
 
-  if (hasTouchEvents) {
+  if (hasTouch) {
+    const notMobile = !/android|mobile|tablet/i.test(navigator.userAgent);
+
     hasMouse = window.matchMedia && matchMedia('(pointer)').matches ?
-      matchMedia('(pointer: fine)').matches :
-      /android|mobile|tablet/i.test(navigator.userAgent);
+      matchMedia('(pointer: fine)').matches : notMobile;
 
     hasHover = hasMouse && (window.matchMedia && matchMedia('(hover)').matches ?
-      matchMedia('(hover: hover)').matches : false);
+      matchMedia('(hover: hover)').matches : notMobile);
   } else {
     hasMouse = true;
     hasHover = true;
