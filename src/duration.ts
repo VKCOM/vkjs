@@ -12,7 +12,7 @@ export function formatDuration(durationInSeconds: number): string {
   const minutes = Math.floor(durationInSeconds / MINUTE) % MINUTE;
   const seconds = durationInSeconds % MINUTE;
 
-  if (seconds >= HOUR) {
+  if (durationInSeconds >= HOUR) {
     return [hours, leadingZero(minutes), leadingZero(seconds)].join(':');
   } else {
     return [minutes, leadingZero(seconds)].join(':');
