@@ -29,7 +29,14 @@ export {
   isDateToday,
   isDateYesterday,
   isDateTomorrow,
+  isSameDate,
+  getBeginningOfDay,
+  getLastDayOfMonth,
 } from './date';
+
+export {
+  formatDuration,
+} from './duration';
 
 export {
   throttle,
@@ -37,6 +44,7 @@ export {
 } from './functions';
 
 export {
+  leadingZero,
   formatNumber,
 } from './numbers';
 
@@ -44,3 +52,18 @@ export {
   getRandomInt,
   getRandomString,
 } from './random';
+
+export {
+  hasReactNode,
+  isPrimitiveReactNode,
+} from './react_utils';
+
+export {
+  isNumeric,
+  isObjectLike,
+} from './type_checkers';
+
+export type {
+  Dictionary,
+  AnyFunction,
+} from './types';
