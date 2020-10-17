@@ -1,3 +1,13 @@
+export {
+  animate,
+  animationEvent,
+  transitionEvent,
+  waitAnimationEnd,
+  cancelWaitAnimationEnd,
+  waitTransitionEnd,
+  cancelWaitTransitionEnd,
+} from './animate';
+
 /**
  * clipboard
  */
@@ -66,4 +76,9 @@ export {
 export type {
   Dictionary,
   AnyFunction,
+  AnimateArgumentsInterface,
+  DrawInterface,
+  SupportEvent,
+  TimeoutHandle,
+  TimingInterface,
 } from './types';
