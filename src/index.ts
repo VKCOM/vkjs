@@ -1,4 +1,11 @@
 /**
+ * classNames
+ */
+export {
+  classNames,
+} from './classNames';
+
+/**
  * clipboard
  */
 export {
