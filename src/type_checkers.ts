@@ -6,6 +6,6 @@ export function isObjectLike(value: any): boolean {
   return typeof value === 'object' && value !== null;
 }
 
-export function isFunction(obj: unknown): boolean {
-  return obj && Object.prototype.toString.call(obj) === '[object Function]';
+export function isFunction(value: unknown): boolean {
+  return typeof value === 'function';
 }

@@ -40,7 +40,6 @@ export {
   getBeginningOfDay,
   getLastDayOfMonth,
   convertDateToInputFormat,
-  formatTime,
 } from './date';
 
 export {

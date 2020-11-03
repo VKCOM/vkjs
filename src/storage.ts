@@ -1,4 +1,4 @@
-import { Dictionary } from 'types';
+import { Dictionary } from './types';
 
 class CustomStorage {
   private data: Dictionary<string> = {};

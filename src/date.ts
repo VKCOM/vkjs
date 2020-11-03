@@ -77,27 +77,3 @@ export function convertDateToInputFormat(date: Date): string {
 
   return [year, leadingZero(month), leadingZero(day)].join('-');
 }
-
-/**
- * Возвращает время в формате HH:MM:SS
- */
-export function formatTime(timestamp: number, forceHours = false): string {
-  let res: string;
-
-  timestamp = Math.max(timestamp, 0);
-  const sec = Math.floor(timestamp % 60);
-  res = (sec < 10) ? '0' + sec.toString() : sec.toString();
-  timestamp = Math.floor(timestamp / 60);
-  const min = timestamp % 60;
-  res = min.toString() + ':' + res;
-  timestamp = Math.floor(timestamp / 60);
-
-  if (timestamp > 0 || forceHours) {
-    if (min < 10) {
-      res = '0' + res;
-    }
-    res = timestamp.toString() + ':' + res;
-  }
-
-  return res;
-}
