@@ -39,6 +39,7 @@ export {
   isSameDate,
   getBeginningOfDay,
   getLastDayOfMonth,
+  convertDateToInputFormat,
 } from './date';
 
 export {

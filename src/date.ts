@@ -1,3 +1,5 @@
+import { leadingZero } from './numbers';
+
 export const SECONDS_IN_THE_DAY = 86400;
 const MILLISECONDS_IN_THE_DAY = SECONDS_IN_THE_DAY * 1000;
 
@@ -63,4 +65,15 @@ export function getLastDayOfMonth(year: number, month: number): number {
     return 30;
   }
   return 31;
+}
+
+/**
+ * Возвращает дату в формате YYYY-MM-DD
+ */
+export function convertDateToInputFormat(date: Date): string {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return [year, leadingZero(month), leadingZero(day)].join('-');
 }
