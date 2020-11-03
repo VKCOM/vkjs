@@ -40,6 +40,7 @@ export {
   getBeginningOfDay,
   getLastDayOfMonth,
   convertDateToInputFormat,
+  formatTime,
 } from './date';
 
 export {
@@ -69,9 +70,15 @@ export {
 export {
   isNumeric,
   isObjectLike,
+  isFunction,
 } from './type_checkers';
 
 export type {
   Dictionary,
   AnyFunction,
 } from './types';
+
+export {
+  vkLocalStorage,
+  vkSessionStorage,
+} from './storage';
