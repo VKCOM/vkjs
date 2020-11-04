@@ -55,7 +55,7 @@ function getLocalStorage() {
  * Обертка над localStorage для кода, который может использоваться на других сайтах
  * Firefox блокирует доступ к localStorage для скриптов с других доменов
  */
-export const vkLocalStorage = {
+export const localStorage = {
   setItem: (key: string, val: string) => getLocalStorage().setItem(key, val),
   getItem: (key: string) => getLocalStorage().getItem(key),
   removeItem: (key: string) => getLocalStorage().removeItem(key),
@@ -70,7 +70,7 @@ export const vkLocalStorage = {
       return Object.keys(storage);
     }
   },
-  getPrefixedKeys: (prefix: string): string[] => vkLocalStorage.keys().filter((key) => key.startsWith(prefix)),
+  getPrefixedKeys: (prefix: string): string[] => localStorage.keys().filter((key) => key.startsWith(prefix)),
 };
 
 let sessionStorageCache: CustomStorage | Storage;
@@ -93,7 +93,7 @@ function getSessionStorage() {
   return sessionStorageCache;
 }
 
-export const vkSessionStorage = {
+export const sessionStorage = {
   setItem: (key: string, val: string) => getSessionStorage().setItem(key, val),
   getItem: (key: string) => getSessionStorage().getItem(key),
   removeItem: (key: string) => getSessionStorage().removeItem(key),
@@ -108,5 +108,5 @@ export const vkSessionStorage = {
       return Object.keys(storage);
     }
   },
-  getPrefixedKeys: (prefix: string): string[] => vkSessionStorage.keys().filter((key) => key.startsWith(prefix)),
+  getPrefixedKeys: (prefix: string): string[] => sessionStorage.keys().filter((key) => key.startsWith(prefix)),
 };

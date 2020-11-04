@@ -78,6 +78,6 @@ export type {
 } from './types';
 
 export {
-  vkLocalStorage,
-  vkSessionStorage,
+  localStorage,
+  sessionStorage,
 } from './storage';
