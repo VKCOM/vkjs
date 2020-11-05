@@ -69,9 +69,15 @@ export {
 export {
   isNumeric,
   isObjectLike,
+  isFunction,
 } from './type_checkers';
 
 export type {
   Dictionary,
   AnyFunction,
 } from './types';
+
+export {
+  localStorage,
+  sessionStorage,
+} from './storage';
