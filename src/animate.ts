@@ -1,5 +1,15 @@
 import { canUseDOM, canUseEventListeners } from './dom';
-import { AnimateArgumentsInterface, SupportEvent } from './types';
+import { SupportEvent } from './types';
+
+type TimingInterface = (timeFraction: number) => number;
+
+type DrawInterface = (progress: number) => void;
+
+interface AnimateArgumentsInterface {
+  duration: number;
+  timing: TimingInterface;
+  draw: DrawInterface;
+}
 
 /**
  * Функция для js анимации

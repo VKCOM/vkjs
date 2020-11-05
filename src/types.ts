@@ -8,13 +8,3 @@ export type SupportEvent<T extends keyof GlobalEventHandlersEventMap> = {
 };
 
 export type TimeoutHandle = number | undefined;
-
-export type TimingInterface = (timeFraction: number) => number;
-
-export type DrawInterface = (progress: number) => void;
-
-export interface AnimateArgumentsInterface {
-  duration: number;
-  timing: TimingInterface;
-  draw: DrawInterface;
-}

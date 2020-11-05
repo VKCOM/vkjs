@@ -76,9 +76,6 @@ export {
 export type {
   Dictionary,
   AnyFunction,
-  AnimateArgumentsInterface,
-  DrawInterface,
   SupportEvent,
   TimeoutHandle,
-  TimingInterface,
 } from './types';
