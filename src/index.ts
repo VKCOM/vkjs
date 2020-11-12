@@ -87,6 +87,7 @@ export {
 export type {
   Dictionary,
   AnyFunction,
+  Writeable,
 } from './types';
 
 export {
