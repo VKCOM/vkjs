@@ -13,6 +13,13 @@ export {
 } from './clipboard';
 
 /**
+ * common
+ */
+export {
+  isNumeric,
+} from './common';
+
+/**
  * equal
  */
 export {
@@ -67,9 +74,14 @@ export {
 } from './react_utils';
 
 export {
-  isNumeric,
   isObjectLike,
+  isArray,
+  isObject,
+  isUndefined,
   isFunction,
+  isFormData,
+  isString,
+  isNumber,
 } from './type_checkers';
 
 export type {
