@@ -5,8 +5,10 @@ interface Bounds {
   height: number;
 }
 
-export function getOffsetRect(elem: HTMLElement): Bounds {
-  if (typeof window === 'undefined') {
+export function getOffsetRect(elem: HTMLElement | Text | null): Bounds {
+  const isElement = elem instanceof HTMLElement;
+
+  if (typeof window === 'undefined' || !isElement) {
     return {
       top: 0,
       left: 0,
@@ -15,7 +17,8 @@ export function getOffsetRect(elem: HTMLElement): Bounds {
     };
   }
 
-  const box = elem.getBoundingClientRect();
+  const el = elem as HTMLElement;
+  const box = el.getBoundingClientRect();
   const body = document.body;
   const doc = document.documentElement;
   const scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop;
@@ -26,7 +29,7 @@ export function getOffsetRect(elem: HTMLElement): Bounds {
   return {
     top: Math.round(box.top + scrollTop - clientTop),
     left: Math.round(box.left + scrollLeft - clientLeft),
-    width: elem.offsetWidth,
-    height: elem.offsetHeight,
+    width: el.offsetWidth,
+    height: el.offsetHeight,
   };
 }
