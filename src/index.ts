@@ -58,6 +58,13 @@ export {
   debounce,
 } from './functions';
 
+/**
+ * OffsetRect
+ */
+export {
+  getOffsetRect,
+} from './getOffsetRect';
+
 export {
   leadingZero,
   formatNumber,
