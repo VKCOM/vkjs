@@ -27,6 +27,7 @@ export {
 } from './equal';
 
 export {
+  sumArray,
   uniqueArray,
   shuffleArray,
   chunkArray,

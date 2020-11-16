@@ -1,4 +1,14 @@
 /**
+ * Вычисляет сумму элементов массива
+ */
+export function sumArray(array: number[]): number {
+  if (!Array.isArray(array) || !array.length) {
+    return 0;
+  }
+  return array.reduce((previous, current) => current + previous);
+}
+
+/**
  * Возвращает новый массив с уникальными элементами
  */
 export function uniqueArray<T>(array: T[]): T[] {
