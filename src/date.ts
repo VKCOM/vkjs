@@ -68,6 +68,20 @@ export function getLastDayOfMonth(year: number, month: number): number {
 }
 
 /**
+ * Создаёт дату из Unix Timestamp
+ */
+export function createDateFromUnixTimestamp(timestamp: number): Date {
+  return new Date(timestamp * 1000);
+}
+
+/**
+ * Возвращает Unix Timestamp из даты
+ */
+export function getUnixTimestampFromDate(date: Date): number {
+  return Math.floor(date.getTime() / 1000);
+}
+
+/**
  * Возвращает дату в формате YYYY-MM-DD
  */
 export function convertDateToInputFormat(date: Date): string {

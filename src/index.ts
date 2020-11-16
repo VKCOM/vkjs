@@ -46,7 +46,10 @@ export {
   isDateTomorrow,
   isSameDate,
   getBeginningOfDay,
+  isLeapYear,
   getLastDayOfMonth,
+  createDateFromUnixTimestamp,
+  getUnixTimestampFromDate,
   convertDateToInputFormat,
 } from './date';
 
