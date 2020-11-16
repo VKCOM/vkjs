@@ -58,6 +58,7 @@ export {
 } from './duration';
 
 export {
+  noop,
   throttle,
   debounce,
 } from './functions';
