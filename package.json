@@ -17,6 +17,7 @@
     "clear": "shx rm -rf lib",
     "build": "yarn clear && yarn build-cjs && yarn build-es6",
     "test": "eslint ./src --ext .ts && tsc --noEmit",
+    "test-jest": "jest",
     "prepublishOnly": "yarn clear && yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
     "babel": "cross-env NODE_ENV=production babel src/ --out-dir lib/ --source-maps --extensions .tsx,.jsx,.ts,.js --ignore **/*/__tests__",
