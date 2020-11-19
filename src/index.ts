@@ -20,6 +20,13 @@ export {
 } from './common';
 
 /**
+ * detections
+ */
+export {
+  isPassiveEventsSupported,
+} from './detections';
+
+/**
  * equal
  */
 export {
