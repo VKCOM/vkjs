@@ -68,6 +68,26 @@ export function getLastDayOfMonth(year: number, month: number): number {
 }
 
 /**
+ * Ближайший понедельник в прошлом относительно date
+ */
+export function getStartOfWeek(date: Date): Date {
+  const weekDay = date.getDay();
+  if (weekDay === 0) {
+    return addDays(date, -6);
+  }
+  return addDays(date, -weekDay + 1);
+}
+
+/**
+ * Добавляет дни к дате и возвращает новый объект
+ */
+export function addDays(date: Date, dayCount: number): Date {
+  const modified = new Date(date.getTime());
+  modified.setDate(modified.getDate() + dayCount);
+  return modified;
+}
+
+/**
  * Создаёт дату из Unix Timestamp
  */
 export function createDateFromUnixTimestamp(timestamp: number): Date {

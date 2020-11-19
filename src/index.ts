@@ -55,6 +55,8 @@ export {
   getBeginningOfDay,
   isLeapYear,
   getLastDayOfMonth,
+  getStartOfWeek,
+  addDays,
   createDateFromUnixTimestamp,
   getUnixTimestampFromDate,
   convertDateToInputFormat,
