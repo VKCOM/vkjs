@@ -24,6 +24,7 @@ export {
  */
 export {
   isPassiveEventsSupported,
+  isSmoothScrollSupported,
 } from './detections';
 
 /**
