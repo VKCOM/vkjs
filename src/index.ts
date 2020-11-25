@@ -20,6 +20,14 @@ export {
 } from './common';
 
 /**
+ * detections
+ */
+export {
+  isPassiveEventsSupported,
+  isSmoothScrollSupported,
+} from './detections';
+
+/**
  * equal
  */
 export {
@@ -48,6 +56,8 @@ export {
   getBeginningOfDay,
   isLeapYear,
   getLastDayOfMonth,
+  getStartOfWeek,
+  addDays,
   createDateFromUnixTimestamp,
   getUnixTimestampFromDate,
   convertDateToInputFormat,
