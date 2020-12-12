@@ -85,6 +85,16 @@ export {
   formatNumber,
 } from './numbers';
 
+/**
+ * objects
+ */
+export {
+  deleteObjectKeys,
+} from './objects';
+
+/**
+ * random
+ */
 export {
   getRandomInt,
   getRandomString,
