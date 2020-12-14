@@ -36,6 +36,7 @@ export {
 
 export {
   sumArray,
+  averageArray,
   uniqueArray,
   shuffleArray,
   chunkArray,

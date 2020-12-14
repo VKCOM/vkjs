@@ -9,6 +9,16 @@ export function sumArray(array: number[]): number {
 }
 
 /**
+ * Находит среднее арифметическое элементов массива
+ */
+export function averageArray(array: number[]): number {
+  if (!Array.isArray(array) || !array.length) {
+    return 0;
+  }
+  return sumArray(array) / array.length;
+}
+
+/**
  * Возвращает новый массив с уникальными элементами
  */
 export function uniqueArray<T>(array: T[]): T[] {
