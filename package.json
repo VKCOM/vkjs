@@ -1,6 +1,6 @@
 {
   "name": "@vkontakte/vkjs",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "VK shared JS libs",
   "main": "lib/index.js",
   "module": "lib/es6/index.js",
@@ -48,7 +48,7 @@
     {
       "name": "JS ES6 with querystring only import (tree shaking)",
       "path": "lib/es6/index.js",
-      "import":  "{ querystring }"
+      "import": "{ querystring }"
     },
     {
       "name": "JS with leadingZero only import (no tree shaking)",
@@ -58,7 +58,7 @@
     {
       "name": "JS ES6 with leadingZero only import (tree shaking)",
       "path": "lib/es6/index.js",
-      "import":  "{ leadingZero }"
+      "import": "{ leadingZero }"
     }
   ],
   "repository": {
