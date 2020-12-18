@@ -1,23 +1,26 @@
 const fs = require('fs');
 const path = require('path');
-const scheme = require('@vkontakte/appearance/main.valette/scheme');
-const palette = require('@vkontakte/appearance/main.valette/palette');
 
 /**
- * @param {object} palette палитра цветов
- * @param {Object} clusterData
- * @param {string} clusterData.color_identifier
- * @param {number} clusterData.alpha_multiplier
- * @return {string} color цвет в браузерном представлении
- */
+* @param {object} palette палитра цветов
+* @param {Object} clusterData
+* @param {string} clusterData.color_identifier
+* @param {number} clusterData.alpha_multiplier
+* @return {string} color цвет в браузерном представлении
+*/
 function resolveColor(palette, clusterData) {
   const color = palette[clusterData.color_identifier];
   const alphaMultiplier = clusterData.alpha_multiplier ? Number(clusterData.alpha_multiplier) : 1;
 
-  if (color.indexOf('#') === 0 && color.length === 9) { // ahex
-    return ahex2rgba(color.replace('#', ''), alphaMultiplier);
-  } else if (color.indexOf('#') === 0 && clusterData.alpha_multiplier) {
-    return opacify(color.replace('#', ''), alphaMultiplier);
+  if (!color) {
+    console.log('Missing color:', clusterData.color_identifier);
+    return "#000";
+  } else {
+    if (color.indexOf('#') === 0 && color.length === 9) { // ahex
+      return ahex2rgba(color.replace('#', ''), alphaMultiplier);
+    } else if (color.indexOf('#') === 0 && clusterData.alpha_multiplier) {
+      return opacify(color.replace('#', ''), alphaMultiplier);
+    }
   }
   return color;
 }
@@ -42,17 +45,22 @@ function opacify(hex, opacity) {
   return `rgba(${parseInt(hex.slice(0, 2), 16)}, ${parseInt(hex.slice(2, 4), 16)}, ${parseInt(hex.slice(4), 16)}, ${opacity.toFixed(2)})`;
 }
 
-function generateScheme(options) {
-  Object.keys(scheme).forEach((schemeId) => {
+/**
+ * @param {object} scheme схема
+ * @param {object} palette палитра
+ * @param {object} defaultSchemeId схема по умолчанию
+ */
+function generateScheme(scheme, palette, defaultSchemeId, targetDir) {
+  for (const schemeId in scheme) {
     const clusters = scheme[schemeId].colors;
     let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
-    css += schemeId === 'client_light' ? ':root {\n' : `body[scheme="${schemeId}"] {\n`;
-    Object.keys(clusters).forEach((clusterId) => {
+    css += schemeId === defaultSchemeId ? ':root {\n' : `body[scheme="${schemeId}"] {\n`;
+    Object.keys(clusters).sort((a, b) => a.localeCompare(b)).forEach((clusterId) => {
       css += `  --${clusterId}: ${resolveColor(palette, clusters[clusterId]).toLowerCase()};\n`;
     });
-    css += '}\n/* stylelint-enable */';
-    fs.writeFileSync(path.resolve(__dirname, options.dir, `${schemeId}.css`), css);
-  });
+    css += '}\n/* stylelint-enable */\n';
+    fs.writeFileSync(path.resolve(targetDir, `${schemeId}.css`), css);
+  }
 }
 
 module.exports = generateScheme;

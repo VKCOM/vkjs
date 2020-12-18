@@ -1,9 +1,15 @@
 import { leadingZero } from './numbers';
 
-export function formatDuration(durationInSeconds: number): string {
+/**
+ * @param durationInSeconds
+ * @param forceHours
+ */
+export function formatDuration(durationInSeconds: number, forceHours?: boolean): string {
   if (!durationInSeconds) {
-    return '';
+    durationInSeconds = 0;
   }
+
+  durationInSeconds = Math.abs(durationInSeconds);
 
   const MINUTE = 60;
   const HOUR = 3600;
@@ -12,7 +18,7 @@ export function formatDuration(durationInSeconds: number): string {
   const minutes = Math.floor(durationInSeconds / MINUTE) % MINUTE;
   const seconds = durationInSeconds % MINUTE;
 
-  if (durationInSeconds >= HOUR) {
+  if (durationInSeconds >= HOUR || forceHours) {
     return [hours, leadingZero(minutes), leadingZero(seconds)].join(':');
   } else {
     return [minutes, leadingZero(seconds)].join(':');

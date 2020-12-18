@@ -9,11 +9,33 @@ export {
 } from './animate';
 
 /**
+ * classNames
+ */
+export {
+  classNames,
+} from './classNames';
+
+/**
  * clipboard
  */
 export {
   copyTextToClipboard,
 } from './clipboard';
+
+/**
+ * common
+ */
+export {
+  isNumeric,
+} from './common';
+
+/**
+ * detections
+ */
+export {
+  isPassiveEventsSupported,
+  isSmoothScrollSupported,
+} from './detections';
 
 /**
  * equal
@@ -23,6 +45,8 @@ export {
 } from './equal';
 
 export {
+  sumArray,
+  averageArray,
   uniqueArray,
   shuffleArray,
   chunkArray,
@@ -41,7 +65,13 @@ export {
   isDateTomorrow,
   isSameDate,
   getBeginningOfDay,
+  isLeapYear,
   getLastDayOfMonth,
+  getStartOfWeek,
+  addDays,
+  createDateFromUnixTimestamp,
+  getUnixTimestampFromDate,
+  convertDateToInputFormat,
 } from './date';
 
 export {
@@ -49,15 +79,40 @@ export {
 } from './duration';
 
 export {
+  noop,
   throttle,
   debounce,
 } from './functions';
+
+/**
+ * OffsetRect
+ */
+export {
+  getOffsetRect,
+} from './getOffsetRect';
 
 export {
   leadingZero,
   formatNumber,
 } from './numbers';
 
+/**
+ * objects
+ */
+export {
+  deleteObjectKeys,
+} from './objects';
+
+/**
+ * querystring
+ */
+export {
+  querystring,
+} from './querystring';
+
+/**
+ * random
+ */
 export {
   getRandomInt,
   getRandomString,
@@ -69,8 +124,14 @@ export {
 } from './react_utils';
 
 export {
-  isNumeric,
   isObjectLike,
+  isArray,
+  isObject,
+  isUndefined,
+  isFunction,
+  isFormData,
+  isString,
+  isNumber,
 } from './type_checkers';
 
 export type {
@@ -78,4 +139,10 @@ export type {
   AnyFunction,
   SupportEvent,
   TimeoutHandle,
+  Writeable,
 } from './types';
+
+export {
+  localStorage,
+  sessionStorage,
+} from './storage';

@@ -1,3 +1,5 @@
+import { leadingZero } from './numbers';
+
 export const SECONDS_IN_THE_DAY = 86400;
 const MILLISECONDS_IN_THE_DAY = SECONDS_IN_THE_DAY * 1000;
 
@@ -63,4 +65,49 @@ export function getLastDayOfMonth(year: number, month: number): number {
     return 30;
   }
   return 31;
+}
+
+/**
+ * Ближайший понедельник в прошлом относительно date
+ */
+export function getStartOfWeek(date: Date): Date {
+  const weekDay = date.getDay();
+  if (weekDay === 0) {
+    return addDays(date, -6);
+  }
+  return addDays(date, -weekDay + 1);
+}
+
+/**
+ * Добавляет дни к дате и возвращает новый объект
+ */
+export function addDays(date: Date, dayCount: number): Date {
+  const modified = new Date(date.getTime());
+  modified.setDate(modified.getDate() + dayCount);
+  return modified;
+}
+
+/**
+ * Создаёт дату из Unix Timestamp
+ */
+export function createDateFromUnixTimestamp(timestamp: number): Date {
+  return new Date(timestamp * 1000);
+}
+
+/**
+ * Возвращает Unix Timestamp из даты
+ */
+export function getUnixTimestampFromDate(date: Date): number {
+  return Math.floor(date.getTime() / 1000);
+}
+
+/**
+ * Возвращает дату в формате YYYY-MM-DD
+ */
+export function convertDateToInputFormat(date: Date): string {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return [year, leadingZero(month), leadingZero(day)].join('-');
 }

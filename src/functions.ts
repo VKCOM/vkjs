@@ -1,3 +1,5 @@
+export const noop = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
+
 export function throttle<T extends any[]>(fn: (...args: T) => unknown, threshold = 50, scope = window) {
   let last: number;
   let deferTimer: ReturnType<typeof setTimeout>;
