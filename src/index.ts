@@ -1,3 +1,13 @@
+export {
+  animate,
+  animationEvent,
+  transitionEvent,
+  waitAnimationEnd,
+  cancelWaitAnimationEnd,
+  waitTransitionEnd,
+  cancelWaitTransitionEnd,
+} from './animate';
+
 /**
  * classNames
  */
@@ -127,6 +137,8 @@ export {
 export type {
   Dictionary,
   AnyFunction,
+  SupportEvent,
+  TimeoutHandle,
   Writeable,
 } from './types';
 
