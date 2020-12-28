@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "clear": "shx rm -rf lib",
+    "prepare": "yarn build",
     "build": "yarn clear && yarn build-cjs && yarn build-es6",
     "test": "eslint ./src --ext .ts && tsc --noEmit",
     "test-jest": "jest",
