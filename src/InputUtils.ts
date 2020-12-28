@@ -6,12 +6,7 @@ let hasTouchEvents: boolean;
 let hasHover: boolean;
 let hasTouch: boolean;
 
-if (!canUseDOM) {
-  hasMouse = false;
-  hasTouchEvents = false;
-  hasHover = false;
-  hasTouch = false;
-} else {
+if (canUseDOM) {
   if (isIOS && !isIPadOS) {
     hasMouse = false;
     hasHover = false;
@@ -35,6 +30,11 @@ if (!canUseDOM) {
       hasHover = true;
     }
   }
+} else {
+  hasMouse = false;
+  hasTouchEvents = false;
+  hasHover = false;
+  hasTouch = false;
 }
 
 export { hasMouse, hasHover, hasTouchEvents, hasTouch };
