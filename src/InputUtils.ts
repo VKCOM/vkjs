@@ -12,7 +12,7 @@ if (!canUseDOM) {
   hasHover = false;
   hasTouch = false;
 } else {
-   if (isIOS && !isIPadOS) {
+  if (isIOS && !isIPadOS) {
     hasMouse = false;
     hasHover = false;
     hasTouchEvents = true;
