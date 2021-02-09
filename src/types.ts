@@ -7,6 +7,8 @@ export type SupportEvent<T extends keyof GlobalEventHandlersEventMap> = {
   name: T;
 };
 
+export type EventTarget = GlobalEventHandlers | null | undefined;
+
 export type TimeoutHandle = number | undefined;
 
 export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
