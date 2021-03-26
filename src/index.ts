@@ -55,6 +55,10 @@ export {
 } from './arrays';
 
 export {
+  asyncImportLoader,
+} from './async';
+
+export {
   getCookie,
 } from './cookie';
 
