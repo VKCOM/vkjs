@@ -55,6 +55,10 @@ export {
 } from './arrays';
 
 export {
+  asyncImportLoader,
+} from './async';
+
+export {
   getCookie,
 } from './cookie';
 
@@ -141,6 +145,10 @@ export type {
   TimeoutHandle,
   Writeable,
 } from './types';
+
+export {
+  escapeRegExp,
+} from './regexp';
 
 export {
   localStorage,
