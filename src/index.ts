@@ -143,6 +143,10 @@ export type {
 } from './types';
 
 export {
+  escapeRegExp,
+} from './regexp';
+
+export {
   localStorage,
   sessionStorage,
 } from './storage';
