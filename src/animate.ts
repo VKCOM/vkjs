@@ -1,8 +1,7 @@
 import { canUseDOM, canUseEventListeners } from './dom';
-import { SupportEvent } from './types';
+import { SupportEvent, EventTarget, TimeoutHandle } from './types';
 
 type TimingInterface = (timeFraction: number) => number;
-
 type DrawInterface = (progress: number) => void;
 
 interface AnimateArgumentsInterface {
@@ -79,11 +78,11 @@ if (canUseDOM) {
 /**
  * Ожидание окончания анимации на элементе
  *
+ * @param el элемент
  * @param listener коллбэк окончания ожидания
  * @param fallbackTime сколько ждать в мс если событие не поддерживается
- * @param el элемент
  */
-export function waitAnimationEnd(listener: (ev?: AnimationEvent) => any, fallbackTime: number, el?: GlobalEventHandlers) {
+export function waitAnimationEnd(el: EventTarget, listener: (ev?: AnimationEvent) => any, fallbackTime: number) {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.addEventListener(animationEvent.name, listener);
@@ -91,16 +90,17 @@ export function waitAnimationEnd(listener: (ev?: AnimationEvent) => any, fallbac
       return window.setTimeout(listener, fallbackTime);
     }
   }
+  return 0;
 }
 
 /**
  * Прекращение ожидания окончания анимации на элементе
  *
+ * @param el элемент
  * @param listener коллбэк окончания ожидания
  * @param handle то, что вернулось из ```waitAnimationEnd```
- * @param el элемент
  */
-export function cancelWaitAnimationEnd(listener: (ev?: AnimationEvent) => any, handle?: number, el?: GlobalEventHandlers) {
+export function cancelWaitAnimationEnd(el: EventTarget, listener: (ev?: AnimationEvent) => any, handle: TimeoutHandle) {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.removeEventListener(animationEvent.name, listener);
@@ -113,11 +113,11 @@ export function cancelWaitAnimationEnd(listener: (ev?: AnimationEvent) => any, h
 /**
  * Ожидание окончания анимации перехода на элементе
  *
+ * @param el элемент
  * @param listener коллбэк окончания ожидания
  * @param fallbackTime сколько ждать в мс если событие не поддерживается
- * @param el элемент
  */
-export function waitTransitionEnd(el: GlobalEventHandlers, listener: (ev?: TransitionEvent) => any, fallbackTime: number) {
+export function waitTransitionEnd(el: EventTarget, listener: (ev?: TransitionEvent) => any, fallbackTime: number) {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.addEventListener(transitionEvent.name, listener);
@@ -125,16 +125,17 @@ export function waitTransitionEnd(el: GlobalEventHandlers, listener: (ev?: Trans
       return window.setTimeout(listener, fallbackTime);
     }
   }
+  return 0;
 }
 
 /**
  * Прекращение ожидания окончания анимации перехода на элементе
  *
+ * @param el элемент
  * @param listener коллбэк окончания ожидания
  * @param handle то, что вернулось из ```waitTransitionEnd```
- * @param el элемент
  */
-export function cancelWaitTransitionEnd(listener: (ev?: TransitionEvent) => any, handle?: number, el?: GlobalEventHandlers) {
+export function cancelWaitTransitionEnd(el: EventTarget, listener: (ev?: TransitionEvent) => any, handle: TimeoutHandle) {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.removeEventListener(transitionEvent.name, listener);

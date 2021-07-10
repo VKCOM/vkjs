@@ -144,6 +144,7 @@ export type {
   SupportEvent,
   TimeoutHandle,
   Writeable,
+  EventTarget,
 } from './types';
 
 export {
