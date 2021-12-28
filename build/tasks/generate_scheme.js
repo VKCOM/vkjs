@@ -54,7 +54,7 @@ function generateScheme(scheme, palette, defaultSchemeId, targetDir) {
   for (const schemeId in scheme) {
     const clusters = scheme[schemeId].colors;
     let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
-    let selector = `body[scheme="${schemeId}"], [scheme="${schemeId}"]`;
+    let selector = `body[scheme="${schemeId}"], [scheme="${schemeId}"], .vkui${schemeId}`;
     if (schemeId === defaultSchemeId) {
       selector = `:root, ${selector}`
     }
