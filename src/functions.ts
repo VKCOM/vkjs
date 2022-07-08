@@ -1,35 +1,46 @@
-export const noop = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
+export const noop = () => { }; // eslint-disable-line @typescript-eslint/no-empty-function
 
 export function throttle<T extends any[]>(fn: (...args: T) => unknown, threshold = 50, scope = window) {
-  let last: number;
-  let deferTimer: ReturnType<typeof setTimeout>;
+  let prevDate: number = Date.now() - threshold;
+  let timeoutId: ReturnType<typeof setTimeout>;
 
-  return function(...args: T) {
-    const context = scope;
-    const now = Date.now();
+  const throttledFn = function(...args: T) {
+    const timeLeft = prevDate + threshold - Date.now();
 
-    if (last && now < last + threshold) {
-      clearTimeout(deferTimer);
-      deferTimer = setTimeout(() => {
-        last = now;
-        fn.apply(context, args);
-      }, threshold);
-    } else {
-      last = now;
-      fn.apply(context, args);
+    clearTimeout(timeoutId);
+    if (timeLeft > 0) {
+      timeoutId = setTimeout(() => {
+        prevDate = Date.now();
+        fn.apply(scope, args);
+      }, timeLeft);
+      return;
     }
+
+    prevDate = Date.now();
+    fn.apply(scope, args);
   };
+
+  throttledFn.cancel = () => {
+    clearTimeout(timeoutId);
+  };
+
+  return throttledFn;
 }
 
 export function debounce<T extends any[]>(fn: (...args: T) => unknown, delay: number, context = window) {
-  let timeout: ReturnType<typeof setTimeout>;
+  let timeoutId: ReturnType<typeof setTimeout>;
   let args: T;
 
   const later = () => fn.apply(context, args);
-
-  return (...a: T) => {
+  const debouncedFn = (...a: T) => {
     args = a;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, delay);
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(later, delay);
   };
+
+  debouncedFn.cancel = () => {
+    clearTimeout(timeoutId);
+  };
+
+  return debouncedFn;
 }
