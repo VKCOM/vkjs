@@ -13,6 +13,9 @@
     "src",
     "build"
   ],
+  "engines": {
+    "yarn": "^1.21.1"
+  },
   "scripts": {
     "clear": "shx rm -rf lib",
     "prepare": "yarn build",
