@@ -1,11 +1,66 @@
+/* eslint-disable @typescript-eslint/quotes */
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from './lib/codepoints';
 
-const symbols = [
+const escapeMap: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  "'": '&#39;',
+  '"': '&quot;',
+};
+
+const unescapeMap: Record<string, string> = {
+  '&amp;': '&',
+  '&#38;': '&',
+  '&lt;': '<',
+  '&#60;': '<',
+  '&gt;': '>',
+  '&#62;': '>',
+  '&apos;': "'",
+  '&#39;': "'",
+  '&quot;': '"',
+  '&#34;': '"',
+};
+
+const namedEntities = [
   ['&amp;', '&'],
   ['&lt;', '<'],
   ['&gt;', '>'],
   ['&quot;', '"'],
+  ['&apos;', `'`],
 ];
+
+const ESCAPE_REGEX = /[&<>'"]/g;
+
+/**
+ * Safely escape HTML entities such as `&`, `<`, `>`, `"`, and `'`
+ * @param {string} input
+ */
+export function escape(input: string): string {
+  if (input == null) {
+    return '';
+  }
+
+  return input.replace(ESCAPE_REGEX, (entity) => {
+    return escapeMap[entity];
+  });
+}
+
+const UNESCAPE_REGEX = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g;
+
+/**
+ * Unescape HTML entities such as `&`, `<`, `>`, `"`, and `'`
+ * @param {string} input
+ */
+export function unescape(input: string): string {
+  if (input == null) {
+    return '';
+  }
+
+  return input.replace(UNESCAPE_REGEX, (entity) => {
+    return unescapeMap[entity];
+  });
+}
 
 export const outOfBoundsChar = String.fromCharCode(65533);
 
@@ -28,7 +83,7 @@ export function decodeHTMLEntities(input: string): string {
     return '';
   }
 
-  input = symbols.reduce(
+  input = namedEntities.reduce(
     (result, [mask, char]) => result.replace(new RegExp(mask, 'ig'), char),
     input,
   );

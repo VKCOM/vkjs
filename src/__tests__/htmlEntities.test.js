@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { test } from '@jest/globals';
-import { encodeHTMLEntities, decodeHTMLEntities, outOfBoundsChar } from '../htmlEntities';
+import { escape, unescape, encodeHTMLEntities, decodeHTMLEntities, outOfBoundsChar } from '../htmlEntities';
 
-const encodeTest = [
+const empty = [
   [
     undefined,
     '',
@@ -11,10 +11,42 @@ const encodeTest = [
     null,
     '',
   ],
+];
+
+const escapeTest = [
+  ...empty,
   [
-    '',
-    '',
+    `Entities &<>\'"`,
+    `Entities &amp;&lt;&gt;&#39;&quot;`,
   ],
+  [
+    `&foo <> bar "fizz" l\'a`,
+    `&amp;foo &lt;&gt; bar &quot;fizz&quot; l&#39;a`,
+  ]
+];
+
+test.each(escapeTest)('escape(%j) should equal %j', (input, expected) => {
+  expect(escape(input)).toEqual(expected);
+});
+
+const unescapeTest = [
+  ...empty,
+  [
+    `Entities &amp;&lt;&gt;&apos;&quot;`,
+    `Entities &<>\'"`,
+  ],
+  [
+    'foo&#39;&apos;bar',
+    `foo''bar`,
+  ]
+];
+
+test.each(unescapeTest)('unescape(%j) should equal %j', (input, expected) => {
+  expect(unescape(input)).toEqual(expected);
+});
+
+const encodeTest = [
+  ...empty,
   [
     'a\n<>"\'&©∆℞😂\0\x01',
     'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;',
@@ -26,18 +58,7 @@ test.each(encodeTest)('encodeHTMLEntities(%j) should equal %j', (input, expected
 });
 
 const decodeTests = [
-  [
-    undefined,
-    '',
-  ],
-  [
-    null,
-    '',
-  ],
-  [
-    '',
-    '',
-  ],
+  ...empty,
   [
     `Null and invalid entities &#0; &#2013266066;`,
     `Null and invalid entities ${outOfBoundsChar} ${outOfBoundsChar}`,
