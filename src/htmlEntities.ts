@@ -64,19 +64,21 @@ export function unescape(input: string): string {
 
 export const outOfBoundsChar = String.fromCharCode(65533);
 
+const ENCODE_REGEX =
+  /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;
+
 export function encodeHTMLEntities(input: string): string {
   if (input == null) {
     return '';
   }
 
-  const regex =
-    /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;
-
-  return input.replace(regex, (entity) => {
+  return input.replace(ENCODE_REGEX, (entity) => {
     const code = entity.length > 1 ? getCodePointAt(entity, 0) : entity.charCodeAt(0);
     return '&#' + String(code) + ';';
   });
 }
+
+const DECODE_REGEX = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
 
 export function decodeHTMLEntities(input: string): string {
   if (input == null) {
@@ -88,9 +90,7 @@ export function decodeHTMLEntities(input: string): string {
     input,
   );
 
-  const regex = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
-
-  return input.replace(regex, (entity) => {
+  return input.replace(DECODE_REGEX, (entity) => {
     if (entity[0] === '&' && entity[1] === '#') {
       const secondChar = entity[2];
       const code =
