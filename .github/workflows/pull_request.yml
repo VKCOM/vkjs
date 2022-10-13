@@ -12,7 +12,6 @@ jobs:
           node-version: 14
       - run: yarn install --frozen-lockfile
       - run: yarn test
-      - run: yarn test-jest
 
   size:
     runs-on: ubuntu-latest

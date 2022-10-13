@@ -14,7 +14,7 @@ export function isUndefined(object: any): object is undefined {
   return typeof object === 'undefined';
 }
 
-export function isFunction(object: any): object is ((...args: any[]) => any) {
+export function isFunction(object: any): object is (...args: any[]) => any {
   return typeof object === 'function';
 }
 

@@ -35,9 +35,11 @@ export function isDateTomorrow(date: Date): boolean {
  * Проверяет что переданные даты находятся в одном дне
  */
 export function isSameDate(d1: Date, d2: Date): boolean {
-  return d1.getDate() === d2.getDate()
-    && d1.getMonth() === d2.getMonth()
-    && d1.getFullYear() === d2.getFullYear();
+  return (
+    d1.getDate() === d2.getDate() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getFullYear() === d2.getFullYear()
+  );
 }
 
 /**
@@ -52,7 +54,7 @@ export function getBeginningOfDay(date: Date) {
 }
 
 export function isLeapYear(year: number) {
-  return ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0));
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
 /**

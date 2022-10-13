@@ -1,10 +1,14 @@
-export const noop = () => { }; // eslint-disable-line @typescript-eslint/no-empty-function
+export const noop = () => {}; // eslint-disable-line @typescript-eslint/no-empty-function
 
-export function throttle<T extends any[]>(fn: (...args: T) => unknown, threshold = 50, scope = window) {
+export function throttle<T extends any[]>(
+  fn: (...args: T) => unknown,
+  threshold = 50,
+  scope = window,
+) {
   let prevDate: number = Date.now() - threshold;
   let timeoutId: ReturnType<typeof setTimeout>;
 
-  const throttledFn = function(...args: T) {
+  const throttledFn = (...args: T) => {
     const timeLeft = prevDate + threshold - Date.now();
 
     clearTimeout(timeoutId);
@@ -27,7 +31,11 @@ export function throttle<T extends any[]>(fn: (...args: T) => unknown, threshold
   return throttledFn;
 }
 
-export function debounce<T extends any[]>(fn: (...args: T) => unknown, delay: number, context = window) {
+export function debounce<T extends any[]>(
+  fn: (...args: T) => unknown,
+  delay: number,
+  context = window,
+) {
   let timeoutId: ReturnType<typeof setTimeout>;
   let args: T;
 

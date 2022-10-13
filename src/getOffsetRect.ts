@@ -5,8 +5,8 @@ interface Bounds {
   height: number;
 }
 
-export function getOffsetRect(elem: HTMLElement | Text | null): Bounds {
-  const isElement = elem instanceof HTMLElement;
+export function getOffsetRect(el: HTMLElement | Text | null): Bounds {
+  const isElement = el instanceof HTMLElement;
 
   if (typeof window === 'undefined' || !isElement) {
     return {
@@ -17,7 +17,6 @@ export function getOffsetRect(elem: HTMLElement | Text | null): Bounds {
     };
   }
 
-  const el = elem as HTMLElement;
   const box = el.getBoundingClientRect();
   const body = document.body;
   const doc = document.documentElement;

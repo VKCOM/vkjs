@@ -5,8 +5,10 @@
  * so for number-type values it's better to just use `Number.isFinite()`.
  */
 export function isNumeric(value: any): boolean {
-  return !isNaN(parseFloat(value))
-    && isFinite(value)
+  return (
+    !isNaN(parseFloat(value)) &&
+    isFinite(value) &&
     // Handle `[1]` being serialized and parsed as `1`
-    && !Array.isArray(value);
+    !Array.isArray(value)
+  );
 }

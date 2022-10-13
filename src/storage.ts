@@ -5,13 +5,13 @@ class CustomStorage {
 
   public setItem(key: string, val: string) {
     this.data[key] = String(val);
-  };
+  }
 
-  public getItem = (key: string) => this.data.hasOwnProperty(key) ? this.data[key] : null;
+  public getItem = (key: string) => (this.data.hasOwnProperty(key) ? this.data[key] : null);
 
   public removeItem(id: string) {
     delete this.data[id];
-  };
+  }
 
   public clear() {
     this.data = {};
@@ -19,7 +19,7 @@ class CustomStorage {
 
   public get length() {
     return Object.keys(this.data).length;
-  };
+  }
 
   public key(index: number): string | null {
     return Object.keys(this.data)[index];
@@ -70,7 +70,9 @@ export const localStorage = {
       return Object.keys(storage);
     }
   },
-  getPrefixedKeys: (prefix: string): string[] => localStorage.keys().filter((key) => key.startsWith(prefix)),
+  getPrefixedKeys: (prefix: string): string[] => {
+    return localStorage.keys().filter((key) => key.startsWith(prefix));
+  },
 };
 
 let sessionStorageCache: CustomStorage | Storage;
@@ -108,5 +110,7 @@ export const sessionStorage = {
       return Object.keys(storage);
     }
   },
-  getPrefixedKeys: (prefix: string): string[] => sessionStorage.keys().filter((key) => key.startsWith(prefix)),
+  getPrefixedKeys: (prefix: string): string[] => {
+    return sessionStorage.keys().filter((key) => key.startsWith(prefix));
+  },
 };
