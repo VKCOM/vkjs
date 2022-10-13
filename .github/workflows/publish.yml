@@ -31,8 +31,6 @@ jobs:
 
       - run: yarn test
 
-      - run: yarn test-jest
-
       - run: yarn version --new-version ${{ github.event.inputs.version }} --no-commit-hooks
 
       - name: Pushing changes

@@ -39,39 +39,54 @@ export function detectIOS(ua?: string) {
   let isIPhoneX = false;
 
   if (canUseDOM) {
-    isIPhoneX = isIOS && screen.width === 375 &&
-      screen.height === 812 && window.devicePixelRatio === 3;
+    isIPhoneX =
+      isIOS && screen.width === 375 && screen.height === 812 && window.devicePixelRatio === 3;
   }
 
   const isIOSChrome = ua.search(/crios/i) !== -1;
 
   return {
-    isIPad, isIPhone, isIOS, isIPadOS,
-    iosMajor, iosMinor,
-    isWKWebView, isScrollBasedViewport,
+    isIPad,
+    isIPhone,
+    isIOS,
+    isIPadOS,
+    iosMajor,
+    iosMinor,
+    isWKWebView,
+    isScrollBasedViewport,
     isIPhoneX,
     isIOSChrome,
   };
 }
 
 const {
-  isIPad, isIPhone, isIOS, isIPadOS,
-  iosMajor, iosMinor,
-  isWKWebView, isScrollBasedViewport,
+  isIPad,
+  isIPhone,
+  isIOS,
+  isIPadOS,
+  iosMajor,
+  iosMinor,
+  isWKWebView,
+  isScrollBasedViewport,
   isIPhoneX,
   isIOSChrome,
 } = detectIOS();
 
 export {
-  isIPad, isIPhone, isIOS, isIPadOS,
-  iosMajor, iosMinor,
-  isWKWebView, isScrollBasedViewport,
+  isIPad,
+  isIPhone,
+  isIOS,
+  isIPadOS,
+  iosMajor,
+  iosMinor,
+  isWKWebView,
+  isScrollBasedViewport,
   isIPhoneX,
   isIOSChrome,
 };
 
 export function isLandscapePhone() {
-  return Math.abs(window.orientation as number) === 90 && !isIPad;
+  return Math.abs(window.orientation) === 90 && !isIPad;
 }
 
 // Reference:

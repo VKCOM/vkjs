@@ -14,17 +14,21 @@ if (canUseDOM) {
     hasTouch = true;
   } else {
     hasTouchEvents = 'ontouchstart' in document;
-    hasTouch = hasTouchEvents ||
-      ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
+    hasTouch = hasTouchEvents || ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
 
     if (hasTouch) {
       const notMobile = !/android|mobile|tablet/i.test(navigator.userAgent);
 
-      hasMouse = window.matchMedia && matchMedia('(pointer)').matches ?
-        matchMedia('(pointer: fine)').matches : notMobile;
+      hasMouse =
+        typeof window.matchMedia === 'function' && window.matchMedia('(pointer)').matches
+          ? matchMedia('(pointer: fine)').matches
+          : notMobile;
 
-      hasHover = hasMouse && (window.matchMedia && matchMedia('(hover)').matches ?
-        matchMedia('(hover: hover)').matches : notMobile);
+      hasHover =
+        hasMouse &&
+        (typeof window.matchMedia === 'function' && window.matchMedia('(hover)').matches
+          ? matchMedia('(hover: hover)').matches
+          : notMobile);
     } else {
       hasMouse = true;
       hasHover = true;

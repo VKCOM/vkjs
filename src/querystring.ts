@@ -12,20 +12,18 @@ function parse(query: string | any): ParsedQuery {
     return {};
   }
 
-  const matches = /\?(.+)$/ig.exec(query);
+  const matches = /\?(.+)$/gi.exec(query);
   const str = matches ? matches[1] : query;
 
-  return str
-    .split('&')
-    .reduce((acc: ParsedQuery, item: string) => {
-      const param = item.split('=');
+  return str.split('&').reduce((acc: ParsedQuery, item: string) => {
+    const param = item.split('=');
 
-      if (param[1]) {
-        acc[param[0]] = decodeURIComponent(param[1]);
-      }
+    if (param[1]) {
+      acc[param[0]] = decodeURIComponent(param[1]);
+    }
 
-      return acc;
-    }, {});
+    return acc;
+  }, {});
 }
 
 type StringifyQueryItem = string | boolean | number | null | undefined;
@@ -63,31 +61,35 @@ function stringify(data: StringifyQuery, options: StringifyOptions = {}): string
     return options.encode ? encodeURIComponent(value) : String(value);
   };
 
-  return Object.keys(data).reduce<string[]>((acc, key) => {
-    const value = data[key];
+  return Object.keys(data)
+    .reduce<string[]>((acc, key) => {
+      const value = data[key];
 
-    if (value === undefined) {
-      return acc;
-    }
-
-    if (value === null) {
-      if (!options.skipNull) {
-        acc.push([encode(key), ''].join('='));
+      if (value === undefined) {
+        return acc;
       }
 
-      return acc;
-    }
+      if (value === null) {
+        if (!options.skipNull) {
+          acc.push([encode(key), ''].join('='));
+        }
 
-    if (Array.isArray(value)) {
-      value.map((arrayItem) => {
-        acc.push(`${encode(key)}[]=${encode(arrayItem)}`);
-      }).join();
-      return acc;
-    }
+        return acc;
+      }
 
-    acc.push([encode(key), encode(value)].join('='));
-    return acc;
-  }, []).join('&');
+      if (Array.isArray(value)) {
+        value
+          .map((arrayItem) => {
+            acc.push(`${encode(key)}[]=${encode(arrayItem)}`);
+          })
+          .join();
+        return acc;
+      }
+
+      acc.push([encode(key), encode(value)].join('='));
+      return acc;
+    }, [])
+    .join('&');
 }
 
 export const querystring = {

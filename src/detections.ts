@@ -6,7 +6,7 @@ export let isPassiveEventsSupported = false;
 if (canUseEventListeners) {
   try {
     const options = Object.defineProperty({}, 'passive', {
-      get: function() {
+      get() {
         isPassiveEventsSupported = true;
       },
     });
@@ -26,7 +26,7 @@ function detectSmoothScrollSupport() {
     const div = document.createElement('div');
     div.scrollTo({
       top: 0,
-      // @ts-ignore
+      // @ts-expect-error
       get behavior() {
         isSupported = true;
         return 'smooth';

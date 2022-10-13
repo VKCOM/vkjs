@@ -25,6 +25,7 @@ export function animate({ duration, timing, draw }: AnimateArgumentsInterface) {
 
   const start = window.performance.now();
 
+  // eslint-disable-next-line no-shadow
   window.requestAnimationFrame(function animate(time) {
     let timeFraction = (time - start) / duration;
 
@@ -83,7 +84,11 @@ if (canUseDOM) {
  * @param fallbackTime сколько ждать в мс если событие не поддерживается
  * @param el элемент
  */
-export function waitAnimationEnd(listener: (ev?: AnimationEvent) => any, fallbackTime: number, el?: GlobalEventHandlers) {
+export function waitAnimationEnd(
+  listener: (ev?: AnimationEvent) => any,
+  fallbackTime: number,
+  el?: GlobalEventHandlers,
+) {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.addEventListener(animationEvent.name, listener);
@@ -100,7 +105,11 @@ export function waitAnimationEnd(listener: (ev?: AnimationEvent) => any, fallbac
  * @param handle то, что вернулось из ```waitAnimationEnd```
  * @param el элемент
  */
-export function cancelWaitAnimationEnd(listener: (ev?: AnimationEvent) => any, handle?: number, el?: GlobalEventHandlers) {
+export function cancelWaitAnimationEnd(
+  listener: (ev?: AnimationEvent) => any,
+  handle?: number,
+  el?: GlobalEventHandlers,
+) {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.removeEventListener(animationEvent.name, listener);
@@ -117,7 +126,11 @@ export function cancelWaitAnimationEnd(listener: (ev?: AnimationEvent) => any, h
  * @param fallbackTime сколько ждать в мс если событие не поддерживается
  * @param el элемент
  */
-export function waitTransitionEnd(el: GlobalEventHandlers, listener: (ev?: TransitionEvent) => any, fallbackTime: number) {
+export function waitTransitionEnd(
+  el: GlobalEventHandlers,
+  listener: (ev?: TransitionEvent) => any,
+  fallbackTime: number,
+) {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.addEventListener(transitionEvent.name, listener);
@@ -134,7 +147,11 @@ export function waitTransitionEnd(el: GlobalEventHandlers, listener: (ev?: Trans
  * @param handle то, что вернулось из ```waitTransitionEnd```
  * @param el элемент
  */
-export function cancelWaitTransitionEnd(listener: (ev?: TransitionEvent) => any, handle?: number, el?: GlobalEventHandlers) {
+export function cancelWaitTransitionEnd(
+  listener: (ev?: TransitionEvent) => any,
+  handle?: number,
+  el?: GlobalEventHandlers,
+) {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.removeEventListener(transitionEvent.name, listener);
@@ -143,4 +160,3 @@ export function cancelWaitTransitionEnd(listener: (ev?: TransitionEvent) => any,
     }
   }
 }
-
