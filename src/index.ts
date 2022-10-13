@@ -72,6 +72,8 @@ export { noop, throttle, debounce } from './functions';
  */
 export { getOffsetRect } from './getOffsetRect';
 
+export { decodeHTMLEntities } from './htmlEntities';
+
 export { leadingZero, formatNumber } from './numbers';
 
 /**
