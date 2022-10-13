@@ -1,8 +1,31 @@
 /* eslint-disable prettier/prettier */
 import { test } from '@jest/globals';
-import { decodeHTMLEntities, outOfBoundsChar } from '../htmlEntities';
+import { encodeHTMLEntities, decodeHTMLEntities, outOfBoundsChar } from '../htmlEntities';
 
-const tests = [
+const encodeTest = [
+  [
+    undefined,
+    '',
+  ],
+  [
+    null,
+    '',
+  ],
+  [
+    '',
+    '',
+  ],
+  [
+    'a\n<>"\'&©∆℞😂\0\x01',
+    'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;',
+  ],
+];
+
+test.each(encodeTest)('encodeHTMLEntities(%j) should equal %j', (input, expected) => {
+  expect(encodeHTMLEntities(input)).toEqual(expected);
+});
+
+const decodeTests = [
   [
     undefined,
     '',
@@ -47,8 +70,12 @@ const tests = [
     'Emoji &#128514; &#129498;',
     'Emoji 😂 🧚',
   ],
+  [
+    'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;',
+    'a\n<>"\'&©∆℞😂\0\x01',
+  ]
 ];
 
-test.each(tests)('decodeHTMLEntities(%j) should equal %j', (input, expected) => {
+test.each(decodeTests)('decodeHTMLEntities(%j) should equal %j', (input, expected) => {
   expect(decodeHTMLEntities(input)).toEqual(expected);
 });
