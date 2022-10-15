@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { fromCodePoint, getCodePointAt, numericUnicodeMap } from './lib/codepoints';
+import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
+import { fullNamedEntities } from './entity';
 
 const escapeMap: Record<string, string> = {
   '&': '&amp;',
@@ -22,13 +23,13 @@ const unescapeMap: Record<string, string> = {
   '&#34;': '"',
 };
 
-const namedEntities = [
-  ['&amp;', '&'],
-  ['&lt;', '<'],
-  ['&gt;', '>'],
-  ['&quot;', '"'],
-  ['&apos;', `'`],
-];
+const namedEntities: Record<string, string> = {
+  'amp;': '&',
+  'lt;': '<',
+  'gt;': '>',
+  'quot;': '"',
+  'apos;': `'`,
+};
 
 const ESCAPE_REGEX = /[&<>'"]/g;
 
@@ -78,24 +79,24 @@ export function encodeHTMLEntities(input: string): string {
   });
 }
 
-const DECODE_REGEX = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
+const DECODE_REGEX = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g;
 
-export function decodeHTMLEntities(input: string): string {
-  if (input == null) {
+function decodeString(input: string, entities: Record<string, string>): string {
+  if (!input || !input.length) {
     return '';
   }
 
-  input = namedEntities.reduce(
-    (result, [mask, char]) => result.replace(new RegExp(mask, 'ig'), char),
-    input,
-  );
-
   return input.replace(DECODE_REGEX, (entity) => {
-    if (entity[0] === '&' && entity[1] === '#') {
-      const secondChar = entity[2];
+    if (entity[1] === '#') {
+      // We need to have at least "&#.".
+      if (entity.length <= 3) {
+        return entity;
+      }
+
+      const secondChar = entity.charAt(2);
       const code =
         secondChar === 'x' || secondChar === 'X'
-          ? parseInt(entity.substr(3), 16)
+          ? parseInt(entity.substr(3).toLowerCase(), 16)
           : parseInt(entity.substr(2));
 
       if (code >= 0x10ffff) {
@@ -109,6 +110,14 @@ export function decodeHTMLEntities(input: string): string {
       return String.fromCharCode(numericUnicodeMap[code] || code);
     }
 
-    return entity;
+    return entities[entity.slice(1)] || entity;
   });
+}
+
+export function decodeHTMLEntities(input: string): string {
+  return decodeString(input, namedEntities);
+}
+
+export function decodeHTMLFullEntities(input: string): string {
+  return decodeString(input, fullNamedEntities);
 }
