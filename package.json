@@ -37,7 +37,17 @@
   "size-limit": [
     {
       "name": "JS",
+      "path": "lib/index.js",
+      "gzip": false
+    },
+    {
+      "name": "JS (gzip)",
       "path": "lib/index.js"
+    },
+    {
+      "name": "JS (brotli)",
+      "path": "lib/index.js",
+      "brotli": true
     },
     {
       "name": "JS ES6",
