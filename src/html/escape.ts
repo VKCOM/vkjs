@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/quotes */
+import { Replacer } from '../lib/replacer';
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
 import { fullNamedEntities } from './entity';
 
-const escapeMap: Record<string, string> = {
+const escapeReplacer = new Replacer({
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
   "'": '&#39;',
   '"': '&quot;',
-};
+});
 
-const unescapeMap: Record<string, string> = {
+const unescapeReplacer = new Replacer({
   '&amp;': '&',
   '&#38;': '&',
   '&lt;': '<',
@@ -21,7 +22,7 @@ const unescapeMap: Record<string, string> = {
   '&#39;': "'",
   '&quot;': '"',
   '&#34;': '"',
-};
+});
 
 const namedEntities: Record<string, string> = {
   'amp;': '&',
@@ -31,36 +32,20 @@ const namedEntities: Record<string, string> = {
   'apos;': `'`,
 };
 
-const ESCAPE_REGEX = /[&<>'"]/g;
-
 /**
  * Safely escape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
 export function escape(input: string): string {
-  if (input == null) {
-    return '';
-  }
-
-  return input.replace(ESCAPE_REGEX, (entity) => {
-    return escapeMap[entity];
-  });
+  return escapeReplacer.replace(input);
 }
-
-const UNESCAPE_REGEX = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g;
 
 /**
  * Unescape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
 export function unescape(input: string): string {
-  if (input == null) {
-    return '';
-  }
-
-  return input.replace(UNESCAPE_REGEX, (entity) => {
-    return unescapeMap[entity];
-  });
+  return unescapeReplacer.replace(input);
 }
 
 export const outOfBoundsChar = String.fromCharCode(65533);
