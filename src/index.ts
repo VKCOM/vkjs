@@ -78,6 +78,7 @@ export {
   encodeHTMLEntities,
   decodeHTMLEntities,
   decodeHTMLEntitiesDeep,
+  decodeHTMLFullEntities,
 } from './html/escape';
 
 export { leadingZero, formatNumber } from './numbers';
