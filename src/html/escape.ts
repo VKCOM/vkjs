@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { fromCodePoint, getCodePointAt, numericUnicodeMap } from './lib/codepoints';
-import { Dictionary } from './types';
+import { Replacer } from '../lib/replacer';
+import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
+import { Dictionary } from '../types';
 
-const escapeMap: Record<string, string> = {
+const escapeReplacer = new Replacer({
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
   "'": '&#39;',
   '"': '&quot;',
-};
+});
 
-const unescapeMap: Record<string, string> = {
+const unescapeReplacer = new Replacer({
   '&amp;': '&',
   '&#38;': '&',
   '&lt;': '<',
@@ -21,46 +22,30 @@ const unescapeMap: Record<string, string> = {
   '&#39;': "'",
   '&quot;': '"',
   '&#34;': '"',
+});
+
+const namedEntities: Record<string, string> = {
+  'amp;': '&',
+  'lt;': '<',
+  'gt;': '>',
+  'quot;': '"',
+  'apos;': `'`,
 };
-
-const namedEntities = [
-  ['&amp;', '&'],
-  ['&lt;', '<'],
-  ['&gt;', '>'],
-  ['&quot;', '"'],
-  ['&apos;', `'`],
-];
-
-const ESCAPE_REGEX = /[&<>'"]/g;
 
 /**
  * Safely escape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
 export function escape(input: string): string {
-  if (input == null) {
-    return '';
-  }
-
-  return input.replace(ESCAPE_REGEX, (entity) => {
-    return escapeMap[entity];
-  });
+  return escapeReplacer.replace(input);
 }
-
-const UNESCAPE_REGEX = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g;
 
 /**
  * Unescape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
 export function unescape(input: string): string {
-  if (input == null) {
-    return '';
-  }
-
-  return input.replace(UNESCAPE_REGEX, (entity) => {
-    return unescapeMap[entity];
-  });
+  return unescapeReplacer.replace(input);
 }
 
 export const outOfBoundsChar = String.fromCharCode(65533);
@@ -79,24 +64,24 @@ export function encodeHTMLEntities(input: string): string {
   });
 }
 
-const DECODE_REGEX = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);/g;
+const DECODE_REGEX = /&(?:#\d+|#[xX][\da-fA-F]+|[0-9a-zA-Z]+);?/g;
 
-export function decodeHTMLEntities(input: string): string {
-  if (input == null) {
+function decodeString(input: string, entities: Record<string, string>): string {
+  if (typeof input !== 'string' || !input) {
     return '';
   }
 
-  input = namedEntities.reduce(
-    (result, [mask, char]) => result.replace(new RegExp(mask, 'ig'), char),
-    input,
-  );
-
   return input.replace(DECODE_REGEX, (entity) => {
-    if (entity[0] === '&' && entity[1] === '#') {
-      const secondChar = entity[2];
+    if (entity[1] === '#') {
+      // We need to have at least "&#.".
+      if (entity.length <= 3) {
+        return entity;
+      }
+
+      const secondChar = entity.charAt(2);
       const code =
         secondChar === 'x' || secondChar === 'X'
-          ? parseInt(entity.substr(3), 16)
+          ? parseInt(entity.substr(3).toLowerCase(), 16)
           : parseInt(entity.substr(2));
 
       if (code >= 0x10ffff) {
@@ -110,7 +95,7 @@ export function decodeHTMLEntities(input: string): string {
       return String.fromCharCode(numericUnicodeMap[code] || code);
     }
 
-    return entity;
+    return entities[entity.slice(1)] || entity;
   });
 }
 
@@ -141,4 +126,14 @@ export function decodeHTMLEntitiesDeep<T>(input: T): T {
   }
 
   return input;
+}
+
+/**
+ * `decodeHTMLEntities` декодирует зарезервированные HTML-сущности.
+ *
+ * @param input текст который необходимо декодировать
+ * @param entities кастомный словарь сущностей `{'lt;': '<'}`
+ */
+export function decodeHTMLEntities(input: string, entities = namedEntities): string {
+  return decodeString(input, entities);
 }

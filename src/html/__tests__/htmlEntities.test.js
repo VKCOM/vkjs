@@ -7,7 +7,7 @@ import {
   decodeHTMLEntities,
   outOfBoundsChar,
   decodeHTMLEntitiesDeep,
-} from '../htmlEntities';
+} from '../escape';
 
 const empty = [
   [
@@ -84,7 +84,7 @@ const decodeTests = [
   ],
   [
     '&#34 &#34;',
-    `&#34 "`,
+    `" "`,
   ],
   [
     'Привет&#33;',
@@ -101,7 +101,7 @@ const decodeTests = [
   [
     'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;',
     'a\n<>"\'&©∆℞😂\0\x01',
-  ]
+  ],
 ];
 
 test.each(decodeTests)('decodeHTMLEntities(%j) should equal %j', (input, expected) => {
