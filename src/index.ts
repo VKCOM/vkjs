@@ -28,10 +28,9 @@ export { isNumeric } from './common';
  */
 export { isPassiveEventsSupported, isSmoothScrollSupported } from './detections';
 
-/**
- * equal
- */
 export { isEqual } from './equal';
+
+export { noop, throttle, debounce, once } from './functions';
 
 export {
   sumArray,
@@ -64,8 +63,6 @@ export {
 } from './date';
 
 export { formatDuration } from './duration';
-
-export { noop, throttle, debounce } from './functions';
 
 /**
  * OffsetRect

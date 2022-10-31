@@ -1,12 +1,16 @@
-import { expect, jest, test, describe, beforeEach } from '@jest/globals';
-import { debounce, throttle } from '../functions';
+import { expect, jest, test, describe, beforeEach, it } from '@jest/globals';
+import { debounce, once, throttle } from '../functions';
+import { AnyFunction } from '../types';
+
+import Mock = jest.Mock;
 
 describe('throttle', () => {
   const threshold = 50;
-  let fn;
-  let fnThrottled;
+  let fn: Mock<AnyFunction>;
+  let fnThrottled: ReturnType<typeof throttle>;
+
   beforeEach(() => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
     jest.setSystemTime(100);
     fn = jest.fn();
     fnThrottled = throttle(fn, threshold);
@@ -56,7 +60,7 @@ describe('throttle', () => {
     expect(fn.mock.calls).toEqual([[1], [4], [5]]);
   });
 
-  it('should cancel throttled call', function() {
+  it('should cancel throttled call', function () {
     fnThrottled(1);
     fnThrottled(2);
     fnThrottled(3);
@@ -70,10 +74,11 @@ describe('throttle', () => {
 
 describe('debounce', () => {
   const delay = 50;
-  let fn;
-  let fnDebounced;
+  let fn: Mock<AnyFunction>;
+  let fnDebounced: ReturnType<typeof debounce>;
+
   beforeEach(() => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
     jest.setSystemTime(100);
     fn = jest.fn();
     fnDebounced = debounce(fn, delay);
@@ -93,7 +98,7 @@ describe('debounce', () => {
     expect(fn.mock.calls).toEqual([[2]]);
   });
 
-  it('should cancel debounced call', function() {
+  it('should cancel debounced call', function () {
     fnDebounced(1);
     fnDebounced(2);
     fnDebounced(3);
@@ -101,5 +106,18 @@ describe('debounce', () => {
     jest.advanceTimersByTime(delay);
 
     expect(fn).not.toHaveBeenCalled();
+  });
+});
+
+describe('once', () => {
+  test('should be called once', () => {
+    const fn = jest.fn();
+    const fnOnce = once(fn);
+
+    fnOnce();
+    fnOnce();
+    fnOnce();
+
+    expect(fn).toBeCalledTimes(1);
   });
 });
