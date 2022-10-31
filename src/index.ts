@@ -111,6 +111,8 @@ export type { Dictionary, AnyFunction, SupportEvent, TimeoutHandle, Writeable } 
 
 export { escapeRegExp } from './regexp';
 
+export { isRetina } from './retina';
+
 export { localStorage, sessionStorage } from './storage';
 
 export { hasMouse, hasHover, hasTouchEvents, hasTouch } from './InputUtils';
