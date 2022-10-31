@@ -25,8 +25,8 @@
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
     "babel": "cross-env NODE_ENV=production babel src/ --out-dir lib/ --source-maps --extensions .tsx,.jsx,.ts,.js --ignore **/*/__tests__",
     "babel-es6": "cross-env NODE_ENV=production babel --config-file ./babel.es6.config.js src/ --out-dir lib/es6/ --source-maps --extensions .tsx,.jsx,.ts,.js --ignore **/*/__tests__",
-    "tsc": "cross-env NODE_ENV=production tsc --emitDeclarationOnly --declaration",
-    "tsc-es6": "cross-env NODE_ENV=production tsc --emitDeclarationOnly --declaration --outDir lib/es6/",
+    "tsc": "cross-env NODE_ENV=production tsc --project tsconfig.build.json",
+    "tsc-es6": "cross-env NODE_ENV=production tsc --project tsconfig.build.json --outDir lib/es6/",
     "build-cjs": "yarn babel && yarn tsc",
     "build-es6": "yarn babel-es6 && yarn tsc-es6",
     "size": "yarn clear && yarn build && size-limit"
