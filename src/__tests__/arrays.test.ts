@@ -1,5 +1,6 @@
-import { test, expect } from '@jest/globals';
-import { chunkArray } from '../arrays';
+import { test, expect, describe } from '@jest/globals';
+import { chunkArray, uniqueArray } from '../arrays';
+import { uniqueArrayFallback } from '../internal/uniqueArray';
 
 test('chunkArray', () => {
   expect(chunkArray(null as any, 1)).toEqual([]);
@@ -28,4 +29,45 @@ test('chunkArray', () => {
   expect(chunkArray(array4, 3)).toEqual([[1, 2, 3], [4]]);
   expect(chunkArray(array4, 4)).toEqual([array4]);
   expect(chunkArray(array4, 5)).toEqual([array4]);
+});
+
+describe('chunkArray', () => {
+  const entries = [
+    [null as any, []],
+    [undefined as any, []],
+    [0 as any, []],
+
+    [
+      [1, 1, 1, 2, 2, 2],
+      [1, 2],
+    ],
+
+    [
+      [1, 2, 2, 1, 1, 3],
+      [1, 2, 3],
+    ],
+
+    [
+      [1, 1, 2, 3, 5, 5, 7],
+      [1, 2, 3, 5, 7],
+    ],
+
+    [
+      ['a', 'a', 'b', 'a', 'c', 'a', 'd'],
+      ['a', 'b', 'c', 'd'],
+    ],
+
+    [
+      [0, '0', 0, 'false', false, false],
+      [0, '0', 'false', false],
+    ],
+  ];
+
+  test.each(entries)('uniqueArray(%j) should equal %j', (input, expected) => {
+    expect(uniqueArray(input)).toEqual(expected);
+  });
+
+  test.each(entries)('uniqueArray(%j) should equal %j with no Set available', (input, expected) => {
+    expect(uniqueArrayFallback(input)).toEqual(expected);
+  });
 });

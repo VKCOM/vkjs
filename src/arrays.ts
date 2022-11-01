@@ -1,3 +1,5 @@
+import { uniqueArrayFallback } from './internal/uniqueArray';
+
 /**
  * Вычисляет сумму элементов массива
  */
@@ -22,9 +24,15 @@ export function averageArray(array: number[]): number {
  * Возвращает новый массив с уникальными элементами
  */
 export function uniqueArray<T>(array: T[]): T[] {
-  return array.filter((value, index, self) => {
-    return self.indexOf(value) === index;
-  });
+  if (!Array.isArray(array) || !array.length) {
+    return [];
+  }
+
+  if (typeof Set !== 'undefined') {
+    return Array.from(new Set(array));
+  }
+
+  return uniqueArrayFallback(array);
 }
 
 /**
