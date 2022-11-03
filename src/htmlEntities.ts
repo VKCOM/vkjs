@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from './lib/codepoints';
+import { Dictionary } from './types';
 
 const escapeMap: Record<string, string> = {
   '&': '&amp;',
@@ -111,4 +112,33 @@ export function decodeHTMLEntities(input: string): string {
 
     return entity;
   });
+}
+
+export function decodeHTMLEntitiesDeep<T>(input: T): T {
+  if (typeof input === 'string') {
+    return decodeHTMLEntities(input) as unknown as T;
+  }
+
+  if (typeof input === 'object') {
+    const correctType = Object.prototype.toString.apply(input);
+
+    if (correctType === '[object Array]') {
+      return (input as unknown[]).map((item) => {
+        return decodeHTMLEntitiesDeep(item);
+      }) as T;
+    }
+
+    if (correctType === '[object Object]') {
+      const response: Dictionary<unknown> = {};
+      Object.keys(input as Dictionary<unknown>).forEach((item) => {
+        response[decodeHTMLEntities(item)] = decodeHTMLEntitiesDeep(
+          (input as Dictionary<unknown>)[item],
+        );
+      });
+
+      return response as unknown as T;
+    }
+  }
+
+  return input;
 }

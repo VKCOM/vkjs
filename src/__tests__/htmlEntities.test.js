@@ -1,6 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { test } from '@jest/globals';
-import { escape, unescape, encodeHTMLEntities, decodeHTMLEntities, outOfBoundsChar } from '../htmlEntities';
+import {
+  escape,
+  unescape,
+  encodeHTMLEntities,
+  decodeHTMLEntities,
+  outOfBoundsChar,
+  decodeHTMLEntitiesDeep,
+} from '../htmlEntities';
 
 const empty = [
   [
@@ -99,4 +106,72 @@ const decodeTests = [
 
 test.each(decodeTests)('decodeHTMLEntities(%j) should equal %j', (input, expected) => {
   expect(decodeHTMLEntities(input)).toEqual(expected);
+});
+
+describe('decodeHTMLEntitiesDeep', () => {
+  const decodeTestsLoopEntered = {
+    array: ['&#1333;&#1408;&#1391;&#1387;&#1408;&#1384; &#1401;&#1379;&#1407;&#1398;&#1406;&#1381;&#1409;', {
+      objectInArray: `Показувати моє ім&#39;я лише авторові`,
+    }],
+    object: {
+      keyInObject: '&amp; & &lt; < &gt; > &quot; "',
+      arrayInObject: ['a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;'],
+    },
+    string: 'https://vk.com/groups?act=events_my',
+    number: 123,
+    function: test,
+    null: null,
+    undefined: undefined,
+  };
+
+  const decodeTestsLoopExpected = {
+    array: ['Երկիրը չգտնվեց', {
+      objectInArray: `Показувати моє ім'я лише авторові`,
+    }],
+    object: {
+      keyInObject: '& & < < > > " "',
+      arrayInObject: ['a\n<>"\'&©∆℞😂\0\x01'],
+    },
+    string: 'https://vk.com/groups?act=events_my',
+    number: 123,
+    function: test,
+    null: null,
+    undefined: undefined,
+  };
+
+  test('object input', () => {
+    expect(decodeHTMLEntitiesDeep(decodeTestsLoopEntered)).toEqual(decodeTestsLoopExpected);
+  });
+
+  test('string input', () => {
+    expect(decodeHTMLEntitiesDeep('&#1408;')).toEqual('ր');
+  });
+
+  test('number input', () => {
+    expect(decodeHTMLEntitiesDeep(1)).toEqual(1);
+  });
+
+  test('null input', () => {
+    expect(decodeHTMLEntitiesDeep(null)).toEqual(null);
+  });
+
+  test('undefined input', () => {
+    expect(decodeHTMLEntitiesDeep(undefined)).toEqual(undefined);
+  });
+
+  test('map input', () => {
+    expect(decodeHTMLEntitiesDeep({ '&#1333;': true })).toEqual({ Ե: true });
+  });
+
+  test('boolean input', () => {
+    expect(decodeHTMLEntitiesDeep(false)).toEqual(false);
+  });
+
+  test('function input', () => {
+    expect(decodeHTMLEntitiesDeep(test)).toEqual(test);
+  });
+
+  test('array input', () => {
+    expect(decodeHTMLEntitiesDeep(['&#1333;', 1])).toEqual(['Ե', 1]);
+  });
 });
