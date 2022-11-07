@@ -72,7 +72,13 @@ export { getOffsetRect } from './getOffsetRect';
 export { getPhotoSize } from './getPhotoSize';
 export type { PhotoSizeLike, PhotoSize } from './getPhotoSize';
 
-export { escape, unescape, encodeHTMLEntities, decodeHTMLEntities } from './htmlEntities';
+export {
+  escape,
+  unescape,
+  encodeHTMLEntities,
+  decodeHTMLEntities,
+  decodeHTMLEntitiesDeep,
+} from './htmlEntities';
 
 export { leadingZero, formatNumber } from './numbers';
 
