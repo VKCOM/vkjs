@@ -44,7 +44,7 @@ export {
 
 export { asyncImportLoader } from './async';
 
-export { getCookie } from './cookie';
+export { getCookie, isCookieEnabled } from './cookie';
 
 export {
   SECONDS_IN_THE_DAY,
