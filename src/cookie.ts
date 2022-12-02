@@ -4,3 +4,21 @@ export function getCookie(name: string): string | undefined {
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+
+let isCookieEnabledCache: boolean | null = null;
+
+export const isCookieEnabled = () => {
+  if (isCookieEnabledCache === null) {
+    try {
+      document.cookie = 'cookietest=1';
+
+      isCookieEnabledCache = document.cookie.indexOf('cookietest=') !== -1;
+
+      document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
+    } catch (e) {
+      isCookieEnabledCache = false;
+    }
+  }
+
+  return isCookieEnabledCache;
+};
