@@ -13,10 +13,12 @@
     "sourceMap": false,
     "baseUrl": "src"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"],
+  "typedocOptions": {
+    "readme": "README.md",
+    "plugin": ["typedoc-plugin-versions", "typedoc-plugin-mdn-links"],
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }

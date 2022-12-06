@@ -29,7 +29,8 @@
     "tsc-es6": "cross-env NODE_ENV=production tsc --project tsconfig.build.json --outDir lib/es6/",
     "build-cjs": "yarn babel && yarn tsc",
     "build-es6": "yarn babel-es6 && yarn tsc-es6",
-    "size": "yarn clear && yarn build && size-limit"
+    "size": "yarn clear && yarn build && size-limit",
+    "docs": "typedoc"
   },
   "pre-commit": [
     "test"
@@ -110,6 +111,9 @@
     "shx": "^0.3.2",
     "size-limit": "^8.1.0",
     "ts-jest": "^29.0.3",
+    "typedoc": "^0.23.21",
+    "typedoc-plugin-mdn-links": "^2.0.0",
+    "typedoc-plugin-versions": "^0.2.2",
     "typescript": "4.8.4"
   },
   "peerDependencies": {
