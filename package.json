@@ -120,7 +120,7 @@
     "@babel/runtime": "^7.11.2"
   },
   "resolutions": {
-    "@typescript-eslint/eslint-plugin": "5.43.0",
+    "@typescript-eslint/eslint-plugin": "5.45.1",
     "@typescript-eslint/parser": "5.45.1"
   }
 }
