@@ -1,6 +1,16 @@
 import { uniqueArrayFallback } from './internal/uniqueArray';
 
 /**
+ * Создаёт массив чисел требуемой длины
+ *
+ * @param arrayLength
+ * @param startIndex
+ */
+export function createArray(arrayLength: number, startIndex = 0): number[] {
+  return new Array(arrayLength).fill(null).map((_, index) => startIndex + index);
+}
+
+/**
  * Вычисляет сумму элементов массива
  */
 export function sumArray(array: number[]): number {
