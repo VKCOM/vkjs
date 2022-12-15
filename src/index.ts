@@ -8,6 +8,17 @@ export {
   cancelWaitTransitionEnd,
 } from './animate';
 
+export {
+  createArray,
+  sumArray,
+  averageArray,
+  uniqueArray,
+  shuffleArray,
+  chunkArray,
+  omitFromArray,
+  difference,
+} from './arrays';
+
 /**
  * classNames
  */
@@ -31,16 +42,6 @@ export { isPassiveEventsSupported, isSmoothScrollSupported } from './detections'
 export { isEqual } from './equal';
 
 export { noop, throttle, debounce, once } from './functions';
-
-export {
-  sumArray,
-  averageArray,
-  uniqueArray,
-  shuffleArray,
-  chunkArray,
-  omitFromArray,
-  difference,
-} from './arrays';
 
 export { asyncImportLoader } from './async';
 
