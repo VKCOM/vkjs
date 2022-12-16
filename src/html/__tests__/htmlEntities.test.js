@@ -7,6 +7,7 @@ import {
   decodeHTMLEntities,
   outOfBoundsChar,
   decodeHTMLEntitiesDeep,
+  decodeHTMLFullEntities,
 } from '../escape';
 
 const empty = [
@@ -174,4 +175,36 @@ describe('decodeHTMLEntitiesDeep', () => {
   test('array input', () => {
     expect(decodeHTMLEntitiesDeep(['&#1333;', 1])).toEqual(['Ե', 1]);
   });
+});
+
+const decodeFullTests = [
+  ...decodeTests,
+  [
+    "&amp &amp",
+    "& &",
+  ],
+  [
+    "text &gesl; blah",
+    "text \u22db\ufe00 blah",
+  ],
+  [
+    "Lambda = &#x3bb; = &#X3Bb ",
+    "Lambda = λ = λ ",
+  ],
+  [
+    "&# &#x &#128;43 &copy = &#169f = &#xa9",
+    "&# &#x €43 © = ©f = ©",
+  ],
+  [
+    '&AMP &AMP;',
+    `& &`,
+  ],
+  [
+    '&Pi &Pi;',
+    `&Pi Π`,
+  ],
+]
+
+test.each(decodeFullTests)('decodeHTMLFullEntities(%j) should equal %j', (input, expected) => {
+  expect(decodeHTMLFullEntities(input)).toEqual(expected);
 });

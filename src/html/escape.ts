@@ -2,6 +2,7 @@
 import { Replacer } from '../lib/replacer';
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
 import { Dictionary } from '../types';
+import { buildFullNamedEntities, fullNamedEntities } from './entity';
 
 const escapeReplacer = /*#__PURE__*/ new Replacer({
   '&': '&amp;',
@@ -131,9 +132,26 @@ export function decodeHTMLEntitiesDeep<T>(input: T): T {
 /**
  * `decodeHTMLEntities` декодирует зарезервированные HTML-сущности.
  *
+ * Если нужна возможность декодировать все сущности, используйте
+ * {@link decodeHTMLFullEntities}
+ *
  * @param input текст который необходимо декодировать
  * @param entities кастомный словарь сущностей `{'lt;': '<'}`
  */
 export function decodeHTMLEntities(input: string, entities = namedEntities): string {
   return decodeString(input, entities);
+}
+
+/**
+ * `decodeHTMLFullEntities` декодирует все HTML-сущности.
+ *
+ * Если вам нужно декодировать не все сущности, используйте
+ * {@link decodeHTMLEntities} и кастомный словарь.
+ *
+ * @param input текст который необходимо декодировать
+ */
+export function decodeHTMLFullEntities(input: string): string {
+  buildFullNamedEntities();
+
+  return decodeString(input, fullNamedEntities);
 }

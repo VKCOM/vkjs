@@ -73,6 +73,16 @@
       "name": "JS ES6 with leadingZero only import (tree shaking)",
       "path": "lib/es6/index.js",
       "import": "{ leadingZero }"
+    },
+    {
+      "name": "JS ES6 with decodeHTMLEntities only import (tree shaking)",
+      "path": "lib/es6/index.js",
+      "import": "{ decodeHTMLEntities }"
+    },
+    {
+      "name": "JS ES6 with decodeHTMLFullEntities only import (tree shaking)",
+      "path": "lib/es6/index.js",
+      "import": "{ decodeHTMLFullEntities }"
     }
   ],
   "repository": {
