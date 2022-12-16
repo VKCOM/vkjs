@@ -59,7 +59,7 @@ export function detectIOS(ua?: string) {
   };
 }
 
-const {
+export const {
   isIPad,
   isIPhone,
   isIOS,
@@ -71,19 +71,6 @@ const {
   isIPhoneX,
   isIOSChrome,
 } = detectIOS();
-
-export {
-  isIPad,
-  isIPhone,
-  isIOS,
-  isIPadOS,
-  iosMajor,
-  iosMinor,
-  isWKWebView,
-  isScrollBasedViewport,
-  isIPhoneX,
-  isIOSChrome,
-};
 
 export function isLandscapePhone() {
   return Math.abs(window.orientation) === 90 && !isIPad;

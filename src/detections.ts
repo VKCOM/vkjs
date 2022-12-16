@@ -36,4 +36,4 @@ function detectSmoothScrollSupport() {
   return isSupported;
 }
 
-export let isSmoothScrollSupported = detectSmoothScrollSupport();
+export const isSmoothScrollSupported = /*#__PURE__*/ detectSmoothScrollSupport();
