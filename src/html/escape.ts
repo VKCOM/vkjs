@@ -3,7 +3,7 @@ import { Replacer } from '../lib/replacer';
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
 import { Dictionary } from '../types';
 
-const escapeReplacer = new Replacer({
+const escapeReplacer = /*#__PURE__*/ new Replacer({
   '&': '&amp;',
   '<': '&lt;',
   '>': '&gt;',
@@ -11,7 +11,7 @@ const escapeReplacer = new Replacer({
   '"': '&quot;',
 });
 
-const unescapeReplacer = new Replacer({
+const unescapeReplacer = /*#__PURE__*/ new Replacer({
   '&amp;': '&',
   '&#38;': '&',
   '&lt;': '<',
@@ -48,7 +48,7 @@ export function unescape(input: string): string {
   return unescapeReplacer.replace(input);
 }
 
-export const outOfBoundsChar = String.fromCharCode(65533);
+export const outOfBoundsChar = /*#__PURE__*/ String.fromCharCode(65533);
 
 const ENCODE_REGEX =
   /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;
