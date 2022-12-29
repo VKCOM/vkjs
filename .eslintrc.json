@@ -53,7 +53,9 @@
 
         "@typescript-eslint/indent": "off",
         "@typescript-eslint/no-extra-parens": "off",
-        "space-before-function-paren": "off"
+        "space-before-function-paren": "off",
+
+        "spaced-comment": ["error", "always", { "exceptions": ["#__PURE__"] }]
       }
     }
   ]
