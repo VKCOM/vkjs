@@ -18,7 +18,8 @@ export function detectIOS(ua?: string) {
   const isIPhone = !isIPad && ua.search(/iphone|ipod/) !== -1;
   const isIOS = isIPhone || isIPad;
 
-  let iosVersion = isIOS && ua.match(/OS ([\d_]+) like Mac OS X/i);
+  let iosVersion: string[] | typeof isIOS | ReturnType<typeof String.prototype.match> =
+    isIOS && ua.match(/OS ([\d_]+) like Mac OS X/i);
   let iosMajor = 0;
   let iosMinor = 0;
 
