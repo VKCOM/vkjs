@@ -131,6 +131,6 @@
   },
   "resolutions": {
     "@typescript-eslint/eslint-plugin": "5.47.1",
-    "@typescript-eslint/parser": "5.46.1"
+    "@typescript-eslint/parser": "5.48.0"
   }
 }
