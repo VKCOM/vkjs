@@ -1,20 +1,24 @@
 import { noop } from './functions';
 import { canUseDOM, canUseEventListeners } from './dom';
 
-export let isPassiveEventsSupported = false;
+export const isPassiveEventsSupported = /*#__PURE__*/ (() => {
+  let isSupported = false;
 
-if (canUseEventListeners) {
-  try {
-    const options = Object.defineProperty({}, 'passive', {
-      get() {
-        isPassiveEventsSupported = true;
-      },
-    });
+  if (canUseEventListeners) {
+    try {
+      const options = Object.defineProperty({}, 'passive', {
+        get() {
+          isSupported = true;
+        },
+      });
 
-    window.addEventListener('test', noop, options);
-    window.removeEventListener('test', noop, options);
-  } catch (e) {}
-}
+      window.addEventListener('test', noop, options);
+      window.removeEventListener('test', noop, options);
+    } catch (e) {}
+  }
+
+  return isSupported;
+})();
 
 function detectSmoothScrollSupport() {
   if (!canUseDOM) {

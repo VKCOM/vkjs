@@ -1,10 +1,8 @@
-export const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
+export const canUseDOM = /*#__PURE__*/ (() =>
+  !!(typeof window !== 'undefined' && window.document && window.document.createElement))();
 
-export const canUseEventListeners: boolean = canUseDOM && !!window.addEventListener;
+export const canUseEventListeners: boolean = /*#__PURE__*/ (() =>
+  canUseDOM && !!window.addEventListener)();
 
 export function onDOMLoaded(callback: (...args: any[]) => any) {
   if (document.readyState !== 'loading') {

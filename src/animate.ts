@@ -47,35 +47,45 @@ export function animate({ duration, timing, draw }: AnimateArgumentsInterface) {
 declare const WebKitAnimationEvent: AnimationEvent;
 declare const WebKitTransitionEvent: TransitionEvent;
 
-export const animationEvent: SupportEvent<'animationend'> = {
-  supported: false,
-  name: 'animationend',
-};
+export const animationEvent = /*#__PURE__*/ (() => {
+  const obj: SupportEvent<'animationend'> = {
+    supported: false,
+    name: 'animationend',
+  };
 
-export const transitionEvent: SupportEvent<'transitionend'> = {
-  supported: false,
-  name: 'transitionend',
-};
+  if (canUseDOM) {
+    if (typeof AnimationEvent !== 'undefined') {
+      obj.supported = true;
+    } else if (typeof WebKitAnimationEvent !== 'undefined') {
+      obj.supported = true;
 
-if (canUseDOM) {
-  if (typeof AnimationEvent !== 'undefined') {
-    animationEvent.supported = true;
-  } else if (typeof WebKitAnimationEvent !== 'undefined') {
-    animationEvent.supported = true;
-
-    // webkitAnimationEnd не входит в перечисление событий, но соответствует animationend
-    animationEvent.name = 'webkitAnimationEnd' as unknown as 'animationend';
+      // webkitAnimationEnd не входит в перечисление событий, но соответствует animationend
+      obj.name = 'webkitAnimationEnd' as unknown as 'animationend';
+    }
   }
 
-  if (typeof TransitionEvent !== 'undefined') {
-    transitionEvent.supported = true;
-  } else if (typeof WebKitTransitionEvent !== 'undefined') {
-    transitionEvent.supported = true;
+  return obj;
+})();
 
-    // webkitTransitionEnd не входит в перечисление событий, но соответствует transitionend
-    transitionEvent.name = 'webkitTransitionEnd' as unknown as 'transitionend';
+export const transitionEvent = /*#__PURE__*/ (() => {
+  const obj: SupportEvent<'transitionend'> = {
+    supported: false,
+    name: 'transitionend',
+  };
+
+  if (canUseDOM) {
+    if (typeof TransitionEvent !== 'undefined') {
+      obj.supported = true;
+    } else if (typeof WebKitTransitionEvent !== 'undefined') {
+      obj.supported = true;
+
+      // webkitTransitionEnd не входит в перечисление событий, но соответствует transitionend
+      obj.name = 'webkitTransitionEnd' as unknown as 'transitionend';
+    }
   }
-}
+
+  return obj;
+})();
 
 /**
  * Ожидание окончания анимации на элементе

@@ -1,44 +1,51 @@
 import { isIOS, isIPadOS } from './IOSDetections';
 import { canUseDOM } from './dom';
 
-let hasMouse: boolean;
-let hasTouchEvents: boolean;
-let hasHover: boolean;
-let hasTouch: boolean;
+const detect = /*#__PURE__*/ (() => {
+  const obj = {
+    hasMouse: false,
+    hasTouchEvents: false,
+    hasHover: false,
+    hasTouch: false,
+  };
 
-if (canUseDOM) {
+  if (!canUseDOM) {
+    return obj;
+  }
+
   if (isIOS && !isIPadOS) {
-    hasMouse = false;
-    hasHover = false;
-    hasTouchEvents = true;
-    hasTouch = true;
+    obj.hasMouse = false;
+    obj.hasHover = false;
+    obj.hasTouchEvents = true;
+    obj.hasTouch = true;
   } else {
-    hasTouchEvents = 'ontouchstart' in document;
-    hasTouch = hasTouchEvents || ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
+    obj.hasTouchEvents = 'ontouchstart' in document;
+    obj.hasTouch =
+      obj.hasTouchEvents || ('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0);
 
-    if (hasTouch) {
+    if (obj.hasTouch) {
       const notMobile = !/android|mobile|tablet/i.test(navigator.userAgent);
 
-      hasMouse =
+      obj.hasMouse =
         typeof window.matchMedia === 'function' && window.matchMedia('(pointer)').matches
           ? matchMedia('(pointer: fine)').matches
           : notMobile;
 
-      hasHover =
-        hasMouse &&
+      obj.hasHover =
+        obj.hasMouse &&
         (typeof window.matchMedia === 'function' && window.matchMedia('(hover)').matches
           ? matchMedia('(hover: hover)').matches
           : notMobile);
     } else {
-      hasMouse = true;
-      hasHover = true;
+      obj.hasMouse = true;
+      obj.hasHover = true;
     }
   }
-} else {
-  hasMouse = false;
-  hasTouchEvents = false;
-  hasHover = false;
-  hasTouch = false;
-}
 
-export { hasMouse, hasHover, hasTouchEvents, hasTouch };
+  return obj;
+})();
+
+export const hasMouse = /*#__PURE__*/ (() => detect.hasMouse)();
+export const hasHover = /*#__PURE__*/ (() => detect.hasHover)();
+export const hasTouchEvents = /*#__PURE__*/ (() => detect.hasTouchEvents)();
+export const hasTouch = /*#__PURE__*/ (() => detect.hasTouch)();
