@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { test } from '@jest/globals';
+import { expect, describe, test } from '@jest/globals';
 import {
   escape,
   unescape,
@@ -19,18 +19,18 @@ const empty = [
     null,
     '',
   ],
-];
+] as string[][]; // JS type check
 
 const escapeTest = [
   ...empty,
   [
-    `Entities &<>\'"`,
-    `Entities &amp;&lt;&gt;&#39;&quot;`,
+    'Entities &<>\'"',
+    'Entities &amp;&lt;&gt;&#39;&quot;',
   ],
   [
-    `&foo <> bar "fizz" l\'a`,
-    `&amp;foo &lt;&gt; bar &quot;fizz&quot; l&#39;a`,
-  ]
+    '&foo <> bar "fizz" l\'a',
+    '&amp;foo &lt;&gt; bar &quot;fizz&quot; l&#39;a',
+  ],
 ];
 
 test.each(escapeTest)('escape(%j) should equal %j', (input, expected) => {
@@ -40,13 +40,13 @@ test.each(escapeTest)('escape(%j) should equal %j', (input, expected) => {
 const unescapeTest = [
   ...empty,
   [
-    `Entities &amp;&lt;&gt;&apos;&quot;`,
-    `Entities &<>\'"`,
+    'Entities &amp;&lt;&gt;&apos;&quot;',
+    'Entities &<>\'"',
   ],
   [
     'foo&#39;&apos;bar',
-    `foo''bar`,
-  ]
+    'foo\'\'bar',
+  ],
 ];
 
 test.each(unescapeTest)('unescape(%j) should equal %j', (input, expected) => {
@@ -68,12 +68,12 @@ test.each(encodeTest)('encodeHTMLEntities(%j) should equal %j', (input, expected
 const decodeTests = [
   ...empty,
   [
-    `Null and invalid entities &#0; &#2013266066;`,
+    'Null and invalid entities &#0; &#2013266066;',
     `Null and invalid entities ${outOfBoundsChar} ${outOfBoundsChar}`,
   ],
   [
-    `Показувати моє ім&#39;я лише авторові`,
-    `Показувати моє ім'я лише авторові`,
+    'Показувати моє ім&#39;я лише авторові',
+    'Показувати моє ім\'я лише авторові',
   ],
   [
     '&#1333;&#1408;&#1391;&#1387;&#1408;&#1384; &#1401;&#1379;&#1407;&#1398;&#1406;&#1381;&#1409;',
@@ -85,7 +85,7 @@ const decodeTests = [
   ],
   [
     '&#34 &#34;',
-    `" "`,
+    '" "',
   ],
   [
     'Привет&#33;',
@@ -112,7 +112,7 @@ test.each(decodeTests)('decodeHTMLEntities(%j) should equal %j', (input, expecte
 describe('decodeHTMLEntitiesDeep', () => {
   const decodeTestsLoopEntered = {
     array: ['&#1333;&#1408;&#1391;&#1387;&#1408;&#1384; &#1401;&#1379;&#1407;&#1398;&#1406;&#1381;&#1409;', {
-      objectInArray: `Показувати моє ім&#39;я лише авторові`,
+      objectInArray: 'Показувати моє ім&#39;я лише авторові',
     }],
     object: {
       keyInObject: '&amp; & &lt; < &gt; > &quot; "',
@@ -127,7 +127,7 @@ describe('decodeHTMLEntitiesDeep', () => {
 
   const decodeTestsLoopExpected = {
     array: ['Երկիրը չգտնվեց', {
-      objectInArray: `Показувати моє ім'я лише авторові`,
+      objectInArray: 'Показувати моє ім\'я лише авторові',
     }],
     object: {
       keyInObject: '& & < < > > " "',
@@ -180,30 +180,30 @@ describe('decodeHTMLEntitiesDeep', () => {
 const decodeFullTests = [
   ...decodeTests,
   [
-    "&amp &amp",
-    "& &",
+    '&amp &amp',
+    '& &',
   ],
   [
-    "text &gesl; blah",
-    "text \u22db\ufe00 blah",
+    'text &gesl; blah',
+    'text \u22db\ufe00 blah',
   ],
   [
-    "Lambda = &#x3bb; = &#X3Bb ",
-    "Lambda = λ = λ ",
+    'Lambda = &#x3bb; = &#X3Bb ',
+    'Lambda = λ = λ ',
   ],
   [
-    "&# &#x &#128;43 &copy = &#169f = &#xa9",
-    "&# &#x €43 © = ©f = ©",
+    '&# &#x &#128;43 &copy = &#169f = &#xa9',
+    '&# &#x €43 © = ©f = ©',
   ],
   [
     '&AMP &AMP;',
-    `& &`,
+    '& &',
   ],
   [
     '&Pi &Pi;',
-    `&Pi Π`,
+    '&Pi Π',
   ],
-]
+];
 
 test.each(decodeFullTests)('decodeHTMLFullEntities(%j) should equal %j', (input, expected) => {
   expect(decodeHTMLFullEntities(input)).toEqual(expected);
