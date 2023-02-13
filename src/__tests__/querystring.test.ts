@@ -1,4 +1,4 @@
-import { test } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { querystring } from '../querystring';
 
 describe('querystring parse', () => {
@@ -13,7 +13,9 @@ describe('querystring parse', () => {
 
 describe('querystring stringify', () => {
   test('empty string for null, undefined or empty data', () => {
+    // @ts-expect-error TS2345: JS type check
     expect(querystring.stringify(null)).toEqual('');
+    // @ts-expect-error TS2345: JS type check
     expect(querystring.stringify(undefined)).toEqual('');
     expect(querystring.stringify({})).toEqual('');
   });
@@ -24,18 +26,28 @@ describe('querystring stringify', () => {
   });
 
   test('encoding', () => {
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' })).toEqual('foo=bar&baz=foo%20%26%20bar');
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: true })).toEqual('foo=bar&baz=foo%20%26%20bar');
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: false })).toEqual('foo=bar&baz=foo & bar');
+    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' })).toEqual(
+      'foo=bar&baz=foo%20%26%20bar',
+    );
+    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: true })).toEqual(
+      'foo=bar&baz=foo%20%26%20bar',
+    );
+    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: false })).toEqual(
+      'foo=bar&baz=foo & bar',
+    );
   });
 
   test('arrays', () => {
     expect(querystring.stringify({ foo: [1, 2, 3] })).toEqual('foo[]=1&foo[]=2&foo[]=3');
-    expect(querystring.stringify({ foo: ['a', 'foo & bar'] })).toEqual('foo[]=a&foo[]=foo%20%26%20bar');
+    expect(querystring.stringify({ foo: ['a', 'foo & bar'] })).toEqual(
+      'foo[]=a&foo[]=foo%20%26%20bar',
+    );
   });
 
   test('null and undefined', () => {
     expect(querystring.stringify({ a: 'foo', b: undefined, c: null })).toEqual('a=foo&c=');
-    expect(querystring.stringify({ a: 'foo', b: undefined, c: null }, { skipNull: true })).toEqual('a=foo');
+    expect(querystring.stringify({ a: 'foo', b: undefined, c: null }, { skipNull: true })).toEqual(
+      'a=foo',
+    );
   });
 });

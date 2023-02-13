@@ -1,4 +1,4 @@
-import { test } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 import { formatDuration } from '../duration';
 
 test('formatDuration function', () => {
