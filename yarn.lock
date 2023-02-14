@@ -4977,9 +4977,9 @@ typedoc-plugin-mdn-links@^2.0.0:
   integrity sha512-Fzjvfsj3rxvmZNqWRvq9JTGBkOkrPp0kBtvJCJ4U5Jm14OF1KoRErtmwgVQcPLA5Xs8h5I/W4uZBaL8SDHsgxQ==
 
 typedoc-plugin-versions@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-versions/-/typedoc-plugin-versions-0.2.2.tgz#2108a89b38ada27346a2aabb8ecdd3491282881e"
-  integrity sha512-vU6TSngCsFeJQgncyCo1raamAY5Ekk6s4QUSoW+2LNRkVTas20UFxupAgb48sFdgJqmAO4og2/+j4UYrZBZdoA==
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-versions/-/typedoc-plugin-versions-0.2.3.tgz#2cae4d722e45c3d9ab1a7640349c970dfc880f86"
+  integrity sha512-SDbd+Q1ieHlSa5y3rCxuZH5Eg87Flgotx5qcpO3x2h/LaQ8i25oyiArXALm5wFXYr7CgSit4ODrVVlbA7SH2jA==
   dependencies:
     fs-extra "^10.1.0"
     semver "^7.3.7"
