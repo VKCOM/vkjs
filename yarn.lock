@@ -724,38 +724,37 @@
   dependencies:
     debug "^4.1.1"
 
-"@size-limit/file@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-8.1.0.tgz#c1624b3c891e4c5f08285b359e85253e1c96bc66"
-  integrity sha512-Ur+NgJSRHBnbQBrD8X2doxXYdBcVJsMxe2KfWrUmnZ6wYz09YKhQ1iYLqNztjf2yf/JEp00zp1vyhmimUQfUHQ==
+"@size-limit/file@8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-8.2.4.tgz#3624527cc9644c700697322d533e157b4a809a2b"
+  integrity sha512-xLuF97W7m7lxrRJvqXRlxO/4t7cpXtfxOnjml/t4aRVUCMXLdyvebRr9OM4jjoK8Fmiz8jomCbETUCI3jVhLzA==
   dependencies:
-    semver "7.3.7"
+    semver "7.3.8"
 
 "@size-limit/preset-big-lib@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-big-lib/-/preset-big-lib-8.1.0.tgz#b20f5aadc33b8af8ad0d795e242d8789c57c5304"
-  integrity sha512-onkwmJt+gXzoRXOkcmvAX2mGyAoS6vXltqZsQHKpqYENJDghi5o4XuIZhYoEdsAYeP/vrM7u9jGGB7a0PGXR+Q==
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-big-lib/-/preset-big-lib-8.2.4.tgz#875a0f77ac23dab99b338ff65f4f87d665c66eb9"
+  integrity sha512-J4PTiJATEO/zoXF3tsSUy4KztvVuCw1g9ukRuDHYA+p1YYVViO4fDiSlnw4nBLN2lZoGdfQVOg12G7ta3+WwSA==
   dependencies:
-    "@size-limit/file" "8.1.0"
-    "@size-limit/time" "8.1.0"
-    "@size-limit/webpack" "8.1.0"
+    "@size-limit/file" "8.2.4"
+    "@size-limit/time" "8.2.4"
+    "@size-limit/webpack" "8.2.4"
 
-"@size-limit/time@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-8.1.0.tgz#3703363dd8b042da1bd99182ccfb95932bd737e3"
-  integrity sha512-rOfIqpq8RSjKUnByJcWr2qw8XBTo3DAL16lmzjILvzQBkKi1kgDHU4QVa9K/BehYqH+Lx3rA3pVFMrQ5aJsOkg==
+"@size-limit/time@8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-8.2.4.tgz#e72372b77b667b4cebd84c32f66cda86efd05985"
+  integrity sha512-tQ5EFlN/AY8RLIJxURVfiwJpO4Q9UihtfE6c14fXL9Jy/wl2hZEhkFrUhRayNDvnZW8HWNko1Hmt7dLsY3iF8A==
   dependencies:
     estimo "^2.3.6"
     react "^17.0.2"
 
-"@size-limit/webpack@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-8.1.0.tgz#91e98914a7c019cdf863fe6182af8b897fa1990f"
-  integrity sha512-TLego57hQbR0dmYZzIa9KZecebGMJoxZaqJTx9v3NDllxt6kJTljVXWghEvsGLpdKQfZTqraZ6nRm38+lG3sNw==
+"@size-limit/webpack@8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-8.2.4.tgz#e0dfb99f69236ec6b59b5d2df674ac8242fe8bb6"
+  integrity sha512-L6TSQpX89cSeWQ1BL31BsaYucao0MGNW1xySHVO7jlgmOwnHC7j5zq91QRN9G6eMG84W+F3uRV4AiyCdZxKz9g==
   dependencies:
-    escape-string-regexp "^4.0.0"
     nanoid "^3.3.4"
-    webpack "^5.74.0"
+    webpack "^5.75.0"
 
 "@swc/cli@^0.1.59":
   version "0.1.59"
@@ -4445,14 +4444,7 @@ semver-truncate@^1.1.2:
   dependencies:
     semver "^5.3.0"
 
-semver@7.3.7:
-  version "7.3.7"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.7.tgz#12c5b649afdbf9049707796e22a4028814ce523f"
-  integrity sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==
-  dependencies:
-    lru-cache "^6.0.0"
-
-semver@7.x, semver@^7.2.1, semver@^7.3.5, semver@^7.3.7, semver@^7.3.8:
+semver@7.3.8, semver@7.x, semver@^7.2.1, semver@^7.3.5, semver@^7.3.7, semver@^7.3.8:
   version "7.3.8"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.8.tgz#07a78feafb3f7b32347d725e33de7e2a2df67798"
   integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
@@ -5118,10 +5110,10 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack@^5.74.0:
-  version "5.74.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.74.0.tgz#02a5dac19a17e0bb47093f2be67c695102a55980"
-  integrity sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==
+webpack@^5.75.0:
+  version "5.75.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.75.0.tgz#1e440468647b2505860e94c9ff3e44d5b582c152"
+  integrity sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
