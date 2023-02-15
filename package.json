@@ -114,7 +114,6 @@
     "prettier": "^2.7.1",
     "shx": "^0.3.2",
     "size-limit": "^8.1.0",
-    "ts-jest": "^29.0.3",
     "typedoc": "^0.23.21",
     "typedoc-plugin-mdn-links": "^2.0.0",
     "typedoc-plugin-versions": "^0.2.2",
