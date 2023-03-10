@@ -47,7 +47,7 @@ function copyWithFakeElement(text: string): Promise<boolean> {
 
 export function copyTextToClipboard(text: string): Promise<boolean> {
   if (navigator.clipboard) {
-    return copyWithNavigator(text);
+    return copyWithNavigator(text).catch(() => copyWithFakeElement(text));
   } else {
     return copyWithFakeElement(text);
   }
