@@ -121,7 +121,7 @@
   },
   "resolutions": {
     "@typescript-eslint/eslint-plugin": "5.56.0",
-    "@typescript-eslint/parser": "5.55.0"
+    "@typescript-eslint/parser": "5.56.0"
   },
   "dependencies": {
     "@swc/helpers": "^0.4.14"
