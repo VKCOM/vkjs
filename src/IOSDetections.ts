@@ -10,8 +10,9 @@ export const IOS_NO_KEYBOARD_ALLOWED_OFFSET = 70;
 
 export function detectIOS(ua?: string) {
   if (!ua) {
-    ua = canUseDOM ? navigator.userAgent.toLowerCase() : '';
+    ua = canUseDOM ? navigator.userAgent : '';
   }
+  ua = ua.toLowerCase();
 
   const isIPadOS = checkIPadOS(ua);
   const isIPad = isIPadOS || ua.indexOf('ipad') !== -1;
@@ -19,7 +20,7 @@ export function detectIOS(ua?: string) {
   const isIOS = isIPhone || isIPad;
 
   let iosVersion: string[] | typeof isIOS | ReturnType<typeof String.prototype.match> =
-    isIOS && ua.match(/OS ([\d_]+) like Mac OS X/i);
+    isIOS && ua.match(/os ([\d_]+) like mac os x/i);
   let iosMajor = 0;
   let iosMinor = 0;
 
