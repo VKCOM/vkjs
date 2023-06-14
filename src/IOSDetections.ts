@@ -15,7 +15,7 @@ export function detectIOS(ua?: string) {
   ua = ua.toLowerCase();
 
   const isIPadOS = checkIPadOS(ua);
-  const isIPad = isIPadOS || ua.indexOf('ipad') !== -1;
+  const isIPad = isIPadOS || ua.includes('ipad');
   const isIPhone = !isIPad && ua.search(/iphone|ipod/) !== -1;
   const isIOS = isIPhone || isIPad;
 
@@ -94,11 +94,7 @@ function checkWKWebView(ua: string) {
   const lte9 = /constructor/i.test(String(window.HTMLElement));
   const idb = !!window.indexedDB;
 
-  if (
-    ua.indexOf('safari') !== -1 &&
-    ua.indexOf('version') !== -1 &&
-    !(navigator as any).standalone
-  ) {
+  if (ua.includes('safari') && ua.includes('version') && !(navigator as any).standalone) {
     // Safari (WKWebView/Nitro since 6+)
   } else if ((!idb && lte9) || !(window.statusbar && window.statusbar.visible)) {
     // UIWebView
@@ -116,7 +112,7 @@ export function checkIPadOS(ua: string) {
   }
 
   const notIOS = !/ipad|iphone|ipod/.test(ua);
-  const macOS = /mac os/.test(ua);
+  const macOS = ua.includes('mac os');
 
   if (macOS && notIOS && typeof (navigator as any).standalone === 'boolean') {
     return true;

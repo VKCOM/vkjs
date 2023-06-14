@@ -30,8 +30,7 @@ function detectSmoothScrollSupport() {
     const div = document.createElement('div');
     div.scrollTo({
       top: 0,
-      // @ts-expect-error
-      get behavior() {
+      get behavior(): ScrollBehavior {
         isSupported = true;
         return 'smooth';
       },
