@@ -104,7 +104,7 @@ export function omitFromArray<T>(array: T[] = [], value: T): T[] {
  */
 export function difference<T>(array1: T[] = [], array2: T[] = []) {
   return array1.reduce<T[]>((res, item) => {
-    if (array2.indexOf(item) < 0) {
+    if (!array2.includes(item)) {
       res.push(item);
     }
     return res;

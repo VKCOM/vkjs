@@ -12,7 +12,7 @@ export const isCookieEnabled = () => {
     try {
       document.cookie = 'cookietest=1';
 
-      isCookieEnabledCache = document.cookie.indexOf('cookietest=') !== -1;
+      isCookieEnabledCache = document.cookie.includes('cookietest=');
 
       document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
     } catch (e) {
