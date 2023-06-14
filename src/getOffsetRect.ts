@@ -5,7 +5,7 @@ interface Bounds {
   height: number;
 }
 
-export function getOffsetRect(el: HTMLElement | Text | null): Bounds {
+export function getOffsetRect(el: HTMLElement | SVGElement | Text | null): Bounds {
   const isElement = el instanceof HTMLElement || el instanceof SVGElement;
 
   if (typeof window === 'undefined' || !isElement) {
@@ -28,7 +28,7 @@ export function getOffsetRect(el: HTMLElement | Text | null): Bounds {
   return {
     top: Math.round(box.top + scrollTop - clientTop),
     left: Math.round(box.left + scrollLeft - clientLeft),
-    width: box.width,
-    height: box.height,
+    width: Math.round(box.width),
+    height: Math.round(box.height),
   };
 }
