@@ -3,7 +3,7 @@ import { Replacer } from '../lib/replacer';
 /**
  * Словарь транслитерации ВКонтакте из русского в английский.
  */
-export const transliterationDictVKRusEng: Record<string, string> = {
+const transliterationDictVKRusEng: Record<string, string> = {
   'А': 'A',
   'Б': 'B',
   'В': 'V',
@@ -92,7 +92,7 @@ export const transliterationDictVKRusEng: Record<string, string> = {
  * Словарь транслитерации ГОСТ 7.79-2000 (ISO 9-95) по по системе Б
  * (с использованием буквосочетаний) для русского языка.
  */
-export const transliterationDictGostLetterCombinationsRu = {
+const transliterationDictGostLetterCombinationsRu = {
   'А': 'A',
   'Б': 'B',
   'В': 'V',
@@ -190,3 +190,11 @@ export class Transliterator {
  * Транслитератор ВКонтакте
  */
 export const transliteratorVKRusEng = /*#__PURE__*/ new Transliterator(transliterationDictVKRusEng);
+
+/**
+ * Транслитератор ГОСТ 7.79-2000 (ISO 9-95) по системе Б
+ * (с использованием буквосочетаний) для русского языка.
+ */
+export const transliteratorGostLetterCombinationsRu = /*#__PURE__*/ new Transliterator(
+  transliterationDictGostLetterCombinationsRu,
+);

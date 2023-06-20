@@ -1,11 +1,5 @@
 import { test, expect } from '@jest/globals';
-import {
-  Transliterator,
-  transliterationDictGostLetterCombinationsRu,
-  transliteratorVKRusEng,
-} from '../transliteration';
-
-const gostTrans = new Transliterator(transliterationDictGostLetterCombinationsRu);
+import { transliteratorGostLetterCombinationsRu, transliteratorVKRusEng } from '../transliteration';
 
 test.each([
   ['Славься, Отечество наше свободное,', 'Slavsya, Otechestvo nashe svobodnoe,'],
@@ -21,6 +15,9 @@ test.each([
   ['Братских народов союз вековой,', 'Bratskix narodov soyuz vekovoj,'],
   ['Предками данная мудрость народная!', 'Predkami dannaya mudrost` narodnaya!'],
   ['Славься, страна! Мы гордимся тобой!', 'Slav`sya, strana! My` gordimsya toboj!'],
-])('gost transliteration(%j) should equal %j', (input, expected) => {
-  expect(gostTrans.transliteration(input)).toEqual(expected);
-});
+])(
+  'transliteratorGostLetterCombinationsRu.transliteration(%j) should equal %j',
+  (input, expected) => {
+    expect(transliteratorGostLetterCombinationsRu.transliteration(input)).toEqual(expected);
+  },
+);
