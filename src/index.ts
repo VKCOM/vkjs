@@ -143,3 +143,5 @@ export {
   isLandscapePhone,
   checkIPadOS,
 } from './IOSDetections';
+
+export * from './text';
