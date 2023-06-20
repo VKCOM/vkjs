@@ -3,7 +3,7 @@ import { Replacer } from '../lib/replacer';
 /**
  * Словарь транслитерации ВКонтакте из русского в английский.
  */
-const transliterationDictVKRusEng: Record<string, string> = {
+const transliterationDictVKRusToEng: Record<string, string> = {
   'А': 'A',
   'Б': 'B',
   'В': 'V',
@@ -89,6 +89,88 @@ const transliterationDictVKRusEng: Record<string, string> = {
 };
 
 /**
+ * Словарь транслитерации ВКонтакте из английского в русский.
+ */
+const transliterationDictVKEngToRus: Record<string, string> = {
+  'a': 'а',
+  'b': 'б',
+  'v': 'в',
+  'g': 'г',
+  'd': 'д',
+  'e': 'е',
+  'z': 'з',
+  'i': 'и',
+  'j': 'й',
+  'k': 'к',
+  'l': 'л',
+  'm': 'м',
+  'n': 'н',
+  'o': 'о',
+  'p': 'п',
+  'r': 'р',
+  's': 'с',
+  't': 'т',
+  'u': 'у',
+  'f': 'ф',
+  'h': 'х',
+  'c': 'ц',
+  'y': 'ы',
+  'A': 'А',
+  'B': 'Б',
+  'V': 'В',
+  'G': 'Г',
+  'D': 'Д',
+  'E': 'Е',
+  'Z': 'З',
+  'I': 'И',
+  'J': 'Й',
+  'K': 'К',
+  'L': 'Л',
+  'M': 'М',
+  'N': 'Н',
+  'O': 'О',
+  'P': 'П',
+  'R': 'Р',
+  'S': 'С',
+  'T': 'Т',
+  'U': 'У',
+  'F': 'Ф',
+  'H': 'Х',
+  'C': 'Ц',
+  'Y': 'Ы',
+  'w': 'в',
+  'q': 'к',
+  'x': 'кс',
+  'W': 'В',
+  'Q': 'К',
+  'X': 'КС',
+
+  'yo': 'ё',
+  'zh': 'ж',
+  'kh': 'х',
+  'ts': 'ц',
+  'ch': 'ч',
+  'sch': 'щ',
+  'shch': 'щ',
+  'sh': 'ш',
+  'eh': 'э',
+  'yu': 'ю',
+  'ya': 'я',
+  'YO': 'Ё',
+  'ZH': 'Ж',
+  'KH': 'Х',
+  'TS': 'Ц',
+  'CH': 'Ч',
+  'SCH': 'Щ',
+  'SHCH': 'Щ',
+  'SH': 'Ш',
+  'EH': 'Э',
+  'YU': 'Ю',
+  'YA': 'Я',
+  "'": 'ь',
+};
+
+/**
  * Словарь транслитерации ГОСТ 7.79-2000 (ISO 9-95) по по системе Б
  * (с использованием буквосочетаний) для русского языка.
  */
@@ -169,12 +251,11 @@ const transliterationDictGostLetterCombinationsRu = {
 
 /**
  * Транслитератор, для передачи знаков одной письменности знаками другой.
- * По умолчанию переводит из русской кириллицы в латиницу по правилам ВКонтакте
  */
 export class Transliterator {
   private readonly replacer: Replacer;
 
-  constructor(dict: Record<string, string> = transliterationDictVKRusEng) {
+  constructor(dict: Record<string, string>) {
     this.replacer = new Replacer(dict);
   }
 
@@ -187,9 +268,18 @@ export class Transliterator {
 }
 
 /**
- * Транслитератор ВКонтакте
+ * Транслитератор ВКонтакте из русского в английский
  */
-export const transliteratorVKRusEng = /*#__PURE__*/ new Transliterator(transliterationDictVKRusEng);
+export const transliteratorVKRusToEng = /*#__PURE__*/ new Transliterator(
+  transliterationDictVKRusToEng,
+);
+
+/**
+ * Транслитератор ВКонтакте из английского в русский
+ */
+export const transliteratorVKEngToRus = /*#__PURE__*/ new Transliterator(
+  transliterationDictVKEngToRus,
+);
 
 /**
  * Транслитератор ГОСТ 7.79-2000 (ISO 9-95) по системе Б
