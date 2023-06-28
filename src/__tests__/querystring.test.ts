@@ -8,6 +8,28 @@ describe('querystring parse', () => {
     expect(querystring.parse('&foo=bar&xyz=baz')).toEqual({ foo: 'bar', xyz: 'baz' });
   });
 
+  test.each([0, false, null, {}, '?', 'https://vk.com'])('querystring.parse(%p) is {}', (query) => {
+    expect(querystring.parse(query)).toEqual({});
+  });
+
+  test.each([
+    { query: 'http://www.google.com/?foo=bar?', expected: { foo: 'bar?' } },
+    {
+      query: 'ascii=%3Ckey%3A+0x90%3E',
+      expected: { ascii: '<key: 0x90>' },
+    },
+    {
+      query: 'a=%3B',
+      expected: { a: ';' },
+    },
+    {
+      query: 'a%3Bb=1',
+      expected: { 'a;b': '1' },
+    },
+  ])('querystring.parse($query) is $expect', ({ query, expected }) => {
+    expect(querystring.parse(query)).toEqual(expected);
+  });
+
   // TODO: Написать больше тестов
 });
 
