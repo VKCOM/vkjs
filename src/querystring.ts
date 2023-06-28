@@ -2,24 +2,23 @@ export interface ParsedQuery<T = string> {
   [key: string]: T | T[] | null;
 }
 
-function parse(query: string | any): ParsedQuery {
-  if (typeof query !== 'string') {
+function parse(input: string | any): ParsedQuery {
+  if (typeof input !== 'string') {
     return {};
   }
 
-  query = query.trim().replace(/^[?#&]/, '');
+  const query = input.trim().replace(/^[?#&]/, '');
   if (!query) {
     return {};
   }
 
-  const matches = /\?(.+)$/gi.exec(query);
-  const str = matches ? matches[1] : query;
+  const str = query.substring(query.indexOf('?') + 1);
 
   return str.split('&').reduce((acc: ParsedQuery, item: string) => {
     const param = item.split('=');
 
     if (param[1]) {
-      acc[param[0]] = decodeURIComponent(param[1]);
+      acc[decodeURIComponent(param[0])] = decodeURIComponent(param[1].replace(/\+/g, ' '));
     }
 
     return acc;
