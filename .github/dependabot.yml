@@ -7,18 +7,27 @@ updates:
     allow:
       - dependency-type: 'direct'
     groups:
-      typescript-eslint:
+      eslint:
         patterns:
+          - 'eslint*'
           - '@typescript-eslint/*'
+          - '@vkontakte/eslint-plugin'
       jest:
         patterns:
-          - 'jest'
+          - 'jest*'
           - '@jest/*'
-          - 'jest-environment-*'
+          - '@swc/jest'
+      typedoc:
+        patterns:
+          - 'typedoc*'
       size-limit:
         patterns:
           - 'size-limit'
           - '@size-limit/*'
+      prettier:
+        patterns:
+          - 'prettier'
+          - '@vkontakte/prettier-config'
     reviewers:
       - 'VKCOM/vk-sec'
 
