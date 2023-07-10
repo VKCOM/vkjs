@@ -1,18 +1,41 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'weekly'
     allow:
-      - dependency-type: "direct"
+      - dependency-type: 'direct'
+    groups:
+      eslint:
+        patterns:
+          - 'eslint*'
+          - '@typescript-eslint/*'
+          - '@vkontakte/eslint-plugin'
+      jest:
+        patterns:
+          - 'jest*'
+          - '@jest/*'
+          - '@swc/jest'
+      typedoc:
+        patterns:
+          - 'typedoc*'
+      size-limit:
+        patterns:
+          - 'size-limit'
+          - '@size-limit/*'
+      prettier:
+        patterns:
+          - 'prettier'
+          - '@vkontakte/prettier-config'
     reviewers:
-      - "VKCOM/vk-sec"
-  - package-ecosystem: "github-actions"
+      - 'VKCOM/vk-sec'
+
+  - package-ecosystem: 'github-actions'
     # Workflow files stored in the
     # default location of `.github/workflows`
-    directory: "/"
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'weekly'
     reviewers:
-      - "VKCOM/vk-sec"
+      - 'VKCOM/vk-sec'
