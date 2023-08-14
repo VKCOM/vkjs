@@ -834,9 +834,9 @@
     tslib "^2.4.0"
 
 "@swc/jest@^0.2.24":
-  version "0.2.27"
-  resolved "https://registry.yarnpkg.com/@swc/jest/-/jest-0.2.27.tgz#f6cbd0b6f95cf689c3344c63fc379fa680cdbf52"
-  integrity sha512-Xt8EJ6Wy0NYVL8KDPcDMsuUSzyV2UAByamyy28x2iDZCJw2eVz3acedCGBYxxlPR/DNr6QbA35OSymuXhC9QVA==
+  version "0.2.29"
+  resolved "https://registry.yarnpkg.com/@swc/jest/-/jest-0.2.29.tgz#b27d647ec430c909f9bb567d1df2a47eaa3841f4"
+  integrity sha512-8reh5RvHBsSikDC3WGCd5ZTd2BXKkyOdK7QwynrCH58jk2cQFhhHhFBg/jvnWZehUQe/EoOImLENc9/DwbBFow==
   dependencies:
     "@jest/create-cache-key-function" "^27.4.2"
     jsonc-parser "^3.2.0"
