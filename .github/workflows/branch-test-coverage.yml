@@ -1,0 +1,22 @@
+#
+# Требования:
+# - Тесты должны запускаться при каждом изменении в ветке, чтобы корректно рассчитывалось покрытие тестами при
+#   последующих изменениях.
+
+name: Branch test coverage
+
+run-name: Check ${{ github.ref_name }} branch test coverage
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: branch-test-coverage-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Call reusable unit tests workflow
+    uses: ./.github/workflows/reusable_workflow_test.yml

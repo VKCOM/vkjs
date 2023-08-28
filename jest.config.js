@@ -6,4 +6,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   roots: [path.join(__dirname, 'src')],
+  collectCoverage: true,
+  coverageReporters: ['text', 'cobertura'],
+  collectCoverageFrom: ['src/*/**/**.{ts,tsx}'],
 };

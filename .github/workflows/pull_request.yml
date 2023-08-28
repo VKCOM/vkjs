@@ -2,17 +2,16 @@ name: 'Pull Request'
 
 on: ['pull_request']
 
+concurrency:
+  group: pull_request-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'yarn'
-      - run: yarn install --frozen-lockfile
-      - run: yarn test
+    name: Call reusable unit tests workflow
+    uses: ./.github/workflows/reusable_workflow_test.yml
+    with:
+      ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
   size:
     runs-on: ubuntu-latest
