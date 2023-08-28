@@ -119,7 +119,7 @@
     "prettier": "^3.0.2",
     "shx": "^0.3.2",
     "size-limit": "^8.1.0",
-    "typedoc": "^0.24.8",
+    "typedoc": "^0.25.0",
     "typedoc-plugin-mdn-links": "^3.0.2",
     "typescript": "^5.1.3"
   },
