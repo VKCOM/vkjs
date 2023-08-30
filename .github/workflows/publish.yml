@@ -42,6 +42,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile --ignore-scripts
 
+      - run: yarn lint
       - run: yarn test
 
       - name: Bump by version type

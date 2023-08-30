@@ -20,10 +20,10 @@
     "clear": "shx rm -rf lib",
     "prepare": "yarn build",
     "build": "yarn clear && concurrently 'yarn:build:*'",
-    "test": "concurrently 'yarn:test:*'",
-    "test:tsc": "tsc --noEmit",
-    "test:eslint": "eslint ./src --ext .ts --fix",
-    "test:jest": "jest",
+    "test": "jest",
+    "lint": "concurrently 'yarn:lint:*'",
+    "lint:tsc": "tsc --noEmit",
+    "lint:eslint": "eslint ./src --ext .ts --fix",
     "prepublishOnly": "yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
     "build:es6": "swc src/ --config-file package.swcrc -d lib/es6",
@@ -33,7 +33,8 @@
     "docs": "typedoc"
   },
   "pre-commit": [
-    "test"
+    "test",
+    "lint"
   ],
   "size-limit": [
     {
