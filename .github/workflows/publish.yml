@@ -63,13 +63,13 @@ jobs:
         run: yarn publish --non-interactive --tag ${{ github.event.inputs.tag }}
         if: ${{ github.event.inputs.tag }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN_TEST }}
 
       - name: Publushing release
         run: yarn publish --non-interactive
         if: ${{ !github.event.inputs.tag }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_TOKEN_TEST }}
 
   docs_build:
     needs:
