@@ -26,8 +26,9 @@
     "lint:eslint": "eslint ./src --ext .ts --fix",
     "prepublishOnly": "yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
-    "build:es6": "swc src/ --config-file package.swcrc -d lib/es6",
-    "build:cjs": "swc src/ --config-file package.swcrc -d lib/ -C module.type=commonjs",
+    "swc-base": "swc src/ --config-file package.swcrc --strip-leading-paths",
+    "build:es6": "yarn swc-base -d lib/es6",
+    "build:cjs": "yarn swc-base -d lib/ -C module.type=commonjs",
     "build:types": "cross-env NODE_ENV=production tsc --project tsconfig.build.json",
     "size": "yarn build && size-limit",
     "docs": "typedoc"
