@@ -119,8 +119,8 @@ export function checkIPadOS(ua: string) {
     return false;
   }
 
-  const isNotIOS = !/i(p|P)ad|i(p|P)hone|i(p|P)od/.test(ua);
-  const isMacOS = /(m|M)ac (os|OS)/.test(ua);
+  const isNotIOS = !/ipPad|iPhone|iPod/i.test(ua);
+  const isMacOS = /Mac OS/i.test(ua);
 
   return isNotIOS && isMacOS && 'ontouchend' in document;
 }
