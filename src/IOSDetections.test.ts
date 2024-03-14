@@ -1,5 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { detectIOS } from './IOSDetections';
+import { detectIOS, checkIPadOS } from './IOSDetections';
+import { noop } from './functions';
 
 describe(detectIOS, () => {
   test.each<[Parameters<typeof detectIOS>[0], ReturnType<typeof detectIOS>]>([
@@ -97,5 +98,29 @@ describe(detectIOS, () => {
     ],
   ])('detectIOS(%s)', (ua, expected) => {
     expect(detectIOS(ua)).toStrictEqual(expected);
+  });
+});
+
+describe(checkIPadOS, () => {
+  test('should return false for Mac OS', () => {
+    const macOSUserAgent =
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36';
+
+    expect(checkIPadOS(macOSUserAgent)).toBeFalsy();
+    expect(checkIPadOS(macOSUserAgent.toLowerCase())).toBeFalsy();
+  });
+
+  test('should return true for iPadOS', () => {
+    const iPadOSUserAgent =
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15';
+
+    Object.defineProperties(document, {
+      ontouchend: {
+        get: noop,
+      },
+    });
+
+    expect(checkIPadOS(iPadOSUserAgent)).toBeTruthy();
+    expect(checkIPadOS(iPadOSUserAgent.toLowerCase())).toBeTruthy();
   });
 });

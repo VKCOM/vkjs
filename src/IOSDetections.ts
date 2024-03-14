@@ -106,17 +106,21 @@ function checkWKWebView(ua: string) {
   return false;
 }
 
+/**
+ * В Safari на iPadOS поле User Agent содержит почти такую же информацию, что и в Safari на MacOS.
+ * Из-за чего мы не можем ориентироваться на User Agent.
+ *
+ * Вместо этого мы пробуем определять есть ли событие 'ontouchend' в объекте document.
+ *
+ * см. https://developer.apple.com/forums/thread/119186?answerId=705140022#705140022
+ */
 export function checkIPadOS(ua: string) {
   if (!canUseDOM) {
     return false;
   }
 
-  const notIOS = !/ipad|iphone|ipod/.test(ua);
-  const macOS = ua.includes('mac os');
+  const isNotIOS = !/i(p|P)ad|i(p|P)hone|i(p|P)od/.test(ua);
+  const isMacOS = /(m|M)ac (os|OS)/.test(ua);
 
-  if (macOS && notIOS && typeof (navigator as any).standalone === 'boolean') {
-    return true;
-  }
-
-  return false;
+  return isNotIOS && isMacOS && 'ontouchend' in document;
 }
