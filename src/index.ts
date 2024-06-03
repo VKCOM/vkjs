@@ -110,6 +110,7 @@ export {
   isFormData,
   isString,
   isNumber,
+  isPromiseLike,
 } from './type_checkers';
 
 export type { Dictionary, AnyFunction, SupportEvent, TimeoutHandle, Writeable } from './types';
