@@ -29,3 +29,7 @@ export function isString(object: any): object is string {
 export function isNumber(object: any): object is number {
   return typeof object === 'number';
 }
+
+export function isPromiseLike<T = any>(object: any): object is PromiseLike<T> {
+  return (isObject(object) || isFunction(object)) && isFunction(object.then);
+}
