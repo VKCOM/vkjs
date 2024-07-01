@@ -800,10 +800,10 @@
     nanoid "^5.0.7"
     webpack "^5.91.0"
 
-"@swc/cli@^0.3.9":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@swc/cli/-/cli-0.3.14.tgz#c0d56e55e5eb4918937b8d0fa82e5834c21c4cce"
-  integrity sha512-0vGqD6FSW67PaZUZABkA+ADKsX7OUY/PwNEz1SbQdCvVk/e4Z36Gwh7mFVBQH9RIsMonTyhV1RHkwkGnEfR3zQ==
+"@swc/cli@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@swc/cli/-/cli-0.4.0.tgz#8f55091d660f24977f62dabcf5d3649505cd0eb0"
+  integrity sha512-4JdVrPtF/4rCMXp6Q1h5I6YkYZrCCcqod7Wk97ZQq7K8vNGzJUryBv4eHCvqx5sJOJBrbYm9fcswe1B0TygNoA==
   dependencies:
     "@mole-inc/bin-wrapper" "^8.0.1"
     "@swc/counter" "^0.1.3"
