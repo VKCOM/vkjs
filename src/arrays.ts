@@ -49,10 +49,15 @@ export function uniqueArray<T>(array: T[]): T[] {
  * Перемешивает исходный массив и возвращает новый
  */
 export function shuffleArray<T>(array: T[]): T[] {
-  return array
-    .map<[number, T]>((a) => [Math.random(), a])
-    .sort((a, b) => a[0] - b[0])
-    .map<T>((a) => a[1]);
+  const result = array.slice();
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
 }
 
 /**
