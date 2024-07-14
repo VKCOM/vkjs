@@ -7,7 +7,7 @@ import { uniqueArrayFallback } from './internal/uniqueArray';
  * @param startIndex
  */
 export function createArray(arrayLength: number, startIndex = 0): number[] {
-  return new Array(arrayLength).fill(null).map((_, index) => startIndex + index);
+  return Array.from({ length: arrayLength }, (_, index) => startIndex + index);
 }
 
 /**
