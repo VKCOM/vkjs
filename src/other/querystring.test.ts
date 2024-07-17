@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { querystring } from '../querystring';
+import { querystring } from './querystring';
 
 describe('querystring parse', () => {
   test('string starting with a `?`, `#` or `&`', () => {

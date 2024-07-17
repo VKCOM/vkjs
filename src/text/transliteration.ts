@@ -1,4 +1,4 @@
-import { Replacer } from '../lib/replacer';
+import { Replacer } from '../internal/replacer';
 
 /**
  * Словарь транслитерации ВКонтакте из русского в английский.

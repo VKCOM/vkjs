@@ -19,7 +19,17 @@
   "typedocOptions": {
     "readme": "README.md",
     "plugin": ["typedoc-plugin-mdn-links"],
-    "entryPoints": ["src/index.ts"],
+    "entryPoints": [
+      "src/animation/index.ts",
+      "src/array/index.ts",
+      "src/async/index.ts",
+      "src/datetime/index.ts",
+      "src/device/index.ts",
+      "src/html/index.ts",
+      "src/other/index.ts",
+      "src/text/index.ts",
+      "src/typecheck/index.ts"
+    ],
     "out": "docs"
   }
 }

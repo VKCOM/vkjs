@@ -1,5 +1,5 @@
 import { isIOS, isIPadOS } from './IOSDetections';
-import { canUseDOM } from './dom';
+import { canUseDOM } from '../other/dom';
 
 const detect = /*#__PURE__*/ (() => {
   const obj = {

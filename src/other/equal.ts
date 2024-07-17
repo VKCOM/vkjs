@@ -1,4 +1,4 @@
-import { isObjectLike } from './type_checkers';
+import { isObjectLike } from '../typecheck/type_checkers';
 
 export function isEqual(value: any, other: any): boolean {
   if (value === other) {

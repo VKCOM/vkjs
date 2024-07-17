@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { isNumeric } from '../common';
+import { isNumeric } from './common';
 
 test('isNumeric function', () => {
   expect(isNumeric(1)).toEqual(true);

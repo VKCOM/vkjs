@@ -1,5 +1,5 @@
-import { canUseDOM, canUseEventListeners } from './dom';
-import { SupportEvent } from './types';
+import { canUseDOM, canUseEventListeners } from '../other/dom';
+import { type SupportEvent } from '../other/types';
 
 type TimingInterface = (timeFraction: number) => number;
 

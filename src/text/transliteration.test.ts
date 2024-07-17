@@ -3,7 +3,7 @@ import {
   transliteratorGostLetterCombinationsRu,
   transliteratorVKRusToEng,
   transliteratorVKEngToRus,
-} from '../transliteration';
+} from './transliteration';
 
 test.each([
   ['Славься, Отечество наше свободное,', 'Slavsya, Otechestvo nashe svobodnoe,'],

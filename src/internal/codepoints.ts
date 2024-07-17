@@ -42,6 +42,7 @@ export const fromCodePoint = /*#__PURE__*/ (() =>
   })();
 
 const codePointAtNative = /*#__PURE__*/ (() =>
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   String.prototype.codePointAt as typeof String.prototype.codePointAt | undefined)();
 
 export const getCodePointAt = /*#__PURE__*/ (() =>

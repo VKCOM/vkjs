@@ -1,4 +1,4 @@
-import { leadingZero } from './numbers';
+import { leadingZero } from '../other/numbers';
 
 export const SECONDS_IN_THE_DAY = 86400;
 const MILLISECONDS_IN_THE_DAY = SECONDS_IN_THE_DAY * 1000;
