@@ -22,7 +22,7 @@ export {
 /**
  * classNames
  */
-export { classNames } from './classNames';
+export { clsx as classNames } from 'clsx';
 
 /**
  * clipboard
