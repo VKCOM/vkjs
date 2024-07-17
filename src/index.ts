@@ -1,148 +1,26 @@
-export {
-  animate,
-  animationEvent,
-  transitionEvent,
-  waitAnimationEnd,
-  cancelWaitAnimationEnd,
-  waitTransitionEnd,
-  cancelWaitTransitionEnd,
-} from './animate';
+export * from './animation';
+export type * from './animation';
 
-export {
-  createArray,
-  sumArray,
-  averageArray,
-  uniqueArray,
-  shuffleArray,
-  chunkArray,
-  omitFromArray,
-  difference,
-} from './arrays';
+export * from './array';
+export type * from './array';
 
-/**
- * classNames
- */
-export { clsx as classNames } from 'clsx';
+export * from './async';
+export type * from './async';
 
-/**
- * clipboard
- */
-export { copyTextToClipboard } from './clipboard';
+export * from './datetime';
+export type * from './datetime';
 
-/**
- * common
- */
-export { isNumeric } from './common';
+export * from './device';
+export type * from './device';
 
-/**
- * detections
- */
-export { isPassiveEventsSupported, isSmoothScrollSupported } from './detections';
+export * from './html';
+export type * from './html';
 
-export { isEqual } from './equal';
-
-export { noop, throttle, debounce, once } from './functions';
-
-export { asyncImportLoader } from './async';
-
-export { getCookie, isCookieEnabled } from './cookie';
-
-export {
-  SECONDS_IN_THE_DAY,
-  isDateToday,
-  isDateYesterday,
-  isDateTomorrow,
-  isSameDate,
-  getBeginningOfDay,
-  isLeapYear,
-  getLastDayOfMonth,
-  getStartOfWeek,
-  addDays,
-  createDateFromUnixTimestamp,
-  getUnixTimestampFromDate,
-  convertDateToInputFormat,
-} from './date';
-
-export { formatDuration } from './duration';
-
-/**
- * OffsetRect
- */
-export { getOffsetRect } from './getOffsetRect';
-
-export { getPhotoSize } from './getPhotoSize';
-export type { PhotoSizeLike, PhotoSize } from './getPhotoSize';
-
-export {
-  escape,
-  unescape,
-  encodeHTMLEntities,
-  decodeHTMLEntities,
-  decodeHTMLEntitiesDeep,
-  decodeHTMLFullEntities,
-} from './html/escape';
-
-export { leadingZero, formatNumber } from './numbers';
-
-/**
- * objects
- */
-export { deleteObjectKeys } from './objects';
-
-/**
- * querystring
- */
-export { querystring } from './querystring';
-
-/**
- * random
- */
-export { getRandomInt, getRandomString } from './random';
-
-export { hasReactNode, isPrimitiveReactNode } from './react_utils';
-
-export {
-  isObjectLike,
-  isArray,
-  isObject,
-  isUndefined,
-  isFunction,
-  isFormData,
-  isString,
-  isNumber,
-  isPromiseLike,
-} from './type_checkers';
-
-export type { Dictionary, AnyFunction, SupportEvent, TimeoutHandle, Writeable } from './types';
-
-export { escapeRegExp } from './regexp';
-
-export { isRetina } from './retina';
-
-export { localStorage, sessionStorage } from './storage';
-
-export { hasMouse, hasHover, hasTouchEvents, hasTouch } from './InputUtils';
-
-export { canUseDOM, canUseEventListeners, onDOMLoaded } from './dom';
-
-export {
-  IPHONE_SAFARI_BOTTOM_BAR,
-  IPHONE_X_SAFARI_BOTTOM_BAR,
-  IPHONE_KEYBOARD_REJECT_OFFSET,
-  IOS_NO_KEYBOARD_ALLOWED_OFFSET,
-  detectIOS,
-  isIPad,
-  isIPhone,
-  isIOS,
-  isIPadOS,
-  iosMajor,
-  iosMinor,
-  isWKWebView,
-  isScrollBasedViewport,
-  isIPhoneX,
-  isIOSChrome,
-  isLandscapePhone,
-  checkIPadOS,
-} from './IOSDetections';
+export * from './other';
+export type * from './other';
 
 export * from './text';
+export type * from './text';
+
+export * from './typecheck';
+export type * from './typecheck';

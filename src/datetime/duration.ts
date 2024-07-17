@@ -1,4 +1,4 @@
-import { leadingZero } from './numbers';
+import { leadingZero } from '../other/numbers';
 
 /**
  * @param durationInSeconds

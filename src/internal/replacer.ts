@@ -1,8 +1,8 @@
-import { escapeRegExp } from '../regexp';
+import { escapeRegExp } from '../other/regexp';
 
 export class Replacer {
   private regexp: RegExp | undefined;
-  private map: Record<string, string>;
+  private readonly map: Record<string, string>;
 
   constructor(map: Record<string, string>) {
     this.map = map;

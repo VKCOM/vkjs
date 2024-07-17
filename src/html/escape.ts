@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { Replacer } from '../lib/replacer';
-import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../lib/codepoints';
-import { Dictionary } from '../types';
+import { Replacer } from '../internal/replacer';
+import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../internal/codepoints';
+import { Dictionary } from '../other/types';
 import { buildFullNamedEntities, fullNamedEntities } from './entity';
 
 const escapeReplacer = /*#__PURE__*/ new Replacer({
@@ -49,7 +49,7 @@ export function unescape(input: string): string {
   return unescapeReplacer.replace(input);
 }
 
-export const outOfBoundsChar = /*#__PURE__*/ String.fromCharCode(65533);
+const outOfBoundsChar = /*#__PURE__*/ String.fromCharCode(65533);
 
 const ENCODE_REGEX =
   /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;

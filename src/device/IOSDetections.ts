@@ -1,4 +1,4 @@
-import { canUseDOM } from './dom';
+import { canUseDOM } from '../other/dom';
 
 export const IPHONE_SAFARI_BOTTOM_BAR = 45;
 export const IPHONE_X_SAFARI_BOTTOM_BAR = 85;

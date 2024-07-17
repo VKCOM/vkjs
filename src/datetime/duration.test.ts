@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { formatDuration } from '../duration';
+import { formatDuration } from './duration';
 
 test('formatDuration function', () => {
   expect(formatDuration(0)).toEqual('0:00');

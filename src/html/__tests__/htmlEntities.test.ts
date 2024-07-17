@@ -5,10 +5,11 @@ import {
   unescape,
   encodeHTMLEntities,
   decodeHTMLEntities,
-  outOfBoundsChar,
   decodeHTMLEntitiesDeep,
   decodeHTMLFullEntities,
 } from '../escape';
+
+const outOfBoundsChar = String.fromCharCode(65533);
 
 const empty = [
   [

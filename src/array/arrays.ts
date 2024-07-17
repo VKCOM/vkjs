@@ -1,4 +1,4 @@
-import { uniqueArrayFallback } from './internal/uniqueArray';
+import { uniqueArrayFallback } from '../internal/uniqueArray';
 
 /**
  * Создаёт массив чисел требуемой длины

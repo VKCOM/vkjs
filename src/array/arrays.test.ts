@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals';
-import { createArray, chunkArray, uniqueArray } from '../arrays';
+import { createArray, chunkArray, uniqueArray } from './arrays';
 import { uniqueArrayFallback } from '../internal/uniqueArray';
 
 test('createArray', () => {
