@@ -6,17 +6,24 @@ type TimingInterface = (timeFraction: number) => number;
 type DrawInterface = (progress: number) => void;
 
 interface AnimateArgumentsInterface {
+  /**
+   * Длительность
+   */
   duration: number;
+
+  /**
+   * тайминг функция анимации
+   */
   timing: TimingInterface;
+
+  /**
+   * коллбэк, в который прокидывается прогресс [0, 1]
+   */
   draw: DrawInterface;
 }
 
 /**
  * Функция для js анимации
- * @param {number} duration
- * @param {function} timing тайминг функция анимации
- * @param {function} draw коллбэк, в который прокидывается прогресс [0, 1]
- * @returns {void}
  */
 export function animate({ duration, timing, draw }: AnimateArgumentsInterface) {
   if (!canUseDOM) {
