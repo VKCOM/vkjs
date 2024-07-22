@@ -3,8 +3,17 @@ import { uniqueArrayFallback } from '../internal/uniqueArray';
 /**
  * Создаёт массив чисел требуемой длины
  *
- * @param arrayLength
- * @param startIndex
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { createArray } from '@vkontakte/vkjs';
+ *
+ * assert.deepStrictEqual(createArray(5), [0, 1, 2, 3, 4]);
+ * assert.deepStrictEqual(createArray(3, 2), [2, 3, 4]);
+ * ```
+ *
+ * @param arrayLength Длина массива
+ * @param startIndex Начальный индекс (по умолчанию 0)
  */
 export function createArray(arrayLength: number, startIndex = 0): number[] {
   return Array.from({ length: arrayLength }, (_, index) => startIndex + index);
@@ -12,6 +21,14 @@ export function createArray(arrayLength: number, startIndex = 0): number[] {
 
 /**
  * Вычисляет сумму элементов массива
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { createArray } from '@vkontakte/vkjs';
+ *
+ * assert.strictEqual(sumArray([0, 1, 2, 3, 4]), 10);
+ * ```
  */
 export function sumArray(array: number[]): number {
   if (!Array.isArray(array) || !array.length) {
@@ -22,6 +39,14 @@ export function sumArray(array: number[]): number {
 
 /**
  * Находит среднее арифметическое элементов массива
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { createArray } from '@vkontakte/vkjs';
+ *
+ * assert.strictEqual(averageArray([0, 1, 2, 3, 4]), 2);
+ * ```
  */
 export function averageArray(array: number[]): number {
   if (!Array.isArray(array) || !array.length) {
@@ -32,6 +57,14 @@ export function averageArray(array: number[]): number {
 
 /**
  * Возвращает новый массив с уникальными элементами
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { createArray } from '@vkontakte/vkjs';
+ *
+ * assert.deepStrictEqual(uniqueArray([1, 1, 2, 2, 3]), [1, 2, 3]);
+ * ```
  */
 export function uniqueArray<T>(array: T[]): T[] {
   if (!Array.isArray(array) || !array.length) {
@@ -62,6 +95,17 @@ export function shuffleArray<T>(array: T[]): T[] {
 
 /**
  * Разбивает массив на чанки
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { createArray } from '@vkontakte/vkjs';
+ *
+ * assert.deepStrictEqual(
+ *   chunkArray([1,2,3,4,5,6,7], 2),
+ *   [[1,2], [3,4], [5,6], [7]],
+ * );
+ * ```
  */
 export function chunkArray<T>(array: T[], size: number): T[][] {
   if (!Array.isArray(array) || !array.length) {

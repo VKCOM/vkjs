@@ -1,5 +1,16 @@
 /**
  * Добавляет к числу 0 в начале, если число меньше 10
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { leadingZero } from '@vkontakte/vkjs';
+ *
+ * assert.strictEqual(leadingZero(5), "05");
+ * assert.strictEqual(leadingZero(15), "15");
+ * ```
+ *
+ * @param number Число для форматирования
  */
 export function leadingZero(number: number): string {
   if (number >= 10) {
@@ -11,6 +22,15 @@ export function leadingZero(number: number): string {
 
 /**
  * Форматирует число, разбивая его на разряды
+ *
+ * @example
+ * ```ts
+ * import assert from 'node:assert';
+ * import { formatNumber } from '@vkontakte/vkjs';
+ *
+ * assert.strictEqual(formatNumber(1e9), "1 000 000 000");
+ * assert.strictEqual(formatNumber(123456789), "123 456 789");
+ * ```
  */
 export function formatNumber(number: number, separator = ' ', decimalSeparator = ','): string {
   const numberParts = number.toString().split('.');

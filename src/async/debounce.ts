@@ -17,9 +17,9 @@ export interface DebouncedFunction<T extends unknown[]> {
  * `delay` время в миллисекундах. Если метод вызывается снова до истечения
  * тайм-аута, предыдущий вызов будет прерван.
  *
- * @param fn функция которую надо "отложить"
- * @param delay время задержки вызова в миллисекундах
- * @param context контекст с которым будет совершен вызов функции
+ * @param fn Функция которую надо "отложить"
+ * @param delay Время задержки вызова в миллисекундах
+ * @param context Контекст с которым будет совершен вызов функции
  */
 export function debounce<T extends any[]>(
   fn: (...args: T) => unknown,

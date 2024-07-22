@@ -1,5 +1,6 @@
 /**
- * Loads async import with retries. It can be useful for bad internet connection
+ * Выполняет Promise функцию, пока она не завершится удачей. Может
+ * использоваться для асинхронной загрузки модулей при плохом интернете
  *
  * @example
  * const HeaderLazyComponent = React.lazy(() => asyncImportLoader(() => import('../components/Header/Header')));
@@ -8,6 +9,9 @@
  * asyncImportLoader(() => import('some-module'), 20).then((someModule) => {
  *   someModule.init();
  * });
+ *
+ * @param asyncImport Функция, которую требуется выполнить
+ * @param attempts Максимальное количество попыток
  */
 export const asyncImportLoader = <T>(asyncImport: () => Promise<T>, attempts = 10): Promise<T> => {
   return new Promise((resolve, reject) => {
