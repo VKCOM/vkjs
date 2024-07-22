@@ -2,7 +2,7 @@ import { leadingZero } from '../other/numbers';
 
 /**
  * Форматирует длительность в секундах в строку вида "MM:SS" или "HH:MM:SS".
- * Если `forceHours` `true`, то всегда будет выводиться "HH:MM:SS" даже если
+ * Если `forceHours` `true`, то всегда будет выводиться "HH:MM:SS", даже если
  * длительность меньше часа
  *
  * @example
