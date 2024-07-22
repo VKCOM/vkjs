@@ -1,9 +1,7 @@
 export {
   SECONDS_IN_THE_DAY,
-  isDateToday,
   isDateYesterday,
   isDateTomorrow,
-  isSameDate,
   getBeginningOfDay,
   isLeapYear,
   getLastDayOfMonth,
@@ -13,5 +11,8 @@ export {
   getUnixTimestampFromDate,
   convertDateToInputFormat,
 } from '../datetime/date';
+
+export { isDateToday } from './isDateToday';
+export { isSameDate } from './isSameDate';
 
 export { formatDuration } from './duration';

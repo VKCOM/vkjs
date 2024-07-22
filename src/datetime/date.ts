@@ -1,28 +1,8 @@
 import { leadingZero } from '../other/numbers';
+import { isDateToday } from './isDateToday';
 
 export const SECONDS_IN_THE_DAY = 86400;
 const MILLISECONDS_IN_THE_DAY = SECONDS_IN_THE_DAY * 1000;
-
-/**
- * Проверяет, что переданная дата является сегодняшним днём
- *
- * @example
- * ```ts
- * import assert from 'node:assert';
- * import { isDateToday } from '@vkontakte/vkjs';
- *
- * assert.ok(isDateToday(new Date());
- * ```
- */
-export function isDateToday(date: Date): boolean {
-  // TODO: переиспользовать isSameDate
-  const now = new Date();
-  const d = now.getDate();
-  const m = now.getMonth();
-  const y = now.getFullYear();
-
-  return date.getFullYear() === y && date.getMonth() === m && date.getDate() === d;
-}
 
 /**
  * Проверяет, что переданная дата - вчерашний день
@@ -54,27 +34,6 @@ export function isDateYesterday(date: Date): boolean {
 export function isDateTomorrow(date: Date): boolean {
   const tomorrowDate = new Date(date.getTime() - MILLISECONDS_IN_THE_DAY);
   return isDateToday(tomorrowDate);
-}
-
-/**
- * Проверяет что переданные даты находятся в одном дне
- *
- * @example
- * ```ts
- * import assert from 'node:assert';
- * import { isSameDate } from '@vkontakte/vkjs';
- *
- * const d1 = new Date();
- * const d2 = new Date();
- * assert.ok(isSameDate(d1, d2));
- * ```
- */
-export function isSameDate(d1: Date, d2: Date): boolean {
-  return (
-    d1.getDate() === d2.getDate() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getFullYear() === d2.getFullYear()
-  );
 }
 
 /**
