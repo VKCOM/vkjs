@@ -12,8 +12,8 @@ import { uniqueArrayFallback } from '../internal/uniqueArray';
  * assert.deepStrictEqual(createArray(3, 2), [2, 3, 4]);
  * ```
  *
- * @param arrayLength длина массива
- * @param startIndex начальный индекс (по умолчанию 0)
+ * @param arrayLength Длина массива
+ * @param startIndex Начальный индекс (по умолчанию 0)
  */
 export function createArray(arrayLength: number, startIndex = 0): number[] {
   return Array.from({ length: arrayLength }, (_, index) => startIndex + index);

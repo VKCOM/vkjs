@@ -10,8 +10,8 @@
  *   someModule.init();
  * });
  *
- * @param asyncImport функция, которую требуется выполнить
- * @param attempts максимальное количество попыток
+ * @param asyncImport Функция, которую требуется выполнить
+ * @param attempts Максимальное количество попыток
  */
 export const asyncImportLoader = <T>(asyncImport: () => Promise<T>, attempts = 10): Promise<T> => {
   return new Promise((resolve, reject) => {

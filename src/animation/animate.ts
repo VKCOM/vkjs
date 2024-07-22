@@ -97,9 +97,9 @@ export const transitionEvent = /*#__PURE__*/ (() => {
 /**
  * Ожидание окончания анимации на элементе
  *
- * @param listener коллбэк окончания ожидания
- * @param fallbackTime сколько ждать в мс если событие не поддерживается
- * @param el элемент
+ * @param listener Коллбэк окончания ожидания
+ * @param fallbackTime Сколько ждать в мс если событие не поддерживается
+ * @param el Элемент
  */
 export function waitAnimationEnd(
   listener: (ev?: AnimationEvent) => any,
@@ -118,9 +118,9 @@ export function waitAnimationEnd(
 /**
  * Прекращение ожидания окончания анимации на элементе
  *
- * @param listener коллбэк окончания ожидания
+ * @param listener Коллбэк окончания ожидания
  * @param handle то, что вернулось из ```waitAnimationEnd```
- * @param el элемент
+ * @param el Элемент
  */
 export function cancelWaitAnimationEnd(
   listener: (ev?: AnimationEvent) => any,
@@ -139,9 +139,9 @@ export function cancelWaitAnimationEnd(
 /**
  * Ожидание окончания анимации перехода на элементе
  *
- * @param listener коллбэк окончания ожидания
- * @param fallbackTime сколько ждать в мс если событие не поддерживается
- * @param el элемент
+ * @param listener Коллбэк окончания ожидания
+ * @param fallbackTime Сколько ждать в мс если событие не поддерживается
+ * @param el Элемент
  */
 export function waitTransitionEnd(
   el: GlobalEventHandlers,
@@ -160,9 +160,9 @@ export function waitTransitionEnd(
 /**
  * Прекращение ожидания окончания анимации перехода на элементе
  *
- * @param listener коллбэк окончания ожидания
- * @param handle то, что вернулось из ```waitTransitionEnd```
- * @param el элемент
+ * @param listener Коллбэк окончания ожидания
+ * @param handle То, что вернулось из ```waitTransitionEnd```
+ * @param el Элемент
  */
 export function cancelWaitTransitionEnd(
   listener: (ev?: TransitionEvent) => any,

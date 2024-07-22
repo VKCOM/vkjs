@@ -135,8 +135,8 @@ export function decodeHTMLEntitiesDeep<T>(input: T): T {
  * Если нужна возможность декодировать все сущности, используйте
  * {@link decodeHTMLFullEntities}
  *
- * @param input текст который необходимо декодировать
- * @param entities кастомный словарь сущностей `{'lt;': '<'}`
+ * @param input Текст который необходимо декодировать
+ * @param entities Кастомный словарь сущностей `{'lt;': '<'}`
  */
 export function decodeHTMLEntities(input: string, entities = namedEntities): string {
   return decodeString(input, entities);
@@ -148,7 +148,7 @@ export function decodeHTMLEntities(input: string, entities = namedEntities): str
  * Если вам нужно декодировать не все сущности, используйте
  * {@link decodeHTMLEntities} и кастомный словарь.
  *
- * @param input текст который необходимо декодировать
+ * @param input Текст который необходимо декодировать
  */
 export function decodeHTMLFullEntities(input: string): string {
   buildFullNamedEntities();
