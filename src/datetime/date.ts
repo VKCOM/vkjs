@@ -132,7 +132,7 @@ export function isLeapYear(year: number) {
  * ```
  *
  * @param year Год
- * @param year Месяц
+ * @param month Месяц
  */
 export function getLastDayOfMonth(year: number, month: number): number {
   if (+month === 2) {

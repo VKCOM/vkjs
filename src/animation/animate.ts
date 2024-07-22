@@ -12,12 +12,12 @@ interface AnimateArgumentsInterface {
   duration: number;
 
   /**
-   * тайминг функция анимации
+   * Тайминг функция анимации
    */
   timing: TimingInterface;
 
   /**
-   * коллбэк, в который прокидывается прогресс [0, 1]
+   * Коллбэк, в который прокидывается прогресс [0, 1]
    */
   draw: DrawInterface;
 }
