@@ -11,7 +11,6 @@
  * assert.ok(isSameDate(d1, d2));
  * ```
  */
-
 export function isSameDate(d1: Date, d2: Date): boolean {
   return (
     d1.getDate() === d2.getDate() &&
