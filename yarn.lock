@@ -5175,9 +5175,9 @@ typedarray@^0.0.6:
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
 typedoc-plugin-mdn-links@^3.0.2:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-mdn-links/-/typedoc-plugin-mdn-links-3.2.5.tgz#c3357c7719852e3a1b4c0ca6085b9d467ca97551"
-  integrity sha512-duQ0H7+bATNSWVQRt3HubspZ9gqgSZxiQkenlTJ8lGsUrldZwpjG56hJqLD6BspNJfEnElP9hIU7yY5+/vF1Eg==
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-mdn-links/-/typedoc-plugin-mdn-links-3.2.6.tgz#7b89ea8695dd8931733921607f3730a1ac358a3e"
+  integrity sha512-Z4znE5EyzSnRpQCQ/XERVEyN8V6Gm6z6/fK0Hgb2NgagGztD8Y/sGyXnYY43F5jJvZyIZCnfKDd8KXJ21ZYLvg==
 
 typedoc@^0.26.3:
   version "0.26.5"
