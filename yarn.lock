@@ -1227,10 +1227,10 @@
     "@typescript-eslint/parser" "^5.50.0"
     eslint-config-google "^0.9.1"
 
-"@vkontakte/prettier-config@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@vkontakte/prettier-config/-/prettier-config-0.1.0.tgz#4bb288d12a4a3f38cab1827bf7b94b10888773a9"
-  integrity sha512-Ec0V5C4IUUZm/7cxHX1AowXRdK3lBEoXXCDxZ8Ii6N3MPhYOXDfegen3ld40mmtQA1jMpJdiqpH+E8e8st/zTg==
+"@vkontakte/prettier-config@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vkontakte/prettier-config/-/prettier-config-0.2.0.tgz#f118b35d38b49edef9014ce74d5ce4b4e20fb52e"
+  integrity sha512-qF5zwXKxaR9xmCAO8A2N5fb42cV/iXuFlmJgBI3JbDyMEqUgpjgq6jdyqG6hsevT+TUGf03fDcDgJfvV/FAW6w==
 
 "@webassemblyjs/ast@1.12.1", "@webassemblyjs/ast@^1.12.1":
   version "1.12.1"
