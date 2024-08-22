@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "module": "lib/es6/index.js",
   "typings": "lib/index.d.ts",
+  "prettier": "@vkontakte/prettier-config",
   "directories": {
     "lib": "lib"
   },
