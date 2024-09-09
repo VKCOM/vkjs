@@ -111,7 +111,7 @@
     "@typescript-eslint/parser": "^7.0.1",
     "@vkontakte/eslint-plugin": "^1.1.1",
     "@vkontakte/prettier-config": "^0.2.1",
-    "concurrently": "^8.0.1",
+    "concurrently": "^9.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
