@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'node:path';
 
-module.exports = {
+const config = {
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
   },
@@ -10,3 +10,5 @@ module.exports = {
   coverageReporters: ['text', 'cobertura'],
   collectCoverageFrom: ['src/*/**/**.{ts,tsx}'],
 };
+
+export default config;

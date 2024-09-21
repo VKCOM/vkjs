@@ -2,10 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": true
   },
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/**/*.test.ts"
-  ]
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts", "jest.config.ts"]
 }
