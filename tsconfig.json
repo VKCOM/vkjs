@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "es5",
     "lib": ["es5", "es2015", "dom"],
     "moduleResolution": "node",
@@ -12,9 +12,10 @@
     "declarationMap": true,
     "declarationDir": "lib",
     "sourceMap": false,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "jest.config.ts"],
   "exclude": ["node_modules"],
   "typedocOptions": {
     "readme": "README.md",
