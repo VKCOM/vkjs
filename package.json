@@ -4,6 +4,7 @@
   "description": "VK shared JS libs",
   "type": "module",
   "main": "lib/index.js",
+  "module": "lib/index.js",
   "typings": "lib/index.d.ts",
   "exports": {
     ".": {
