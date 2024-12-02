@@ -828,16 +828,16 @@
     webpack "^5.95.0"
 
 "@swc/cli@^0.5.0":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@swc/cli/-/cli-0.5.1.tgz#911dc47f68baaa2bdffc259c4fa2cc7fe48bb825"
-  integrity sha512-sxSXyjqFImYrqjhZSPymjmM/9V6auZG67UsDwbe7FZaBlyfW8ka3QG/zRjpJJ9+8Ahns/kKb8bXPKQq7V2MtBw==
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@swc/cli/-/cli-0.5.2.tgz#003ad39fff62ab8e7f1267e43c81802c8f4c9b45"
+  integrity sha512-ul2qIqjM5bfe9zWLqFDmHZCf9HXXSZZAlZLe4czn+lH4PewO+OWZnQcYCscnJKlbx6MuWjzXVR7gkspjNEJwJA==
   dependencies:
     "@swc/counter" "^0.1.3"
     "@xhmikosr/bin-wrapper" "^13.0.5"
     commander "^8.3.0"
     fast-glob "^3.2.5"
     minimatch "^9.0.3"
-    piscina "^4.3.0"
+    piscina "^4.3.1"
     semver "^7.3.8"
     slash "3.0.0"
     source-map "^0.7.3"
@@ -4493,7 +4493,7 @@ pirates@^4.0.4:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
 
-piscina@^4.3.0:
+piscina@^4.3.1:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/piscina/-/piscina-4.7.0.tgz#68936fc77128db00541366531330138e366dc851"
   integrity sha512-b8hvkpp9zS0zsfa939b/jXbe64Z2gZv0Ha7FYPNUiDIB1y2AtxcOZdfP8xN8HFjUaqQiT9gRlfjAsoL8vdJ1Iw==
