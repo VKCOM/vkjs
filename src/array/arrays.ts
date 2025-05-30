@@ -30,7 +30,7 @@ export function createArray(arrayLength: number, startIndex = 0): number[] {
  * assert.strictEqual(sumArray([0, 1, 2, 3, 4]), 10);
  * ```
  */
-export function sumArray(array: number[]): number {
+export function sumArray(array: readonly number[]): number {
   if (!Array.isArray(array) || !array.length) {
     return 0;
   }
@@ -48,7 +48,7 @@ export function sumArray(array: number[]): number {
  * assert.strictEqual(averageArray([0, 1, 2, 3, 4]), 2);
  * ```
  */
-export function averageArray(array: number[]): number {
+export function averageArray(array: readonly number[]): number {
   if (!Array.isArray(array) || !array.length) {
     return 0;
   }
@@ -66,7 +66,7 @@ export function averageArray(array: number[]): number {
  * assert.deepStrictEqual(uniqueArray([1, 1, 2, 2, 3]), [1, 2, 3]);
  * ```
  */
-export function uniqueArray<T>(array: T[]): T[] {
+export function uniqueArray<T>(array: readonly T[]): T[] {
   if (!Array.isArray(array) || !array.length) {
     return [];
   }
@@ -79,9 +79,9 @@ export function uniqueArray<T>(array: T[]): T[] {
 }
 
 /**
- * Перемешивает исходный массив и возвращает новый
+ * Возвращает новый перемешанный массив
  */
-export function shuffleArray<T>(array: T[]): T[] {
+export function shuffleArray<T>(array: readonly T[]): T[] {
   const result = array.slice();
 
   for (let i = result.length - 1; i > 0; i--) {
@@ -107,7 +107,7 @@ export function shuffleArray<T>(array: T[]): T[] {
  * );
  * ```
  */
-export function chunkArray<T>(array: T[], size: number): T[][] {
+export function chunkArray<T>(array: readonly T[], size: number): T[][] {
   if (!Array.isArray(array) || !array.length) {
     return [];
   }
@@ -151,7 +151,7 @@ export function omitFromArray<T>(array: T[] = [], value: T): T[] {
  * difference([1, 2, 3], [1]) // [2, 3]
  * difference([1, 2, 3], [1, 10, 100]) // [2, 3]
  */
-export function difference<T>(array1: T[] = [], array2: T[] = []) {
+export function difference<T>(array1: readonly T[] = [], array2: readonly T[] = []) {
   return array1.reduce<T[]>((res, item) => {
     if (!array2.includes(item)) {
       res.push(item);
