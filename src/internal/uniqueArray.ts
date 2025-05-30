@@ -1,4 +1,4 @@
-export function uniqueArrayFallback<T>(array: T[]): T[] {
+export function uniqueArrayFallback<T>(array: readonly T[]): T[] {
   if (!Array.isArray(array) || !array.length) {
     return [];
   }
