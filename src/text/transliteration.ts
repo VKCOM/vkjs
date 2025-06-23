@@ -250,6 +250,73 @@ const transliterationDictGostLetterCombinationsRu = {
 };
 
 /**
+ * Словарь переключения раскладки между QWERTY и ЙЦУКЕН.
+ */
+const transliterationDictQwertyRu: Record<string, string> = /*#__PURE__*/ (() => {
+  const map: Record<string, string> = {
+    й: 'q',
+    ц: 'w',
+    у: 'e',
+    к: 'r',
+    е: 't',
+    н: 'y',
+    г: 'u',
+    ш: 'i',
+    щ: 'o',
+    з: 'p',
+    х: '[',
+    ъ: ']',
+    ф: 'a',
+    ы: 's',
+    в: 'd',
+    а: 'f',
+    п: 'g',
+    р: 'h',
+    о: 'j',
+    л: 'k',
+    д: 'l',
+    ж: ';',
+    э: "'",
+    я: 'z',
+    ч: 'x',
+    с: 'c',
+    м: 'v',
+    и: 'b',
+    т: 'n',
+    ь: 'm',
+    б: ',',
+    ю: '.',
+  };
+
+  Object.keys(map).forEach((key) => {
+    map[key.toUpperCase()] = map[key].toUpperCase();
+  });
+
+  Object.assign(map, {
+    Х: '{',
+    Ъ: '}',
+    Ж: ':',
+    Э: '"',
+    Б: '<',
+    Ю: '>',
+    ё: '`',
+    Ё: '~',
+  });
+
+  Object.entries(map).forEach(([key, value]) => {
+    map[value] = key;
+  });
+
+  // Mac клавиатура
+  Object.assign(map, {
+    '§': 'ё',
+    '±': 'Ё',
+  });
+
+  return map;
+})();
+
+/**
  * Транслитератор, для передачи знаков одной письменности знаками другой.
  */
 export class Transliterator {
@@ -288,3 +355,8 @@ export const transliteratorVKEngToRus = /*#__PURE__*/ new Transliterator(
 export const transliteratorGostLetterCombinationsRu = /*#__PURE__*/ new Transliterator(
   transliterationDictGostLetterCombinationsRu,
 );
+
+/**
+ * Транслитератор раскладки клавиатуры между QWERTY и ЙЦУКЕН
+ */
+export const transliteratorQwertyRu = /*#__PURE__*/ new Transliterator(transliterationDictQwertyRu);

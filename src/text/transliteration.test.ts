@@ -3,6 +3,7 @@ import {
   transliteratorGostLetterCombinationsRu,
   transliteratorVKRusToEng,
   transliteratorVKEngToRus,
+  transliteratorQwertyRu,
 } from './transliteration';
 
 test.each([
@@ -32,3 +33,12 @@ test.each([
     expect(transliteratorGostLetterCombinationsRu.transliteration(input)).toEqual(expected);
   },
 );
+
+test.each([
+  ['qwerty', 'йцукен'],
+  ['йцукен', 'qwerty'],
+  ['QWERTY', 'ЙЦУКЕН'],
+  ['ЙЦУКЕН', 'QWERTY'],
+])('transliteratorQwertyRu.transliteration(%j) should equal %j', (input, expected) => {
+  expect(transliteratorQwertyRu.transliteration(input)).toEqual(expected);
+});
