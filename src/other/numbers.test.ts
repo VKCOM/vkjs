@@ -13,11 +13,17 @@ describe('formatNumber', () => {
     [999.999, '999,999'],
     [1999.1, '1 999,1'],
     [-1999.1, '-1 999,1'],
+    [-331999.1000001, '-331 999,1000001'],
   ];
 
   cases.forEach(([input, result]) => {
     test(`should format ${input} to ${result}`, () => {
       expect(formatNumber(input)).toBe(result);
     });
+  });
+
+  // Alternative separator
+  test(`should format -331999.1000001 to -331_999|1000001`, () => {
+    expect(formatNumber(-331999.1000001, '_', '|')).toBe('-331_999|1000001');
   });
 });
