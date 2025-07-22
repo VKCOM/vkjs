@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { getPhotoSize, PhotoSizeLike } from './getPhotoSize';
+import { getPhotoSize, PhotoSizeLike } from './getPhotoSize.ts';
 
 describe('getPhotoSize', () => {
   it('recognizes an invalid or empty array', () => {

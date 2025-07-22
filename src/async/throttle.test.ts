@@ -1,6 +1,6 @@
 import { expect, jest, test, describe, beforeEach, it } from '@jest/globals';
-import { throttle } from './throttle';
-import { AnyFunction } from '../other/types';
+import { throttle } from './throttle.ts';
+import { AnyFunction } from '../other/types.ts';
 
 import Mock = jest.Mock;
 

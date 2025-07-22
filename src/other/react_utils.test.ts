@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { expect, test, describe } from '@jest/globals';
-import { hasReactNode, isPrimitiveReactNode } from './react_utils';
+import { hasReactNode, isPrimitiveReactNode } from './react_utils.ts';
 
 describe(hasReactNode, () => {
   describe('return false cases', () => {

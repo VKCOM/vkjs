@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
 
-import { formatNumber } from './numbers';
+import { formatNumber } from './numbers.ts';
 
 describe('formatNumber', () => {
   const cases: Array<[number, string]> = [

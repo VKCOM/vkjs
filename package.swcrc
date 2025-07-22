@@ -1,6 +1,9 @@
 {
-  "$schema": "https://json.schemastore.org/swcrc",
-  "exclude": ["\\.(test|spec|e2e)\\.[jt]sx?$", "testing/"],
+  "$schema": "https://swc.rs/schema.json",
+  "exclude": [
+    "\\.(test|spec|e2e)\\.[jt]sx?$",
+    "testing/"
+  ],
   "jsc": {
     "externalHelpers": true,
     "parser": {
@@ -10,7 +13,24 @@
     "preserveAllComments": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["node_modules", "src/*"]
+      "*": [
+        "node_modules",
+        "src/*"
+      ]
+    },
+    "experimental": {
+      "emitIsolatedDts": true,
+      "plugins": [
+        [
+          "@swc/plugin-transform-imports",
+          {
+            "^(.*?)\\.ts(x)?$": {
+              "skipDefaultConversion": true,
+              "transform": "{{matches.[1]}}.js"
+            }
+          }
+        ]
+      ]
     }
   },
   "module": {

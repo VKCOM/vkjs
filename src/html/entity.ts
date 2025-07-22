@@ -2140,7 +2140,7 @@ const namedEntities: Record<string, string> = {
 export const fullNamedEntities: Record<string, string> = {};
 
 let isBuild = false;
-export function buildFullNamedEntities() {
+export function buildFullNamedEntities(): void {
   if (isBuild) {
     return;
   }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { describe, expect, test } from '@jest/globals';
-import { isPromiseLike } from './type_checkers';
+import { isPromiseLike } from './type_checkers.ts';
 
 describe(isPromiseLike, () => {
   const promise = { then: function () {} };

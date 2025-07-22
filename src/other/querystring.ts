@@ -91,7 +91,10 @@ function stringify(data: StringifyQuery, options: StringifyOptions = {}): string
     .join('&');
 }
 
-export const querystring = {
+export const querystring: {
+  parse: typeof parse;
+  stringify: typeof stringify;
+} = {
   parse,
   stringify,
 };

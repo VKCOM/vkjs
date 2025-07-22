@@ -6,4 +6,4 @@ export {
   cancelWaitAnimationEnd,
   waitTransitionEnd,
   cancelWaitTransitionEnd,
-} from './animate';
+} from './animate.ts';

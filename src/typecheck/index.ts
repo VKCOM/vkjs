@@ -8,4 +8,4 @@ export {
   isString,
   isNumber,
   isPromiseLike,
-} from './type_checkers';
+} from './type_checkers.ts';

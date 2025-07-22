@@ -1,3 +1,3 @@
-export function isRetina() {
+export function isRetina(): boolean {
   return window.devicePixelRatio >= 2;
 }

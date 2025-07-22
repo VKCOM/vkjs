@@ -1,3 +1,3 @@
-export { asyncImportLoader } from './asyncImportLoader';
-export { debounce, type DebouncedFunction } from './debounce';
-export { throttle } from './throttle';
+export { asyncImportLoader } from './asyncImportLoader.ts';
+export { debounce, type DebouncedFunction } from './debounce.ts';
+export { throttle } from './throttle.ts';

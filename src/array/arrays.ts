@@ -1,4 +1,4 @@
-import { uniqueArrayFallback } from '../internal/uniqueArray';
+import { uniqueArrayFallback } from '../internal/uniqueArray.ts';
 
 /**
  * Создаёт массив чисел требуемой длины
@@ -151,7 +151,7 @@ export function omitFromArray<T>(array: T[] = [], value: T): T[] {
  * difference([1, 2, 3], [1]) // [2, 3]
  * difference([1, 2, 3], [1, 10, 100]) // [2, 3]
  */
-export function difference<T>(array1: readonly T[] = [], array2: readonly T[] = []) {
+export function difference<T>(array1: readonly T[] = [], array2: readonly T[] = []): T[] {
   return array1.reduce<T[]>((res, item) => {
     if (!array2.includes(item)) {
       res.push(item);

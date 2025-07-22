@@ -1,4 +1,4 @@
-import { escapeRegExp } from '../other/regexp';
+import { escapeRegExp } from '../other/regexp.ts';
 
 export class Replacer {
   private regexp: RegExp | undefined;
@@ -21,7 +21,7 @@ export class Replacer {
     this.regexp = new RegExp(pattern, 'g');
   }
 
-  replace(string: string) {
+  replace(string: string): string {
     if (!string) {
       return '';
     }

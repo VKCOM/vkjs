@@ -1,5 +1,5 @@
-import { canUseDOM, canUseEventListeners } from '../other/dom';
-import { type SupportEvent } from '../other/types';
+import { canUseDOM, canUseEventListeners } from '../other/dom.ts';
+import { type SupportEvent } from '../other/types.ts';
 
 type TimingInterface = (timeFraction: number) => number;
 
@@ -25,7 +25,7 @@ interface AnimateArgumentsInterface {
 /**
  * Функция для js анимации
  */
-export function animate({ duration, timing, draw }: AnimateArgumentsInterface) {
+export function animate({ duration, timing, draw }: AnimateArgumentsInterface): void {
   if (!canUseDOM) {
     return;
   }
@@ -54,7 +54,7 @@ export function animate({ duration, timing, draw }: AnimateArgumentsInterface) {
 declare const WebKitAnimationEvent: AnimationEvent;
 declare const WebKitTransitionEvent: TransitionEvent;
 
-export const animationEvent = /*#__PURE__*/ (() => {
+export const animationEvent: SupportEvent<'animationend'> = /*#__PURE__*/ (() => {
   const obj: SupportEvent<'animationend'> = {
     supported: false,
     name: 'animationend',
@@ -74,7 +74,7 @@ export const animationEvent = /*#__PURE__*/ (() => {
   return obj;
 })();
 
-export const transitionEvent = /*#__PURE__*/ (() => {
+export const transitionEvent: SupportEvent<'transitionend'> = /*#__PURE__*/ (() => {
   const obj: SupportEvent<'transitionend'> = {
     supported: false,
     name: 'transitionend',
@@ -105,7 +105,7 @@ export function waitAnimationEnd(
   listener: (ev?: AnimationEvent) => any,
   fallbackTime: number,
   el?: GlobalEventHandlers,
-) {
+): number | undefined {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.addEventListener(animationEvent.name, listener);
@@ -126,7 +126,7 @@ export function cancelWaitAnimationEnd(
   listener: (ev?: AnimationEvent) => any,
   handle?: number,
   el?: GlobalEventHandlers,
-) {
+): void {
   if (canUseEventListeners) {
     if (animationEvent.supported && el) {
       el.removeEventListener(animationEvent.name, listener);
@@ -147,7 +147,7 @@ export function waitTransitionEnd(
   el: GlobalEventHandlers,
   listener: (ev?: TransitionEvent) => any,
   fallbackTime: number,
-) {
+): number | undefined {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.addEventListener(transitionEvent.name, listener);
@@ -168,7 +168,7 @@ export function cancelWaitTransitionEnd(
   listener: (ev?: TransitionEvent) => any,
   handle?: number,
   el?: GlobalEventHandlers,
-) {
+): void {
   if (canUseEventListeners) {
     if (transitionEvent.supported && el) {
       el.removeEventListener(transitionEvent.name, listener);

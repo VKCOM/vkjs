@@ -1,4 +1,4 @@
-import { Dictionary } from './types';
+import { Dictionary } from './types.ts';
 
 class CustomStorage {
   private data: Dictionary<string> = {};
@@ -56,12 +56,12 @@ function getLocalStorage() {
  * Firefox блокирует доступ к localStorage для скриптов с других доменов
  */
 export const localStorage = {
-  setItem: (key: string, val: string) => getLocalStorage().setItem(key, val),
-  getItem: (key: string) => getLocalStorage().getItem(key),
-  removeItem: (key: string) => getLocalStorage().removeItem(key),
-  clear: () => getLocalStorage().clear(),
-  length: () => getLocalStorage().length,
-  key: (index: number) => getLocalStorage().key(index),
+  setItem: (key: string, val: string): void => getLocalStorage().setItem(key, val),
+  getItem: (key: string): string | null => getLocalStorage().getItem(key),
+  removeItem: (key: string): void => getLocalStorage().removeItem(key),
+  clear: (): void => getLocalStorage().clear(),
+  length: (): number => getLocalStorage().length,
+  key: (index: number): string | null => getLocalStorage().key(index),
   keys(): string[] {
     const storage = getLocalStorage();
     if (storage instanceof CustomStorage) {
@@ -96,12 +96,12 @@ function getSessionStorage() {
 }
 
 export const sessionStorage = {
-  setItem: (key: string, val: string) => getSessionStorage().setItem(key, val),
-  getItem: (key: string) => getSessionStorage().getItem(key),
-  removeItem: (key: string) => getSessionStorage().removeItem(key),
-  clear: () => getSessionStorage().clear(),
-  length: () => getSessionStorage().length,
-  key: (index: number) => getSessionStorage().key(index),
+  setItem: (key: string, val: string): void => getSessionStorage().setItem(key, val),
+  getItem: (key: string): string | null => getSessionStorage().getItem(key),
+  removeItem: (key: string): void => getSessionStorage().removeItem(key),
+  clear: (): void => getSessionStorage().clear(),
+  length: (): number => getSessionStorage().length,
+  key: (index: number): string | null => getSessionStorage().key(index),
   keys(): string[] {
     const storage = getSessionStorage();
     if (storage instanceof CustomStorage) {

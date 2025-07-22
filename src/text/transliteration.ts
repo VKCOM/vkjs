@@ -1,4 +1,4 @@
-import { Replacer } from '../internal/replacer';
+import { Replacer } from '../internal/replacer.ts';
 
 /**
  * Словарь транслитерации ВКонтакте из русского в английский.
@@ -270,14 +270,14 @@ export class Transliterator {
 /**
  * Транслитератор ВКонтакте из русского в английский
  */
-export const transliteratorVKRusToEng = /*#__PURE__*/ new Transliterator(
+export const transliteratorVKRusToEng: Transliterator = /*#__PURE__*/ new Transliterator(
   transliterationDictVKRusToEng,
 );
 
 /**
  * Транслитератор ВКонтакте из английского в русский
  */
-export const transliteratorVKEngToRus = /*#__PURE__*/ new Transliterator(
+export const transliteratorVKEngToRus: Transliterator = /*#__PURE__*/ new Transliterator(
   transliterationDictVKEngToRus,
 );
 
@@ -285,6 +285,5 @@ export const transliteratorVKEngToRus = /*#__PURE__*/ new Transliterator(
  * Транслитератор ГОСТ 7.79-2000 (ISO 9-95) по системе Б
  * (с использованием буквосочетаний) для русского языка.
  */
-export const transliteratorGostLetterCombinationsRu = /*#__PURE__*/ new Transliterator(
-  transliterationDictGostLetterCombinationsRu,
-);
+export const transliteratorGostLetterCombinationsRu: Transliterator =
+  /*#__PURE__*/ new Transliterator(transliterationDictGostLetterCombinationsRu);

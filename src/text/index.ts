@@ -1,2 +1,2 @@
-export * from './numbers';
-export * from './transliteration';
+export * from './numbers.ts';
+export * from './transliteration.ts';

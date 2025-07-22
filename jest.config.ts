@@ -1,11 +1,11 @@
-import path from 'node:path';
+import type { Config } from 'jest';
 
-const config = {
+const config: Config = {
   transform: {
     '^.+\\.(t|j)sx?$': '@swc/jest',
   },
   testEnvironment: 'jsdom',
-  roots: [path.join(__dirname, 'src')],
+  roots: ['src'],
   collectCoverage: true,
   coverageReporters: ['text', 'cobertura'],
   collectCoverageFrom: ['src/*/**/**.{ts,tsx}'],

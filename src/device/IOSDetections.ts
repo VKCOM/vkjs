@@ -1,4 +1,4 @@
-import { canUseDOM } from '../other/dom';
+import { canUseDOM } from '../other/dom.ts';
 
 export const IPHONE_SAFARI_BOTTOM_BAR = 45;
 export const IPHONE_X_SAFARI_BOTTOM_BAR = 85;
@@ -8,7 +8,18 @@ export const IPHONE_KEYBOARD_REJECT_OFFSET = 180;
 // 44 iPhone, 55 iPad, iPad Pro 69
 export const IOS_NO_KEYBOARD_ALLOWED_OFFSET = 70;
 
-export function detectIOS(ua?: string) {
+export function detectIOS(ua?: string): {
+  isIPad: boolean;
+  isIPhone: boolean;
+  isIOS: boolean;
+  isIPadOS: boolean;
+  iosMajor: number;
+  iosMinor: number;
+  isWKWebView: boolean;
+  isScrollBasedViewport: boolean;
+  isIPhoneX: boolean;
+  isIOSChrome: boolean;
+} {
   if (!ua) {
     ua = canUseDOM ? navigator.userAgent : '';
   }
@@ -63,18 +74,18 @@ export function detectIOS(ua?: string) {
 
 const detect = /*#__PURE__*/ detectIOS();
 
-export const isIPad = /*#__PURE__*/ (() => detect.isIPad)();
-export const isIPhone = /*#__PURE__*/ (() => detect.isIPhone)();
-export const isIOS = /*#__PURE__*/ (() => detect.isIOS)();
-export const isIPadOS = /*#__PURE__*/ (() => detect.isIPadOS)();
-export const iosMajor = /*#__PURE__*/ (() => detect.iosMajor)();
-export const iosMinor = /*#__PURE__*/ (() => detect.iosMinor)();
-export const isWKWebView = /*#__PURE__*/ (() => detect.isWKWebView)();
-export const isScrollBasedViewport = /*#__PURE__*/ (() => detect.isScrollBasedViewport)();
-export const isIPhoneX = /*#__PURE__*/ (() => detect.isIPhoneX)();
-export const isIOSChrome = /*#__PURE__*/ (() => detect.isIOSChrome)();
+export const isIPad: boolean = /*#__PURE__*/ (() => detect.isIPad)();
+export const isIPhone: boolean = /*#__PURE__*/ (() => detect.isIPhone)();
+export const isIOS: boolean = /*#__PURE__*/ (() => detect.isIOS)();
+export const isIPadOS: boolean = /*#__PURE__*/ (() => detect.isIPadOS)();
+export const iosMajor: number = /*#__PURE__*/ (() => detect.iosMajor)();
+export const iosMinor: number = /*#__PURE__*/ (() => detect.iosMinor)();
+export const isWKWebView: boolean = /*#__PURE__*/ (() => detect.isWKWebView)();
+export const isScrollBasedViewport: boolean = /*#__PURE__*/ (() => detect.isScrollBasedViewport)();
+export const isIPhoneX: boolean = /*#__PURE__*/ (() => detect.isIPhoneX)();
+export const isIOSChrome: boolean = /*#__PURE__*/ (() => detect.isIOSChrome)();
 
-export function isLandscapePhone() {
+export function isLandscapePhone(): boolean {
   return Math.abs(window.orientation) === 90 && !isIPad;
 }
 
@@ -114,7 +125,7 @@ function checkWKWebView(ua: string) {
  *
  * см. https://developer.apple.com/forums/thread/119186?answerId=705140022#705140022
  */
-export function checkIPadOS(ua: string) {
+export function checkIPadOS(ua: string): boolean {
   if (!canUseDOM) {
     return false;
   }

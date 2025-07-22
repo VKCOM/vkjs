@@ -1,6 +1,6 @@
 import { expect, jest, test, describe, beforeEach, it } from '@jest/globals';
-import { debounce } from './debounce';
-import { AnyFunction } from '../other/types';
+import { debounce } from './debounce.ts';
+import { AnyFunction } from '../other/types.ts';
 
 import Mock = jest.Mock;
 

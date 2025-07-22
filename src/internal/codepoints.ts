@@ -32,7 +32,7 @@ export const numericUnicodeMap: Record<number, number> = {
 export const highSurrogateFrom = 0xd800;
 export const highSurrogateTo = 0xdbff;
 
-export const fromCodePoint = /*#__PURE__*/ (() =>
+export const fromCodePoint: (...codePoints: number[]) => string = /*#__PURE__*/ (() =>
   String.fromCodePoint ||
   function (astralCodePoint: number) {
     return String.fromCharCode(
@@ -45,16 +45,17 @@ const codePointAtNative = /*#__PURE__*/ (() =>
   // eslint-disable-next-line @typescript-eslint/unbound-method
   String.prototype.codePointAt as typeof String.prototype.codePointAt | undefined)();
 
-export const getCodePointAt = /*#__PURE__*/ (() =>
-  codePointAtNative
-    ? function (input: string, position: number) {
-        return input.codePointAt(position);
-      }
-    : function (input: string, position: number) {
-        return (
-          (input.charCodeAt(position) - 0xd800) * 0x400 +
-          input.charCodeAt(position + 1) -
-          0xdc00 +
-          0x10000
-        );
-      })();
+export const getCodePointAt: (input: string, position: number) => number | undefined =
+  /*#__PURE__*/ (() =>
+    codePointAtNative
+      ? function (input: string, position: number): number | undefined {
+          return input.codePointAt(position);
+        }
+      : function (input: string, position: number) {
+          return (
+            (input.charCodeAt(position) - 0xd800) * 0x400 +
+            input.charCodeAt(position + 1) -
+            0xdc00 +
+            0x10000
+          );
+        })();

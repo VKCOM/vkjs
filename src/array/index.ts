@@ -7,4 +7,4 @@ export {
   chunkArray,
   omitFromArray,
   difference,
-} from './arrays';
+} from './arrays.ts';
