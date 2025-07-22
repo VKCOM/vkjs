@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "nodenext",
     "target": "es5",
     "lib": ["es5", "es2015", "dom"],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -13,7 +15,10 @@
     "declarationDir": "lib",
     "sourceMap": false,
     "baseUrl": "src",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "isolatedDeclarations": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "jest.config.ts"],
   "exclude": ["node_modules"],

@@ -24,7 +24,9 @@ export interface ThrottledFunction<T extends unknown[]> {
 export function throttle<T extends any[]>(
   fn: (...args: T) => unknown,
   threshold = 50,
-  scope = typeof window !== 'undefined' ? window : undefined,
+  scope: (Window & typeof globalThis) | undefined = typeof window !== 'undefined'
+    ? window
+    : undefined,
 ): ThrottledFunction<T> {
   let prevDate: number = Date.now() - threshold;
   let timeoutId: ReturnType<typeof setTimeout>;

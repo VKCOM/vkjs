@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { isDateToday } from './isDateToday';
+import { isDateToday } from './isDateToday.ts';
 
 test('isDateToday to be truthy', () => {
   expect(isDateToday(new Date())).toBeTruthy();

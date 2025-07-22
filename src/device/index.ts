@@ -16,8 +16,8 @@ export {
   isIOSChrome,
   isLandscapePhone,
   checkIPadOS,
-} from './IOSDetections';
+} from './IOSDetections.ts';
 
-export { hasMouse, hasHover, hasTouchEvents, hasTouch } from './InputUtils';
+export { hasMouse, hasHover, hasTouchEvents, hasTouch } from './InputUtils.ts';
 
-export { isRetina } from './retina';
+export { isRetina } from './retina.ts';

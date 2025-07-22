@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { detectIOS, checkIPadOS } from './IOSDetections';
-import { noop } from '../other/functions';
+import { detectIOS, checkIPadOS } from './IOSDetections.ts';
+import { noop } from '../other/functions.ts';
 
 describe(detectIOS, () => {
   test.each<[Parameters<typeof detectIOS>[0], ReturnType<typeof detectIOS>]>([
