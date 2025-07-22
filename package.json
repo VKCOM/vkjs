@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "clear": "shx rm -rf lib",
-    "prepare": "yarn build",
+    "prepare": "husky",
     "build": "yarn clear && concurrently 'yarn:build:*'",
     "test": "jest",
     "lint": "concurrently 'yarn:lint:*'",
@@ -37,10 +37,6 @@
     "size": "yarn build && size-limit",
     "docs": "typedoc"
   },
-  "pre-commit": [
-    "test",
-    "lint"
-  ],
   "size-limit": [
     {
       "name": "JS",
@@ -97,9 +93,9 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^9.1.7",
     "jest": "^29.1.2",
     "jest-environment-jsdom": "^29.1.2",
-    "pre-commit": "1.2.2",
     "prettier": "^3.0.2",
     "react": "^19.0.0",
     "shx": "^0.4.0",
