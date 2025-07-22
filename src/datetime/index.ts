@@ -10,9 +10,9 @@ export {
   createDateFromUnixTimestamp,
   getUnixTimestampFromDate,
   convertDateToInputFormat,
-} from '../datetime/date';
+} from '../datetime/date.ts';
 
-export { isDateToday } from './isDateToday';
-export { isSameDate } from './isSameDate';
+export { isDateToday } from './isDateToday.ts';
+export { isSameDate } from './isSameDate.ts';
 
-export { formatDuration } from './duration';
+export { formatDuration } from './duration.ts';

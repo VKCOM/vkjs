@@ -1,5 +1,5 @@
-import { leadingZero } from '../other/numbers';
-import { isDateToday } from './isDateToday';
+import { leadingZero } from '../other/numbers.ts';
+import { isDateToday } from './isDateToday.ts';
 
 export const SECONDS_IN_THE_DAY = 86400;
 const MILLISECONDS_IN_THE_DAY = SECONDS_IN_THE_DAY * 1000;
@@ -52,7 +52,7 @@ export function isDateTomorrow(date: Date): boolean {
  *
  * @param date Дата
  */
-export function getBeginningOfDay(date: Date) {
+export function getBeginningOfDay(date: Date): Date {
   const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
@@ -74,7 +74,7 @@ export function getBeginningOfDay(date: Date) {
  *
  * @param year Год
  */
-export function isLeapYear(year: number) {
+export function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 

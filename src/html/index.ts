@@ -1,1 +1,1 @@
-export * from './escape';
+export * from './escape.ts';

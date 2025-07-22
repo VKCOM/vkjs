@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/quotes */
-import { Replacer } from '../internal/replacer';
-import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../internal/codepoints';
-import { Dictionary } from '../other/types';
-import { buildFullNamedEntities, fullNamedEntities } from './entity';
+import { Replacer } from '../internal/replacer.ts';
+import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../internal/codepoints.ts';
+import { Dictionary } from '../other/types.ts';
+import { buildFullNamedEntities, fullNamedEntities } from './entity.ts';
 
 const escapeReplacer = /*#__PURE__*/ new Replacer({
   '&': '&amp;',
@@ -138,7 +138,10 @@ export function decodeHTMLEntitiesDeep<T>(input: T): T {
  * @param input Текст который необходимо декодировать
  * @param entities Кастомный словарь сущностей `{'lt;': '<'}`
  */
-export function decodeHTMLEntities(input: string, entities = namedEntities): string {
+export function decodeHTMLEntities(
+  input: string,
+  entities: Record<string, string> = namedEntities,
+): string {
   return decodeString(input, entities);
 }
 

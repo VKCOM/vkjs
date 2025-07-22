@@ -1,5 +1,5 @@
 import { expect, jest, test, describe } from '@jest/globals';
-import { once } from './functions';
+import { once } from './functions.ts';
 
 describe('once', () => {
   test('should be called once', () => {

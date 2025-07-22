@@ -24,7 +24,9 @@ export interface DebouncedFunction<T extends unknown[]> {
 export function debounce<T extends any[]>(
   fn: (...args: T) => unknown,
   delay: number,
-  context = typeof window !== 'undefined' ? window : undefined,
+  context: (Window & typeof globalThis) | undefined = typeof window !== 'undefined'
+    ? window
+    : undefined,
 ): DebouncedFunction<T> {
   let timeoutId: ReturnType<typeof setTimeout>;
   let args: T;

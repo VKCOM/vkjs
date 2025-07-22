@@ -1,6 +1,6 @@
 import { test, expect, describe } from '@jest/globals';
-import { createArray, chunkArray, uniqueArray } from './arrays';
-import { uniqueArrayFallback } from '../internal/uniqueArray';
+import { createArray, chunkArray, uniqueArray } from './arrays.ts';
+import { uniqueArrayFallback } from '../internal/uniqueArray.ts';
 
 test('createArray', () => {
   expect(createArray(0)).toEqual([]);

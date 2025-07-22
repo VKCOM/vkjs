@@ -1,4 +1,4 @@
-import { leadingZero } from '../other/numbers';
+import { leadingZero } from '../other/numbers.ts';
 
 /**
  * Форматирует длительность в секундах в строку вида "MM:SS" или "HH:MM:SS".
