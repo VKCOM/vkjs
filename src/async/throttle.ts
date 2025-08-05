@@ -1,4 +1,18 @@
 /**
+ * Функция throttled, которая будет задержана на заданное
+ * `threshold` миллисекунд от последнего вызова. Если метод будет вызван снова
+ * до истечения тайм-аута, предыдущий вызов будет прерван.
+ */
+export interface ThrottledFunction<T extends unknown[]> {
+  (...a: T): void;
+
+  /**
+   * Отменяет вызов функции
+   */
+  cancel(): void;
+}
+
+/**
  * Возвращает throttled функцию, которая задерживает вызов `fn` на
  * `threshold` миллисекунд от последнего вызова. Если метод вызывается снова до
  * выполнения предыдущего, предыдущий вызов будет прерван.
@@ -11,7 +25,7 @@ export function throttle<T extends any[]>(
   fn: (...args: T) => unknown,
   threshold = 50,
   scope = typeof window !== 'undefined' ? window : undefined,
-) {
+): ThrottledFunction<T> {
   let prevDate: number = Date.now() - threshold;
   let timeoutId: ReturnType<typeof setTimeout>;
 
