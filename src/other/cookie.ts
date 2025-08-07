@@ -7,7 +7,7 @@ export function getCookie(name: string): string | undefined {
 
 let isCookieEnabledCache: boolean | null = null;
 
-export const isCookieEnabled = () => {
+export const isCookieEnabled = (): boolean => {
   if (isCookieEnabledCache === null) {
     try {
       document.cookie = 'cookietest=1';

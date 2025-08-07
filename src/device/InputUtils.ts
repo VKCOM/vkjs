@@ -1,5 +1,5 @@
-import { isIOS, isIPadOS } from './IOSDetections';
-import { canUseDOM } from '../other/dom';
+import { isIOS, isIPadOS } from './IOSDetections.ts';
+import { canUseDOM } from '../other/dom.ts';
 
 const detect = /*#__PURE__*/ (() => {
   const obj = {
@@ -45,7 +45,7 @@ const detect = /*#__PURE__*/ (() => {
   return obj;
 })();
 
-export const hasMouse = /*#__PURE__*/ (() => detect.hasMouse)();
-export const hasHover = /*#__PURE__*/ (() => detect.hasHover)();
-export const hasTouchEvents = /*#__PURE__*/ (() => detect.hasTouchEvents)();
-export const hasTouch = /*#__PURE__*/ (() => detect.hasTouch)();
+export const hasMouse: boolean = /*#__PURE__*/ (() => detect.hasMouse)();
+export const hasHover: boolean = /*#__PURE__*/ (() => detect.hasHover)();
+export const hasTouchEvents: boolean = /*#__PURE__*/ (() => detect.hasTouchEvents)();
+export const hasTouch: boolean = /*#__PURE__*/ (() => detect.hasTouch)();

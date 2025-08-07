@@ -1,4 +1,4 @@
-import { isSameDate } from './isSameDate';
+import { isSameDate } from './isSameDate.ts';
 
 /**
  * Проверяет, что переданная дата является сегодняшним днём

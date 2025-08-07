@@ -831,7 +831,7 @@
     nanoid "^5.1.0"
     webpack "^5.98.0"
 
-"@swc/cli@^0.7.3":
+"@swc/cli@^0.7.8":
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/@swc/cli/-/cli-0.7.8.tgz#7c9e892e45cdb818f53eb0b96ada88014ae84c04"
   integrity sha512-27Ov4rm0s2C6LLX+NDXfDVB69LGs8K94sXtFhgeUyQ4DBywZuCgTBu2loCNHRr8JhT9DeQvJM5j9FAu/THbo4w==
@@ -896,7 +896,7 @@
   resolved "https://registry.yarnpkg.com/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.13.1.tgz#bd35da282344ad73a86cd32a7edc0b03a457d9f7"
   integrity sha512-KubYjzqs/nz3H69ncX/XHKsC8c1xqc7UvonQAj26BhbL22HBsqdAaVutZ+Obho6RMpd3F5qQ95ldavUTWskRrw==
 
-"@swc/core@^1.3.49":
+"@swc/core@^1.13.1":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@swc/core/-/core-1.13.1.tgz#36cb623f0b0282240ec007678a515fdb7c72997f"
   integrity sha512-jEKKErLC6uwSqA+p6bmZR08usZM5Fpc+HdEu5CAzvye0q43yf1si1kjhHEa9XMkz0A2SAaal3eKCg/YYmtOsCA==
@@ -935,6 +935,13 @@
     "@jest/create-cache-key-function" "^29.7.0"
     "@swc/counter" "^0.1.3"
     jsonc-parser "^3.2.0"
+
+"@swc/plugin-transform-imports@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-9.0.0.tgz#0fdecbb32ae942e58416d03f068906843a4ad7ae"
+  integrity sha512-IlKskHIb3tKi0B2T/DZPImgt1inZTmm7oWm86Pkf9G8mXrmU8PN6hr5O0odESHcDrIg8Ya3KUDCsLjYiHAw+aw==
+  dependencies:
+    "@swc/counter" "^0.1.3"
 
 "@swc/types@^0.1.23":
   version "0.1.23"
@@ -5424,7 +5431,7 @@ typedoc@^0.28.0:
     minimatch "^9.0.5"
     yaml "^2.8.0"
 
-typescript@^5.1.3:
+typescript@^5.8.3:
   version "5.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.3.tgz#92f8a3e5e3cf497356f4178c34cd65a7f5e8440e"
   integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==

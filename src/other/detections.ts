@@ -1,7 +1,7 @@
-import { noop } from './functions';
-import { canUseDOM, canUseEventListeners } from './dom';
+import { noop } from './functions.ts';
+import { canUseDOM, canUseEventListeners } from './dom.ts';
 
-export const isPassiveEventsSupported = /*#__PURE__*/ (() => {
+export const isPassiveEventsSupported: boolean = /*#__PURE__*/ (() => {
   let isSupported = false;
 
   if (canUseEventListeners) {
@@ -39,4 +39,4 @@ function detectSmoothScrollSupport() {
   return isSupported;
 }
 
-export const isSmoothScrollSupported = /*#__PURE__*/ detectSmoothScrollSupport();
+export const isSmoothScrollSupported: boolean = /*#__PURE__*/ detectSmoothScrollSupport();
