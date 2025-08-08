@@ -18,9 +18,12 @@
     "esModuleInterop": true,
     "emitDeclarationOnly": true,
     "isolatedDeclarations": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.ts", "jest.config.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"],
   "typedocOptions": {
     "readme": "README.md",

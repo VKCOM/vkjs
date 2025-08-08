@@ -1,15 +1,17 @@
-import { describe, it, expect } from '@jest/globals';
-import { getPhotoSize, PhotoSizeLike } from './getPhotoSize.ts';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
+import { getPhotoSize, type PhotoSizeLike } from './getPhotoSize.ts';
 
-describe('getPhotoSize', () => {
-  it('recognizes an invalid or empty array', () => {
-    expect(getPhotoSize(1 as any, 1)).toBeNull();
-    expect(getPhotoSize(null as any, 1)).toBeNull();
-    expect(getPhotoSize({} as any, 1)).toBeNull();
-    expect(getPhotoSize([], 1)).toBeNull();
+test.test('getPhotoSize', async (t) => {
+  await t.test('recognizes an invalid or empty array', () => {
+    assert.equal(getPhotoSize(1 as any, 1), null);
+    assert.equal(getPhotoSize(null as any, 1), null);
+    assert.equal(getPhotoSize({} as any, 1), null);
+    assert.equal(getPhotoSize([], 1), null);
   });
 
-  it('handles src/url differences', () => {
+  await t.test('handles src/url differences', () => {
     const url = 'https://vk.com';
 
     const sizes: PhotoSizeLike[] = [
@@ -18,12 +20,12 @@ describe('getPhotoSize', () => {
       { width: 600, height: 600 },
     ];
 
-    expect(getPhotoSize(sizes, 200)).toEqual({ width: 200, height: 200, url });
-    expect(getPhotoSize(sizes, 400)).toEqual({ width: 400, height: 400, url });
-    expect(getPhotoSize(sizes, 600)).toEqual({ width: 600, height: 600, url: '' });
+    assert.deepEqual(getPhotoSize(sizes, 200), { width: 200, height: 200, url });
+    assert.deepEqual(getPhotoSize(sizes, 400), { width: 400, height: 400, url });
+    assert.deepEqual(getPhotoSize(sizes, 600), { width: 600, height: 600, url: '' });
   });
 
-  it('returns the minimum achievable image width', () => {
+  await t.test('returns the minimum achievable image width', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 550,
@@ -39,14 +41,14 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, 500)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, 500), {
       width: 550,
       height: 550,
       url: '',
     });
   });
 
-  it('returns the maximum achievable image width', () => {
+  await t.test('returns the maximum achievable image width', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 450,
@@ -66,14 +68,14 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, 500)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, 500), {
       width: 450,
       height: 550,
       url: '',
     });
   });
 
-  it('returns the minimum achievable image by width and height', () => {
+  await t.test('returns the minimum achievable image by width and height', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 550,
@@ -89,14 +91,14 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, 500, 600)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, 500, 600), {
       width: 750,
       height: 750,
       url: '',
     });
   });
 
-  it('returns the maximum achievable image by width and height', () => {
+  await t.test('returns the maximum achievable image by width and height', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 350,
@@ -112,14 +114,14 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, 500, 600)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, 500, 600), {
       width: 450,
       height: 550,
       url: '',
     });
   });
 
-  it('returns the maximum achievable image in height among the same width', () => {
+  await t.test('returns the maximum achievable image in height among the same width', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 350,
@@ -135,14 +137,14 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, 500, 600)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, 500, 600), {
       width: 350,
       height: 550,
       url: '',
     });
   });
 
-  it('returns the maximum size (Infinity hack)', () => {
+  await t.test('returns the maximum size (Infinity hack)', () => {
     const photoSizes: PhotoSizeLike[] = [
       {
         width: 550,
@@ -154,7 +156,7 @@ describe('getPhotoSize', () => {
       },
     ];
 
-    expect(getPhotoSize(photoSizes, Infinity)).toEqual({
+    assert.deepEqual(getPhotoSize(photoSizes, Infinity), {
       width: 750,
       height: 750,
       url: '',

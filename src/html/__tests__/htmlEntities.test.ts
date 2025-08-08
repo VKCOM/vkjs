@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { expect, describe, test } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import {
   escape,
   unescape,
@@ -16,33 +18,63 @@ const empty = [
   [null, ''],
 ] as string[][]; // JS type check
 
-const escapeTest = [
-  ...empty,
-  ['Entities &<>\'"', 'Entities &amp;&lt;&gt;&#39;&quot;'],
-  ['&foo <> bar "fizz" l\'a', '&amp;foo &lt;&gt; bar &quot;fizz&quot; l&#39;a'],
-];
+test.test('escape', async (t) => {
+  const escapeTest = [
+    ...empty,
+    ['Entities &<>\'"', 'Entities &amp;&lt;&gt;&#39;&quot;'],
+    ['&foo <> bar "fizz" l\'a', '&amp;foo &lt;&gt; bar &quot;fizz&quot; l&#39;a'],
+  ];
 
-test.each(escapeTest)('escape(%j) should equal %j', (input, expected) => {
-  expect(escape(input)).toEqual(expected);
+  await Promise.all(
+    escapeTest.map(
+      async ([input, expected]) =>
+        await t.test(
+          `escape(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(escape(input), expected);
+          },
+        ),
+    ),
+  );
 });
 
-const unescapeTest = [
-  ...empty,
-  ['Entities &amp;&lt;&gt;&apos;&quot;', 'Entities &<>\'"'],
-  ['foo&#39;&apos;bar', "foo''bar"],
-];
+test.test('unescape', async (t) => {
+  const unescapeTest = [
+    ...empty,
+    ['Entities &amp;&lt;&gt;&apos;&quot;', 'Entities &<>\'"'],
+    ['foo&#39;&apos;bar', "foo''bar"],
+  ];
 
-test.each(unescapeTest)('unescape(%j) should equal %j', (input, expected) => {
-  expect(unescape(input)).toEqual(expected);
+  await Promise.all(
+    unescapeTest.map(
+      async ([input, expected]) =>
+        await t.test(
+          `unescape(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(unescape(input), expected);
+          },
+        ),
+    ),
+  );
 });
 
-const encodeTest = [
-  ...empty,
-  ['a\n<>"\'&©∆℞😂\0\x01', 'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;'],
-];
+test.test('encodeHTMLEntities', async (t) => {
+  const encodeTest = [
+    ...empty,
+    ['a\n<>"\'&©∆℞😂\0\x01', 'a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;'],
+  ];
 
-test.each(encodeTest)('encodeHTMLEntities(%j) should equal %j', (input, expected) => {
-  expect(encodeHTMLEntities(input)).toEqual(expected);
+  await Promise.all(
+    encodeTest.map(
+      async ([input, expected]) =>
+        await t.test(
+          `encodeHTMLEntities(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(encodeHTMLEntities(input), expected);
+          },
+        ),
+    ),
+  );
 });
 
 const decodeTests = [
@@ -64,11 +96,21 @@ const decodeTests = [
   ['a\n&#60;&#62;&#34;&#39;&#38;&#169;&#8710;&#8478;&#128514;\x00&#1;', 'a\n<>"\'&©∆℞😂\0\x01'],
 ];
 
-test.each(decodeTests)('decodeHTMLEntities(%j) should equal %j', (input, expected) => {
-  expect(decodeHTMLEntities(input)).toEqual(expected);
+test.test('decodeHTMLEntities', async (t) => {
+  await Promise.all(
+    decodeTests.map(
+      async ([input, expected]) =>
+        await t.test(
+          `decodeHTMLEntities(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(decodeHTMLEntities(input), expected);
+          },
+        ),
+    ),
+  );
 });
 
-describe('decodeHTMLEntitiesDeep', () => {
+test.test('decodeHTMLEntitiesDeep', async (t) => {
   const decodeTestsLoopEntered = {
     array: [
       '&#1333;&#1408;&#1391;&#1387;&#1408;&#1384; &#1401;&#1379;&#1407;&#1398;&#1406;&#1381;&#1409;',
@@ -105,53 +147,63 @@ describe('decodeHTMLEntitiesDeep', () => {
     undefined: undefined,
   };
 
-  test('object input', () => {
-    expect(decodeHTMLEntitiesDeep(decodeTestsLoopEntered)).toEqual(decodeTestsLoopExpected);
+  await t.test('object input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(decodeTestsLoopEntered), decodeTestsLoopExpected);
   });
 
-  test('string input', () => {
-    expect(decodeHTMLEntitiesDeep('&#1408;')).toEqual('ր');
+  await t.test('string input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep('&#1408;'), 'ր');
   });
 
-  test('number input', () => {
-    expect(decodeHTMLEntitiesDeep(1)).toEqual(1);
+  await t.test('number input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(1), 1);
   });
 
-  test('null input', () => {
-    expect(decodeHTMLEntitiesDeep(null)).toEqual(null);
+  await t.test('null input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(null), null);
   });
 
-  test('undefined input', () => {
-    expect(decodeHTMLEntitiesDeep(undefined)).toEqual(undefined);
+  await t.test('undefined input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(undefined), undefined);
   });
 
-  test('map input', () => {
-    expect(decodeHTMLEntitiesDeep({ '&#1333;': true })).toEqual({ Ե: true });
+  await t.test('map input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep({ '&#1333;': true }), { Ե: true });
   });
 
-  test('boolean input', () => {
-    expect(decodeHTMLEntitiesDeep(false)).toEqual(false);
+  await t.test('boolean input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(false), false);
   });
 
-  test('function input', () => {
-    expect(decodeHTMLEntitiesDeep(test)).toEqual(test);
+  await t.test('function input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(test), test);
   });
 
-  test('array input', () => {
-    expect(decodeHTMLEntitiesDeep(['&#1333;', 1])).toEqual(['Ե', 1]);
+  await t.test('array input', () => {
+    assert.deepEqual(decodeHTMLEntitiesDeep(['&#1333;', 1]), ['Ե', 1]);
   });
 });
 
-const decodeFullTests = [
-  ...decodeTests,
-  ['&amp &amp', '& &'],
-  ['text &gesl; blah', 'text \u22db\ufe00 blah'],
-  ['Lambda = &#x3bb; = &#X3Bb ', 'Lambda = λ = λ '],
-  ['&# &#x &#128;43 &copy = &#169f = &#xa9', '&# &#x €43 © = ©f = ©'],
-  ['&AMP &AMP;', '& &'],
-  ['&Pi &Pi;', '&Pi Π'],
-];
+test.test('decodeHTMLEntities', async (t) => {
+  const decodeFullTests = [
+    ...decodeTests,
+    ['&amp &amp', '& &'],
+    ['text &gesl; blah', 'text \u22db\ufe00 blah'],
+    ['Lambda = &#x3bb; = &#X3Bb ', 'Lambda = λ = λ '],
+    ['&# &#x &#128;43 &copy = &#169f = &#xa9', '&# &#x €43 © = ©f = ©'],
+    ['&AMP &AMP;', '& &'],
+    ['&Pi &Pi;', '&Pi Π'],
+  ];
 
-test.each(decodeFullTests)('decodeHTMLFullEntities(%j) should equal %j', (input, expected) => {
-  expect(decodeHTMLFullEntities(input)).toEqual(expected);
+  await Promise.all(
+    decodeFullTests.map(
+      async ([input, expected]) =>
+        await t.test(
+          `decodeHTMLFullEntities(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(decodeHTMLFullEntities(input), expected);
+          },
+        ),
+    ),
+  );
 });

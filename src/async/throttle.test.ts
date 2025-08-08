@@ -1,73 +1,84 @@
-import { expect, jest, test, describe, beforeEach, it } from '@jest/globals';
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
+
 import { throttle } from './throttle.ts';
-import { AnyFunction } from '../other/types.ts';
 
-import Mock = jest.Mock;
-
-describe('throttle', () => {
+test.test('throttle', async (t) => {
   const threshold = 50;
-  let fn: Mock<AnyFunction>;
-  let fnThrottled: ReturnType<typeof throttle>;
 
-  beforeEach(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(100);
-    fn = jest.fn();
-    fnThrottled = throttle(fn, threshold);
-  });
+  await t.test('should call functions as usual if they exceed threshold interval', (t) => {
+    const fn = t.mock.fn();
+    t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+    const fnThrottled = throttle(fn, threshold);
 
-  test('should call functions as usual if they exceed threshold interval', () => {
     fnThrottled(1);
-    expect(fn.mock.calls).toEqual([[1]]);
+    assert.deepEqual(fn.mock.calls[0].arguments, [1]);
 
-    jest.advanceTimersByTime(threshold);
+    t.mock.timers.tick(threshold);
     fnThrottled(2);
-    expect(fn.mock.calls).toEqual([[1], [2]]);
+    assert.deepEqual(fn.mock.calls[1].arguments, [2]);
   });
 
-  test('should trigger last call at the end of threshold', () => {
-    fnThrottled(1);
-    expect(fn.mock.calls).toEqual([[1]]);
-    jest.advanceTimersByTime(10);
+  await t.test('should trigger last call at the end of threshold', (t) => {
+    const fn = t.mock.fn();
+    t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+    const fnThrottled = throttle(fn, threshold);
 
-    fnThrottled(2);
-    jest.advanceTimersByTime(threshold - 10);
-    expect(fn.mock.calls).toEqual([[1], [2]]);
-  });
-
-  test('should call not more than once per threshold and preserve correct call order', () => {
     fnThrottled(1);
-    // call function immediately after the first call
-    expect(fn.mock.calls).toEqual([[1]]);
+    assert.deepEqual(fn.mock.calls[0].arguments, [1]);
+    t.mock.timers.tick(10);
 
     fnThrottled(2);
-    fnThrottled(3);
-    jest.advanceTimersByTime(threshold - 10); // 40ms
-    // throttle following calls until the threshold is reached
-    expect(fn.mock.calls).toEqual([[1]]);
-
-    fnThrottled(4);
-    jest.advanceTimersByTime(10); // 50ms
-    // call function with last arguments after the threshold is reached
-    expect(fn.mock.calls).toEqual([[1], [4]]);
-
-    jest.advanceTimersByTime(10); // 60ms
-    fnThrottled(5);
-    // don't call function immediately and wait until threshold reached
-    expect(fn.mock.calls).toEqual([[1], [4]]);
-
-    jest.advanceTimersByTime(threshold - 10); // 100ms
-    expect(fn.mock.calls).toEqual([[1], [4], [5]]);
+    t.mock.timers.tick(threshold - 10);
+    assert.deepEqual(fn.mock.calls[1].arguments, [2]);
   });
 
-  it('should cancel throttled call', function () {
+  await t.test(
+    'should call not more than once per threshold and preserve correct call order',
+    (t) => {
+      const fn = t.mock.fn();
+      t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+      const fnThrottled = throttle(fn, threshold);
+
+      fnThrottled(1);
+      // call function immediately after the first call
+      assert.deepEqual(fn.mock.calls[0].arguments, [1]);
+
+      fnThrottled(2);
+      fnThrottled(3);
+      t.mock.timers.tick(threshold - 10); // 40ms
+      // throttle following calls until the threshold is reached
+      assert.deepEqual(fn.mock.calls[0].arguments, [1]);
+
+      fnThrottled(4);
+      t.mock.timers.tick(10); // 50ms
+      // call function with last arguments after the threshold is reached
+      assert.deepEqual(fn.mock.calls[1].arguments, [4]);
+
+      t.mock.timers.tick(10); // 60ms
+      fnThrottled(5);
+      // don't call function immediately and wait until threshold reached
+      assert.deepEqual(fn.mock.callCount(), 2);
+
+      t.mock.timers.tick(threshold - 10); // 100ms
+      assert.deepEqual(fn.mock.calls[2].arguments, [5]);
+    },
+  );
+
+  await t.test('should cancel throttled call', function (t) {
+    const fn = t.mock.fn();
+    t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
+    const fnThrottled = throttle(fn, threshold);
+
     fnThrottled(1);
     fnThrottled(2);
     fnThrottled(3);
     fnThrottled.cancel();
-    jest.advanceTimersByTime(threshold);
+    t.mock.timers.tick(threshold);
 
-    expect(fn).toHaveBeenCalledTimes(1);
-    expect(fn).toHaveBeenCalledWith(1);
+    assert.equal(fn.mock.callCount(), 1);
+    assert.deepEqual(fn.mock.calls[0].arguments, [1]);
   });
 });

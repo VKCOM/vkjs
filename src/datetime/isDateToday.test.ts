@@ -1,10 +1,12 @@
-import { expect, test } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import { isDateToday } from './isDateToday.ts';
 
-test('isDateToday to be truthy', () => {
-  expect(isDateToday(new Date())).toBeTruthy();
+test.test('isDateToday to be truthy', () => {
+  assert.equal(isDateToday(new Date()), true);
 });
 
-test('isDateToday to be falsy', () => {
-  expect(isDateToday(new Date(2024, 0, 1))).toBeFalsy();
+test.test('isDateToday to be falsy', () => {
+  assert.equal(isDateToday(new Date(2024, 0, 1)), false);
 });

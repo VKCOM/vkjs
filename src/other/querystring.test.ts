@@ -1,74 +1,91 @@
-import { describe, expect, test } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import { querystring } from './querystring.ts';
 
-describe('querystring parse', () => {
-  test('string starting with a `?`, `#` or `&`', () => {
-    expect(querystring.parse('?foo=bar&xyz=baz')).toEqual({ foo: 'bar', xyz: 'baz' });
-    expect(querystring.parse('#foo=bar&xyz=baz')).toEqual({ foo: 'bar', xyz: 'baz' });
-    expect(querystring.parse('&foo=bar&xyz=baz')).toEqual({ foo: 'bar', xyz: 'baz' });
+test.test('querystring parse', async (t) => {
+  await t.test('string starting with a `?`, `#` or `&`', () => {
+    assert.deepEqual(querystring.parse('?foo=bar&xyz=baz'), { foo: 'bar', xyz: 'baz' });
+    assert.deepEqual(querystring.parse('#foo=bar&xyz=baz'), { foo: 'bar', xyz: 'baz' });
+    assert.deepEqual(querystring.parse('&foo=bar&xyz=baz'), { foo: 'bar', xyz: 'baz' });
   });
 
-  test.each([0, false, null, {}, '?', 'https://vk.com'])('querystring.parse(%p) is {}', (query) => {
-    expect(querystring.parse(query)).toEqual({});
-  });
+  await Promise.all(
+    [0, false, null, {}, '?', 'https://vk.com'].map(
+      async (query) =>
+        await t.test(`querystring.parse(${String(query)}) is {}`, () => {
+          assert.deepEqual(querystring.parse(query), {});
+        }),
+    ),
+  );
 
-  test.each([
-    { query: 'http://www.google.com/?foo=bar?', expected: { foo: 'bar?' } },
-    {
-      query: 'ascii=%3Ckey%3A+0x90%3E',
-      expected: { ascii: '<key: 0x90>' },
-    },
-    {
-      query: 'a=%3B',
-      expected: { a: ';' },
-    },
-    {
-      query: 'a%3Bb=1',
-      expected: { 'a;b': '1' },
-    },
-  ])('querystring.parse($query) is $expect', ({ query, expected }) => {
-    expect(querystring.parse(query)).toEqual(expected);
-  });
+  await Promise.all(
+    [
+      { query: 'http://www.google.com/?foo=bar?', expected: { foo: 'bar?' } },
+      {
+        query: 'ascii=%3Ckey%3A+0x90%3E',
+        expected: { ascii: '<key: 0x90>' },
+      },
+      {
+        query: 'a=%3B',
+        expected: { a: ';' },
+      },
+      {
+        query: 'a%3Bb=1',
+        expected: { 'a;b': '1' },
+      },
+    ].map(
+      async ({ query, expected }) =>
+        await t.test(`querystring.parse(${String(query)}) is ${String(expected)}`, () => {
+          assert.deepEqual(querystring.parse(query), expected);
+        }),
+    ),
+  );
 
   // TODO: Написать больше тестов
 });
 
-describe('querystring stringify', () => {
-  test('empty string for null, undefined or empty data', () => {
+test.test('querystring stringify', async (t) => {
+  await t.test('empty string for null, undefined or empty data', () => {
     // @ts-expect-error TS2345: JS type check
-    expect(querystring.stringify(null)).toEqual('');
+    assert.deepEqual(querystring.stringify(null), '');
     // @ts-expect-error TS2345: JS type check
-    expect(querystring.stringify(undefined)).toEqual('');
-    expect(querystring.stringify({})).toEqual('');
+    assert.deepEqual(querystring.stringify(undefined), '');
+    assert.deepEqual(querystring.stringify({}), '');
   });
 
-  test('base', () => {
-    expect(querystring.stringify({ foo: 'bar' })).toEqual('foo=bar');
-    expect(querystring.stringify({ foo: 'bar', baz: 2 })).toEqual('foo=bar&baz=2');
+  await t.test('base', () => {
+    assert.deepEqual(querystring.stringify({ foo: 'bar' }), 'foo=bar');
+    assert.deepEqual(querystring.stringify({ foo: 'bar', baz: 2 }), 'foo=bar&baz=2');
   });
 
-  test('encoding', () => {
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' })).toEqual(
+  await t.test('encoding', () => {
+    assert.deepEqual(
+      querystring.stringify({ foo: 'bar', baz: 'foo & bar' }),
       'foo=bar&baz=foo%20%26%20bar',
     );
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: true })).toEqual(
+    assert.deepEqual(
+      querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: true }),
       'foo=bar&baz=foo%20%26%20bar',
     );
-    expect(querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: false })).toEqual(
+    assert.deepEqual(
+      querystring.stringify({ foo: 'bar', baz: 'foo & bar' }, { encode: false }),
       'foo=bar&baz=foo & bar',
     );
   });
 
-  test('arrays', () => {
-    expect(querystring.stringify({ foo: [1, 2, 3] })).toEqual('foo[]=1&foo[]=2&foo[]=3');
-    expect(querystring.stringify({ foo: ['a', 'foo & bar'] })).toEqual(
+  await t.test('arrays', () => {
+    assert.deepEqual(querystring.stringify({ foo: [1, 2, 3] }), 'foo[]=1&foo[]=2&foo[]=3');
+    assert.deepEqual(
+      querystring.stringify({ foo: ['a', 'foo & bar'] }),
       'foo[]=a&foo[]=foo%20%26%20bar',
     );
   });
 
-  test('null and undefined', () => {
-    expect(querystring.stringify({ a: 'foo', b: undefined, c: null })).toEqual('a=foo&c=');
-    expect(querystring.stringify({ a: 'foo', b: undefined, c: null }, { skipNull: true })).toEqual(
+  await t.test('null and undefined', () => {
+    assert.deepEqual(querystring.stringify({ a: 'foo', b: undefined, c: null }), 'a=foo&c=');
+    assert.deepEqual(
+      querystring.stringify({ a: 'foo', b: undefined, c: null }, { skipNull: true }),
       'a=foo',
     );
   });

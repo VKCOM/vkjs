@@ -1,59 +1,62 @@
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import { createElement } from 'react';
-import { expect, test, describe } from '@jest/globals';
 import { hasReactNode, isPrimitiveReactNode } from './react_utils.ts';
 
-describe(hasReactNode, () => {
-  describe('return false cases', () => {
-    test('should be false for value is undefined', () => {
-      expect(hasReactNode(undefined)).toBeFalsy();
+test.test('hasReactNode', async (t) => {
+  await t.test('return false cases', async (t) => {
+    await t.test('should be false for value is undefined', () => {
+      assert.equal(hasReactNode(undefined), false);
     });
 
-    test('should be false for value is null', () => {
-      expect(hasReactNode(null)).toBeFalsy();
+    await t.test('should be false for value is null', () => {
+      assert.equal(hasReactNode(null), false);
     });
 
-    test('should be false for value is false', () => {
-      expect(hasReactNode(false)).toBeFalsy();
+    await t.test('should be false for value is false', () => {
+      assert.equal(hasReactNode(false), false);
     });
 
-    test('should be false for value is empty string', () => {
-      expect(hasReactNode('')).toBeFalsy();
+    await t.test('should be false for value is empty string', () => {
+      assert.equal(hasReactNode(''), false);
     });
   });
 
-  describe('return true cases', () => {
-    test('should be true for value is zero', () => {
-      expect(hasReactNode(0)).toBeTruthy();
+  await t.test('return true cases', async (t) => {
+    await t.test('should be true for value is zero', () => {
+      assert.equal(hasReactNode(0), true);
     });
 
-    test('should be true for value is not empty string', () => {
-      expect(hasReactNode(' ')).toBeTruthy();
+    await t.test('should be true for value is not empty string', () => {
+      assert.equal(hasReactNode(' '), true);
     });
 
-    test('should be true for value is react element', () => {
-      expect(hasReactNode(createElement('div'))).toBeTruthy();
+    await t.test('should be true for value is react element', () => {
+      assert.equal(hasReactNode(createElement('div')), true);
     });
   });
 });
 
-describe(isPrimitiveReactNode, () => {
-  describe('return false cases', () => {
-    test('should be false for value is boolean', () => {
-      expect(isPrimitiveReactNode(false)).toBeFalsy();
+test.test('isPrimitiveReactNode', async (t) => {
+  await t.test('return false cases', async (t) => {
+    await t.test('should be false for value is boolean', () => {
+      assert.equal(isPrimitiveReactNode(false), false);
     });
 
-    test('should be false for value is react element', () => {
-      expect(isPrimitiveReactNode(createElement('div'))).toBeFalsy();
+    await t.test('should be false for value is react element', () => {
+      assert.equal(isPrimitiveReactNode(createElement('div')), false);
     });
   });
 
-  describe('return true cases', () => {
-    test('should be false for value is undefined', () => {
-      expect(isPrimitiveReactNode('')).toBeTruthy();
+  await t.test('return true cases', async (t) => {
+    await t.test('should be false for value is undefined', () => {
+      assert.equal(isPrimitiveReactNode(''), true);
     });
 
-    test('should be false for value is null', () => {
-      expect(isPrimitiveReactNode(0)).toBeTruthy();
+    await t.test('should be false for value is null', () => {
+      assert.equal(isPrimitiveReactNode(0), true);
     });
   });
 });

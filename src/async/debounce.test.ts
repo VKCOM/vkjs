@@ -1,42 +1,41 @@
-import { expect, jest, test, describe, beforeEach, it } from '@jest/globals';
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import { debounce } from './debounce.ts';
-import { AnyFunction } from '../other/types.ts';
 
-import Mock = jest.Mock;
-
-describe('debounce', () => {
+test.test('debounce', async (t) => {
   const delay = 50;
-  let fn: Mock<AnyFunction>;
-  let fnDebounced: ReturnType<typeof debounce>;
 
-  beforeEach(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(100);
-    fn = jest.fn();
-    fnDebounced = debounce(fn, delay);
-  });
+  await t.test('should debounce function call', (t) => {
+    const fn = t.mock.fn();
+    t.mock.timers.enable({ apis: ['setTimeout'] });
+    const fnDebounced = debounce(fn, delay);
 
-  test('should debounce function call', () => {
     fnDebounced(1);
-    expect(fn.mock.calls).toEqual([]);
+    assert.equal(fn.mock.callCount(), 0);
 
-    jest.advanceTimersByTime(10); // 10ms
+    t.mock.timers.tick(10); // 10ms
     fnDebounced(2);
 
-    jest.advanceTimersByTime(delay - 10); // 50ms
-    expect(fn.mock.calls).toEqual([]);
+    t.mock.timers.tick(delay - 10); // 50ms
+    assert.equal(fn.mock.callCount(), 0);
 
-    jest.advanceTimersByTime(10); // 60ms
-    expect(fn.mock.calls).toEqual([[2]]);
+    t.mock.timers.tick(10); // 60ms
+    assert.deepEqual(fn.mock.calls[0].arguments, [2]);
   });
 
-  it('should cancel debounced call', function () {
+  await t.test('should cancel debounced call', function () {
+    const fn = t.mock.fn();
+    t.mock.timers.enable({ apis: ['setTimeout'] });
+    const fnDebounced = debounce(fn, delay);
+
     fnDebounced(1);
     fnDebounced(2);
     fnDebounced(3);
     fnDebounced.cancel();
-    jest.advanceTimersByTime(delay);
+    t.mock.timers.tick(delay);
 
-    expect(fn).not.toHaveBeenCalled();
+    assert.equal(fn.mock.callCount(), 0);
   });
 });

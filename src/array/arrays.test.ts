@@ -1,43 +1,45 @@
-import { test, expect, describe } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { createArray, chunkArray, uniqueArray } from './arrays.ts';
 import { uniqueArrayFallback } from '../internal/uniqueArray.ts';
 
-test('createArray', () => {
-  expect(createArray(0)).toEqual([]);
-  expect(createArray(2)).toEqual([0, 1]);
-  expect(createArray(4, 2)).toEqual([2, 3, 4, 5]);
+test.it('createArray', () => {
+  assert.deepEqual(createArray(0), []);
+  assert.deepEqual(createArray(2), [0, 1]);
+  assert.deepEqual(createArray(4, 2), [2, 3, 4, 5]);
 });
 
-test('chunkArray', () => {
-  expect(chunkArray(null as any, 1)).toEqual([]);
-  expect(chunkArray(undefined as any, 1)).toEqual([]);
-  expect(chunkArray(0 as any, 1)).toEqual([]);
+test.it('chunkArray', () => {
+  assert.deepEqual(chunkArray(null as any, 1), []);
+  assert.deepEqual(chunkArray(undefined as any, 1), []);
+  assert.deepEqual(chunkArray(0 as any, 1), []);
 
-  expect(chunkArray([], 0)).toEqual([]);
-  expect(chunkArray([1, 2], 0)).toEqual([[1, 2]]);
+  assert.deepEqual(chunkArray([], 0), []);
+  assert.deepEqual(chunkArray([1, 2], 0), [[1, 2]]);
 
-  expect(chunkArray([], 1)).toEqual([]);
+  assert.deepEqual(chunkArray([], 1), []);
 
   const array3 = [1, 1, 1];
 
-  expect(chunkArray(array3, 1)).toEqual([[1], [1], [1]]);
-  expect(chunkArray(array3, 2)).toEqual([[1, 1], [1]]);
-  expect(chunkArray(array3, 3)).toEqual([[1, 1, 1]]);
-  expect(chunkArray(array3, 4)).toEqual([[1, 1, 1]]);
+  assert.deepEqual(chunkArray(array3, 1), [[1], [1], [1]]);
+  assert.deepEqual(chunkArray(array3, 2), [[1, 1], [1]]);
+  assert.deepEqual(chunkArray(array3, 3), [[1, 1, 1]]);
+  assert.deepEqual(chunkArray(array3, 4), [[1, 1, 1]]);
 
   const array4 = [1, 2, 3, 4];
 
-  expect(chunkArray(array4, 1)).toEqual([[1], [2], [3], [4]]);
-  expect(chunkArray(array4, 2)).toEqual([
+  assert.deepEqual(chunkArray(array4, 1), [[1], [2], [3], [4]]);
+  assert.deepEqual(chunkArray(array4, 2), [
     [1, 2],
     [3, 4],
   ]);
-  expect(chunkArray(array4, 3)).toEqual([[1, 2, 3], [4]]);
-  expect(chunkArray(array4, 4)).toEqual([array4]);
-  expect(chunkArray(array4, 5)).toEqual([array4]);
+  assert.deepEqual(chunkArray(array4, 3), [[1, 2, 3], [4]]);
+  assert.deepEqual(chunkArray(array4, 4), [array4]);
+  assert.deepEqual(chunkArray(array4, 5), [array4]);
 });
 
-describe('chunkArray', () => {
+test.it('uniqueArray', async (t) => {
   const entries = [
     [null as any, []],
     [undefined as any, []],
@@ -67,13 +69,29 @@ describe('chunkArray', () => {
       [0, '0', 0, 'false', false, false],
       [0, '0', 'false', false],
     ],
-  ];
+  ] as const;
 
-  test.each(entries)('uniqueArray(%j) should equal %j', (input, expected) => {
-    expect(uniqueArray(input)).toEqual(expected);
-  });
+  await Promise.all(
+    entries.map(
+      async ([input, expected]) =>
+        await t.test(
+          `uniqueArray(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          () => {
+            assert.deepEqual(uniqueArray(input), expected);
+          },
+        ),
+    ),
+  );
 
-  test.each(entries)('uniqueArray(%j) should equal %j with no Set available', (input, expected) => {
-    expect(uniqueArrayFallback(input)).toEqual(expected);
-  });
+  await Promise.all(
+    entries.map(
+      async ([input, expected]) =>
+        await t.test(
+          `uniqueArray(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)} with no Set available`,
+          () => {
+            assert.deepEqual(uniqueArrayFallback(input), expected);
+          },
+        ),
+    ),
+  );
 });
