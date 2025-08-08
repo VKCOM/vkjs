@@ -19,11 +19,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.ref }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'yarn'
-      - run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Node setup
+        uses: ./.github/actions/node-setup
 
       - name: Run tests
         run: yarn run test

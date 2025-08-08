@@ -1,15 +1,17 @@
-import { expect, jest, test, describe } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 import { once } from './functions.ts';
 
-describe('once', () => {
-  test('should be called once', () => {
-    const fn = jest.fn();
+test.test('once', async (t) => {
+  await t.test('should be called once', () => {
+    const fn = t.mock.fn();
     const fnOnce = once(fn);
 
     fnOnce();
     fnOnce();
     fnOnce();
 
-    expect(fn).toBeCalledTimes(1);
+    assert.equal(fn.mock.callCount(), 1);
   });
 });

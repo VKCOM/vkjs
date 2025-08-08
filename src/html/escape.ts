@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/quotes */
 import { Replacer } from '../internal/replacer.ts';
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../internal/codepoints.ts';
-import { Dictionary } from '../other/types.ts';
+import { type Dictionary } from '../other/types.ts';
 import { buildFullNamedEntities, fullNamedEntities } from './entity.ts';
 
 const escapeReplacer = /*#__PURE__*/ new Replacer({

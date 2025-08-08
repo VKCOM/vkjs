@@ -1,29 +1,21 @@
-import { describe, expect, test } from '@jest/globals';
+/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
+import * as test from 'node:test';
+import * as assert from 'node:assert/strict';
 
 import { formatNumber } from './numbers.ts';
 
-describe('formatNumber', () => {
-  const cases: Array<[number, string]> = [
-    [0, '0'],
-    [1, '1'],
-    [1000, '1 000'],
-    [1000.1, '1 000,1'],
-    [1000000.001, '1 000 000,001'],
-    [9000009.999, '9 000 009,999'],
-    [999.999, '999,999'],
-    [1999.1, '1 999,1'],
-    [-1999.1, '-1 999,1'],
-    [-331999.1000001, '-331 999,1000001'],
-  ];
-
-  cases.forEach(([input, result]) => {
-    test(`should format ${input} to ${result}`, () => {
-      expect(formatNumber(input)).toBe(result);
-    });
-  });
+test.test('formatNumber', async () => {
+  assert.equal(formatNumber(0), '0');
+  assert.equal(formatNumber(1), '1');
+  assert.equal(formatNumber(1000), '1 000');
+  assert.equal(formatNumber(1000.1), '1 000,1');
+  assert.equal(formatNumber(1000000.001), '1 000 000,001');
+  assert.equal(formatNumber(9000009.999), '9 000 009,999');
+  assert.equal(formatNumber(999.999), '999,999');
+  assert.equal(formatNumber(1999.1), '1 999,1');
+  assert.equal(formatNumber(-1999.1), '-1 999,1');
+  assert.equal(formatNumber(-331999.1000001), '-331 999,1000001');
 
   // Alternative separator
-  test(`should format -331999.1000001 to -331_999|1000001`, () => {
-    expect(formatNumber(-331999.1000001, '_', '|')).toBe('-331_999|1000001');
-  });
+  assert.equal(formatNumber(-331999.1000001, '_', '|'), '-331_999|1000001');
 });

@@ -1,4 +1,4 @@
-import { Dictionary } from './types.ts';
+import { type Dictionary } from './types.ts';
 
 class CustomStorage {
   private data: Dictionary<string> = {};
