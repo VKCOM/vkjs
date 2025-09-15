@@ -604,9 +604,9 @@
     tslib "^2.8.0"
 
 "@swc/plugin-transform-imports@^9.0.0":
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-9.0.3.tgz#d9daef881d4517371f60fe9d19f22ea7bb12fb35"
-  integrity sha512-Eky/vC6+5sljCcsAWLbSus5owflu56Zy8d7KpELDIT0jNdKUMygyg6fvHC/i985x5rBvNpMcJEKCGgszjjimmA==
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-9.1.0.tgz#507bc6ff791d245491655444a47e4ef03fe0fd67"
+  integrity sha512-HXnZ9z69Nx+aOHeKOIibEpuK+MuVKLhTuM3yWpCRe46UGW0MEbXz3UfK/rBX0c/yd9gkbqk9V1UfPKYs4iyc/Q==
   dependencies:
     "@swc/counter" "^0.1.3"
 
