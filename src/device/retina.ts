@@ -1,3 +1,5 @@
+import { canUseDOM } from '../other/dom.ts';
+
 export function isRetina(): boolean {
-  return window.devicePixelRatio >= 2;
+  return canUseDOM && window.devicePixelRatio >= 2;
 }
