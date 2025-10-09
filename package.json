@@ -1,6 +1,6 @@
 {
   "name": "@vkontakte/vkjs",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "VK shared JS libs",
   "type": "module",
   "module": "lib/index.js",
