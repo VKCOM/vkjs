@@ -6,6 +6,9 @@ concurrency:
   group: pull_request-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+permissions:
+  pull-requests: write
+
 jobs:
   test:
     name: Call reusable unit tests workflow
