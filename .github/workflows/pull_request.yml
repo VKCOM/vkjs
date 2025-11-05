@@ -13,6 +13,9 @@ jobs:
   test:
     name: Call reusable unit tests workflow
     uses: ./.github/workflows/reusable_workflow_test.yml
+    permissions:
+      id-token: write
+    secrets: inherit
     with:
       ref: refs/pull/${{ github.event.pull_request.number }}/merge
 
