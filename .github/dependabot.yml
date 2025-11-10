@@ -6,6 +6,7 @@ updates:
       interval: 'weekly'
     allow:
       - dependency-type: 'direct'
+    versioning-strategy: increase
     groups:
       eslint:
         patterns:
