@@ -85,7 +85,7 @@
     "@swc/core": "^1.13.1",
     "@swc/plugin-transform-imports": "^9.0.0",
     "@types/node": "^24.0.3",
-    "@types/react": "^19.0.1",
+    "@types/react": "^19.2.7",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "@typescript-eslint/parser": "^7.0.1",
     "@vkontakte/eslint-plugin": "^1.1.1",
