@@ -23,6 +23,9 @@ run-name: Publish ${{ inputs.type }} ${{ inputs.custom_version }}
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # Recommended for actions/setup-node
+      id-token: write # Required for OIDC
     steps:
       - uses: actions/checkout@v5
         with:
@@ -43,6 +46,7 @@ jobs:
       - run: yarn install --frozen-lockfile --ignore-scripts
 
       - run: yarn lint
+
       - run: yarn test
 
       - name: Bump by version type
