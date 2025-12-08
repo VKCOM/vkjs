@@ -99,7 +99,7 @@
     "global-jsdom": "^27.0.0",
     "jsdom": "^27.3.0",
     "pre-commit": "1.2.2",
-    "prettier": "^3.0.2",
+    "prettier": "^3.7.4",
     "react": "^19.2.1",
     "shx": "^0.4.0",
     "size-limit": "^12.0.0",
