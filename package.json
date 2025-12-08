@@ -104,7 +104,7 @@
     "shx": "^0.4.0",
     "size-limit": "^11.0.0",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.0",
+    "typedoc": "^0.28.15",
     "typedoc-plugin-mdn-links": "^5.0.1",
     "typescript": "^5.8.3"
   },
