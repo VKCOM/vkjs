@@ -4055,10 +4055,10 @@ typedoc-plugin-mdn-links@^5.0.1:
   resolved "https://registry.yarnpkg.com/typedoc-plugin-mdn-links/-/typedoc-plugin-mdn-links-5.0.10.tgz#e66cb996c182ffb7df80a2d10a6f0af76bab7a40"
   integrity sha512-TOMj1+fyhqhdJaMwfkw7ANz+0KHjRVUnE/SorPW83wghElmsMxxCZhDSBgF2hRB9+qsf/qIjDw65RDay94E2Wg==
 
-typedoc@^0.28.15:
-  version "0.28.15"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.28.15.tgz#667faf77eb934deb935fbfd5108a6de5f953948f"
-  integrity sha512-mw2/2vTL7MlT+BVo43lOsufkkd2CJO4zeOSuWQQsiXoV2VuEn7f6IZp2jsUDPmBMABpgR0R5jlcJ2OGEFYmkyg==
+typedoc@^0.28.16:
+  version "0.28.16"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.28.16.tgz#3901672c48746587fa24390077d07317a1fd180f"
+  integrity sha512-x4xW77QC3i5DUFMBp0qjukOTnr/sSg+oEs86nB3LjDslvAmwe/PUGDWbe3GrIqt59oTqoXK5GRK9tAa0sYMiog==
   dependencies:
     "@gerrit0/mini-shiki" "^3.17.0"
     lunr "^2.3.9"
