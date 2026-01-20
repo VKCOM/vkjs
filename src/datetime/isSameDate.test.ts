@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { isSameDate } from './isSameDate.ts';
 
 test.test('isSameDate to be truthy', () => {

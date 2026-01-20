@@ -28,6 +28,7 @@ export class Replacer {
 
     this.build();
 
+    // biome-ignore lint/style/noNonNullAssertion: this.regexp is defined after build() is called
     return string.replace(this.regexp!, (substring) => this.map[substring]);
   }
 }

@@ -1,11 +1,11 @@
 export {
-  isObjectLike,
   isArray,
-  isObject,
-  isUndefined,
-  isFunction,
   isFormData,
-  isString,
+  isFunction,
   isNumber,
+  isObject,
+  isObjectLike,
   isPromiseLike,
+  isString,
+  isUndefined,
 } from './type_checkers.ts';

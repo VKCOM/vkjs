@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { once } from './functions.ts';
 
 test.test('once', async (t) => {

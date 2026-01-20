@@ -4,7 +4,7 @@ export const canUseDOM: boolean = /*#__PURE__*/ (() =>
 export const canUseEventListeners: boolean = /*#__PURE__*/ (() =>
   canUseDOM && !!window.addEventListener)();
 
-export function onDOMLoaded(callback: (...args: any[]) => any): void {
+export function onDOMLoaded(callback: (...args: unknown[]) => unknown): void {
   if (document.readyState !== 'loading') {
     callback();
   } else {

@@ -34,28 +34,21 @@ export const highSurrogateTo = 0xdbff;
 
 export const fromCodePoint: (...codePoints: number[]) => string = /*#__PURE__*/ (() =>
   String.fromCodePoint ||
-  function (astralCodePoint: number) {
-    return String.fromCharCode(
+  ((astralCodePoint: number) =>
+    String.fromCharCode(
       Math.floor((astralCodePoint - 0x10000) / 0x400) + 0xd800,
       ((astralCodePoint - 0x10000) % 0x400) + 0xdc00,
-    );
-  })();
+    )))();
 
 const codePointAtNative = /*#__PURE__*/ (() =>
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   String.prototype.codePointAt as typeof String.prototype.codePointAt | undefined)();
 
 export const getCodePointAt: (input: string, position: number) => number | undefined =
   /*#__PURE__*/ (() =>
     codePointAtNative
-      ? function (input: string, position: number): number | undefined {
-          return input.codePointAt(position);
-        }
-      : function (input: string, position: number) {
-          return (
-            (input.charCodeAt(position) - 0xd800) * 0x400 +
-            input.charCodeAt(position + 1) -
-            0xdc00 +
-            0x10000
-          );
-        })();
+      ? (input: string, position: number): number | undefined => input.codePointAt(position)
+      : (input: string, position: number) =>
+          (input.charCodeAt(position) - 0xd800) * 0x400 +
+          input.charCodeAt(position + 1) -
+          0xdc00 +
+          0x10000)();

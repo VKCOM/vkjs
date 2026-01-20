@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const palette = require('@vkontakte/appearance/main.valette/palette');
 
 /**
@@ -7,7 +7,8 @@ const palette = require('@vkontakte/appearance/main.valette/palette');
  * @return {string} color цвет в браузерном представлении
  */
 function resolveColor(color) {
-  if (color.indexOf('#') === 0 && color.length === 9) { // ahex
+  if (color.indexOf('#') === 0 && color.length === 9) {
+    // ahex
     return ahex2rgba(color.replace('#', ''));
   }
   return color;
@@ -19,7 +20,7 @@ function resolveColor(color) {
  * @return {string} цвет в формате rgba
  */
 function ahex2rgba(ahex, multiplier = 1) {
-  const opacity = parseInt(ahex.slice(0, 2), 16) / 255 * multiplier;
+  const opacity = (parseInt(ahex.slice(0, 2), 16) / 255) * multiplier;
   const colorHex = ahex.slice(2);
   return opacify(colorHex, opacity);
 }
@@ -34,14 +35,15 @@ function opacify(hex, opacity) {
 }
 
 function generatePalette(options) {
-    let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
-    css += ':root {\n';
+  let css =
+    '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
+  css += ':root {\n';
 
-    Object.keys(palette).forEach((colorName) => {
-      css += `  --${colorName}: ${resolveColor(palette[colorName]).toLowerCase()};\n`;
-    });
-    css += '}\n/* stylelint-enable */';
-    fs.writeFileSync(path.resolve(__dirname, options.dir, options.file || 'palette.css'), css);
+  Object.keys(palette).forEach((colorName) => {
+    css += `  --${colorName}: ${resolveColor(palette[colorName]).toLowerCase()};\n`;
+  });
+  css += '}\n/* stylelint-enable */';
+  fs.writeFileSync(path.resolve(__dirname, options.dir, options.file || 'palette.css'), css);
 }
 
 module.exports = generatePalette;

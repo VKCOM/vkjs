@@ -1,5 +1,15 @@
 import { canUseDOM } from '../other/dom.ts';
 
+interface WindowWithWebKit extends Window {
+  webkit?: {
+    messageHandlers?: unknown;
+  };
+}
+
+interface NavigatorWithStandalone extends Navigator {
+  standalone?: boolean;
+}
+
 export const IPHONE_SAFARI_BOTTOM_BAR = 45;
 export const IPHONE_X_SAFARI_BOTTOM_BAR = 85;
 
@@ -96,18 +106,22 @@ function checkWKWebView(ua: string) {
     return false;
   }
 
-  const webkit = (window as any).webkit;
+  const webkit = (window as WindowWithWebKit).webkit;
 
-  if (webkit && webkit.messageHandlers) {
+  if (webkit?.messageHandlers) {
     return true;
   }
 
   const lte9 = /constructor/i.test(String(window.HTMLElement));
   const idb = !!window.indexedDB;
 
-  if (ua.includes('safari') && ua.includes('version') && !(navigator as any).standalone) {
+  if (
+    ua.includes('safari') &&
+    ua.includes('version') &&
+    !(navigator as NavigatorWithStandalone).standalone
+  ) {
     // Safari (WKWebView/Nitro since 6+)
-  } else if ((!idb && lte9) || !(window.statusbar && window.statusbar.visible)) {
+  } else if ((!idb && lte9) || !window.statusbar?.visible) {
     // UIWebView
   } else if (!lte9 || idb) {
     // WKWebView

@@ -1,7 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 
 import { throttle } from './throttle.ts';
 
@@ -67,7 +65,7 @@ test.test('throttle', async (t) => {
     },
   );
 
-  await t.test('should cancel throttled call', function (t) {
+  await t.test('should cancel throttled call', (t) => {
     const fn = t.mock.fn();
     t.mock.timers.enable({ apis: ['setTimeout', 'Date'] });
     const fnThrottled = throttle(fn, threshold);

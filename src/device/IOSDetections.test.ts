@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
-import { noop } from '../other/functions.ts';
+import * as test from 'node:test';
 import globalJsdom from 'global-jsdom';
+import { noop } from '../other/functions.ts';
 
 test.test('detectIOS', async (t) => {
   const clear = globalJsdom();

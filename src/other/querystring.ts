@@ -2,7 +2,7 @@ export interface ParsedQuery<T = string> {
   [key: string]: T | T[] | null;
 }
 
-function parse(input: string | any): ParsedQuery {
+function parse(input: string | unknown): ParsedQuery {
   if (typeof input !== 'string') {
     return {};
   }
@@ -56,8 +56,8 @@ function stringify(data: StringifyQuery, options: StringifyOptions = {}): string
     ...options,
   };
 
-  const encode = (value: any): string => {
-    return options.encode ? encodeURIComponent(value) : String(value);
+  const encode = (value: unknown): string => {
+    return options.encode ? encodeURIComponent(value as string) : String(value as string);
   };
 
   return Object.keys(data)
@@ -77,11 +77,9 @@ function stringify(data: StringifyQuery, options: StringifyOptions = {}): string
       }
 
       if (Array.isArray(value)) {
-        value
-          .map((arrayItem) => {
-            acc.push(`${encode(key)}[]=${encode(arrayItem)}`);
-          })
-          .join();
+        value.forEach((arrayItem) => {
+          acc.push(`${encode(key)}[]=${encode(arrayItem)}`);
+        });
         return acc;
       }
 

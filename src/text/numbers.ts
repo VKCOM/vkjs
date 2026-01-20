@@ -16,7 +16,7 @@ export function leadingZero(number: number): string {
   if (number >= 10) {
     return String(number);
   } else {
-    return '0' + String(number);
+    return `0${String(number)}`;
   }
 }
 

@@ -1,5 +1,5 @@
 import { canUseDOM, canUseEventListeners } from '../other/dom.ts';
-import { type SupportEvent } from '../other/types.ts';
+import type { SupportEvent } from '../other/types.ts';
 
 type TimingInterface = (timeFraction: number) => number;
 
@@ -32,7 +32,6 @@ export function animate({ duration, timing, draw }: AnimateArgumentsInterface): 
 
   const start = window.performance.now();
 
-  // eslint-disable-next-line no-shadow
   window.requestAnimationFrame(function animate(time) {
     let timeFraction = (time - start) / duration;
 
@@ -102,7 +101,7 @@ export const transitionEvent: SupportEvent<'transitionend'> = /*#__PURE__*/ (() 
  * @param el Элемент
  */
 export function waitAnimationEnd(
-  listener: (ev?: AnimationEvent) => any,
+  listener: (ev?: AnimationEvent) => void,
   fallbackTime: number,
   el?: GlobalEventHandlers,
 ): number | undefined {
@@ -123,7 +122,7 @@ export function waitAnimationEnd(
  * @param el Элемент
  */
 export function cancelWaitAnimationEnd(
-  listener: (ev?: AnimationEvent) => any,
+  listener: (ev?: AnimationEvent) => void,
   handle?: number,
   el?: GlobalEventHandlers,
 ): void {
@@ -145,7 +144,7 @@ export function cancelWaitAnimationEnd(
  */
 export function waitTransitionEnd(
   el: GlobalEventHandlers,
-  listener: (ev?: TransitionEvent) => any,
+  listener: (ev?: TransitionEvent) => void,
   fallbackTime: number,
 ): number | undefined {
   if (canUseEventListeners) {
@@ -165,7 +164,7 @@ export function waitTransitionEnd(
  * @param el Элемент
  */
 export function cancelWaitTransitionEnd(
-  listener: (ev?: TransitionEvent) => any,
+  listener: (ev?: TransitionEvent) => void,
   handle?: number,
   el?: GlobalEventHandlers,
 ): void {

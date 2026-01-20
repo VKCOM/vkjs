@@ -21,7 +21,7 @@ export interface DebouncedFunction<T extends unknown[]> {
  * @param delay Время задержки вызова в миллисекундах
  * @param context Контекст с которым будет совершен вызов функции
  */
-export function debounce<T extends any[]>(
+export function debounce<T extends unknown[]>(
   fn: (...args: T) => unknown,
   delay: number,
   context: (Window & typeof globalThis) | undefined = typeof window !== 'undefined'

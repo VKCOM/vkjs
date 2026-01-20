@@ -1,7 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { debounce } from './debounce.ts';
 
 test.test('debounce', async (t) => {
@@ -25,7 +23,7 @@ test.test('debounce', async (t) => {
     assert.deepEqual(fn.mock.calls[0].arguments, [2]);
   });
 
-  await t.test('should cancel debounced call', function () {
+  await t.test('should cancel debounced call', () => {
     const fn = t.mock.fn();
     t.mock.timers.enable({ apis: ['setTimeout'] });
     const fnDebounced = debounce(fn, delay);

@@ -1,22 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 /**
-* @param {object} palette палитра цветов
-* @param {Object} clusterData
-* @param {string} clusterData.color_identifier
-* @param {number} clusterData.alpha_multiplier
-* @return {string} color цвет в браузерном представлении
-*/
+ * @param {object} palette палитра цветов
+ * @param {Object} clusterData
+ * @param {string} clusterData.color_identifier
+ * @param {number} clusterData.alpha_multiplier
+ * @return {string} color цвет в браузерном представлении
+ */
 function resolveColor(palette, clusterData) {
   const color = palette[clusterData.color_identifier];
   const alphaMultiplier = clusterData.alpha_multiplier ? Number(clusterData.alpha_multiplier) : 1;
 
   if (!color) {
     console.log('Missing color:', clusterData.color_identifier);
-    return "#000";
+    return '#000';
   } else {
-    if (color.indexOf('#') === 0 && color.length === 9) { // ahex
+    if (color.indexOf('#') === 0 && color.length === 9) {
+      // ahex
       return ahex2rgba(color.replace('#', ''), alphaMultiplier);
     } else if (color.indexOf('#') === 0 && clusterData.alpha_multiplier) {
       return opacify(color.replace('#', ''), alphaMultiplier);
@@ -31,7 +32,7 @@ function resolveColor(palette, clusterData) {
  * @return {string} цвет в формате rgba
  */
 function ahex2rgba(ahex, multiplier = 1) {
-  const opacity = parseInt(ahex.slice(0, 2), 16) / 255 * multiplier;
+  const opacity = (parseInt(ahex.slice(0, 2), 16) / 255) * multiplier;
   const colorHex = ahex.slice(2);
   return opacify(colorHex, opacity);
 }
@@ -53,15 +54,18 @@ function opacify(hex, opacity) {
 function generateScheme(scheme, palette, defaultSchemeId, targetDir) {
   for (const schemeId in scheme) {
     const clusters = scheme[schemeId].colors;
-    let css = '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
+    let css =
+      '/* stylelint-disable */\n/*\n* Этот файл сгенерирован автоматически. Не надо править его руками.\n*/\n';
     let selector = `body[scheme="${schemeId}"], [scheme="${schemeId}"], .vkui${schemeId}`;
     if (schemeId === defaultSchemeId) {
-      selector = `:root, ${selector}`
+      selector = `:root, ${selector}`;
     }
     css += `${selector} {\n`;
-    Object.keys(clusters).sort((a, b) => a.localeCompare(b)).forEach((clusterId) => {
-      css += `  --${clusterId}: ${resolveColor(palette, clusters[clusterId]).toLowerCase()};\n`;
-    });
+    Object.keys(clusters)
+      .sort((a, b) => a.localeCompare(b))
+      .forEach((clusterId) => {
+        css += `  --${clusterId}: ${resolveColor(palette, clusters[clusterId]).toLowerCase()};\n`;
+      });
     css += '}\n/* stylelint-enable */\n';
     fs.writeFileSync(path.resolve(targetDir, `${schemeId}.css`), css);
   }

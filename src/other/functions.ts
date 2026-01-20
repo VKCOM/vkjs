@@ -25,7 +25,7 @@ export const noop = (): void => {
  *
  * @param fn Функция, которую необходимо вызвать только один раз
  */
-export function once<T extends (...args: any) => any>(fn: T) {
+export function once<T extends (...args: unknown[]) => unknown>(fn: T) {
   // TODO: once должна кэшировать данные, но она это не делает
   let called = false;
   return function (...args) {
