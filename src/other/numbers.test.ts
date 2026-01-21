@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 
 import { formatNumber } from './numbers.ts';
 

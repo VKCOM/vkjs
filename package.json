@@ -16,11 +16,7 @@
   "directories": {
     "lib": "lib"
   },
-  "files": [
-    "lib",
-    "src",
-    "build"
-  ],
+  "files": ["lib", "src", "build"],
   "scripts": {
     "clear": "shx rm -rf lib",
     "prepare": "yarn build",
@@ -28,7 +24,7 @@
     "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test '**/*.test.*'",
     "lint": "concurrently 'yarn:lint:*'",
     "lint:tsc": "tsc --noEmit",
-    "lint:eslint": "eslint ./src --ext .ts --fix",
+    "lint:biome": "biome check",
     "prepublishOnly": "yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
     "swc-base": "swc src/ --config-file package.swcrc --strip-leading-paths",
@@ -37,10 +33,7 @@
     "size": "yarn build && size-limit",
     "docs": "typedoc"
   },
-  "pre-commit": [
-    "test",
-    "lint"
-  ],
+  "pre-commit": ["test", "lint"],
   "size-limit": [
     {
       "name": "JS",
@@ -79,6 +72,7 @@
   },
   "homepage": "https://github.com/VKCOM/vkjs#readme",
   "devDependencies": {
+    "@biomejs/biome": "^2.3.11",
     "@size-limit/file": "^12.0.0",
     "@size-limit/webpack": "^12.0.0",
     "@swc/cli": "^0.7.10",
@@ -86,20 +80,11 @@
     "@swc/plugin-transform-imports": "^12.3.0",
     "@types/node": "^25.0.9",
     "@types/react": "^19.2.8",
-    "@typescript-eslint/eslint-plugin": "^7.0.1",
-    "@typescript-eslint/parser": "^7.0.1",
-    "@vkontakte/eslint-plugin": "^1.1.1",
-    "@vkontakte/prettier-config": "^0.2.1",
     "concurrently": "^9.0.0",
     "cross-env": "^10.1.0",
-    "eslint": "^8.42.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^5.0.0",
     "global-jsdom": "^27.0.0",
     "jsdom": "^27.4.0",
     "pre-commit": "1.2.2",
-    "prettier": "^3.8.0",
     "react": "^19.2.3",
     "shx": "^0.4.0",
     "size-limit": "^12.0.0",
@@ -108,14 +93,9 @@
     "typedoc-plugin-mdn-links": "^5.1.0",
     "typescript": "^5.8.3"
   },
-  "resolutions": {
-    "@typescript-eslint/eslint-plugin": "7.4.0",
-    "@typescript-eslint/parser": "7.4.0"
-  },
   "dependencies": {
     "@swc/helpers": "^0.5.18",
     "clsx": "^2.1.1"
   },
-  "prettier": "@vkontakte/prettier-config",
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

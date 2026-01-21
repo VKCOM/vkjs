@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-/* eslint-disable @typescript-eslint/no-empty-function */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { isPromiseLike } from './type_checkers.ts';
 
 test.test('isPromiseLike', async (t) => {
-  const promise = { then: function () {} };
+  // biome-ignore lint/suspicious/noThenProperty: Testing isPromiseLike function
+  const promise = { then: () => {} };
 
   const fn = () => {};
+  // biome-ignore lint/suspicious/noThenProperty: Testing isPromiseLike function
   fn.then = () => {};
 
   await Promise.all(
@@ -20,6 +20,7 @@ test.test('isPromiseLike', async (t) => {
   );
 
   await Promise.all(
+    // biome-ignore lint/suspicious/noThenProperty: Testing isPromiseLike function
     [{}, () => {}, { then: true }, [], [true]].map(
       async (input) =>
         await t.test(`isPromiseLike(${String(input)}) is false`, () => {

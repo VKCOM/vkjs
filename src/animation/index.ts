@@ -1,9 +1,9 @@
 export {
   animate,
   animationEvent,
+  cancelWaitAnimationEnd,
+  cancelWaitTransitionEnd,
   transitionEvent,
   waitAnimationEnd,
-  cancelWaitAnimationEnd,
   waitTransitionEnd,
-  cancelWaitTransitionEnd,
 } from './animate.ts';

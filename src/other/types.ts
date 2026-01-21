@@ -1,6 +1,6 @@
 export type Dictionary<T> = { [key: string]: T };
 
-export type AnyFunction = (...args: any[]) => any;
+export type AnyFunction = (...args: unknown[]) => unknown;
 
 export type SupportEvent<T extends keyof GlobalEventHandlersEventMap> = {
   supported: boolean;

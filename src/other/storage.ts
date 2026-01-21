@@ -1,4 +1,4 @@
-import { type Dictionary } from './types.ts';
+import type { Dictionary } from './types.ts';
 
 class CustomStorage {
   private data: Dictionary<string> = {};
@@ -7,6 +7,7 @@ class CustomStorage {
     this.data[key] = String(val);
   }
 
+  // biome-ignore lint/suspicious/noPrototypeBuiltins: hasOwn требует es2022
   public getItem = (key: string) => (this.data.hasOwnProperty(key) ? this.data[key] : null);
 
   public removeItem(id: string) {
@@ -45,7 +46,7 @@ function getLocalStorage() {
     }
     window.localStorage.removeItem(dummyKey);
     ls = window.localStorage;
-  } catch (e) {
+  } catch (_e) {
     ls = new CustomStorage();
   }
   return ls;
@@ -89,7 +90,7 @@ function getSessionStorage() {
     }
     window.sessionStorage.removeItem(dummyKey);
     sessionStorageCache = window.sessionStorage;
-  } catch (e) {
+  } catch (_e) {
     sessionStorageCache = new CustomStorage();
   }
   return sessionStorageCache;

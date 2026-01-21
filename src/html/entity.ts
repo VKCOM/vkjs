@@ -2146,12 +2146,12 @@ export function buildFullNamedEntities(): void {
   }
 
   Object.keys(namedEntitiesWithoutSemicolon).forEach((entity) => {
-    fullNamedEntities[entity + ';'] = namedEntitiesWithoutSemicolon[entity];
+    fullNamedEntities[`${entity};`] = namedEntitiesWithoutSemicolon[entity];
     fullNamedEntities[entity] = namedEntitiesWithoutSemicolon[entity];
   });
 
   Object.keys(namedEntities).forEach((entity) => {
-    fullNamedEntities[entity + ';'] = namedEntities[entity];
+    fullNamedEntities[`${entity};`] = namedEntities[entity];
   });
 
   isBuild = true;

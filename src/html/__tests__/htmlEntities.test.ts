@@ -1,14 +1,12 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import {
-  escape,
-  unescape,
-  encodeHTMLEntities,
   decodeHTMLEntities,
   decodeHTMLEntitiesDeep,
   decodeHTMLFullEntities,
+  encodeHTMLEntities,
+  escape as escapeHtml,
+  unescape as unescapeHtml,
 } from '../escape.ts';
 
 const outOfBoundsChar = String.fromCharCode(65533);
@@ -29,9 +27,9 @@ test.test('escape', async (t) => {
     escapeTest.map(
       async ([input, expected]) =>
         await t.test(
-          `escape(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          `escapeHtml(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
           () => {
-            assert.deepEqual(escape(input), expected);
+            assert.deepEqual(escapeHtml(input), expected);
           },
         ),
     ),
@@ -49,9 +47,9 @@ test.test('unescape', async (t) => {
     unescapeTest.map(
       async ([input, expected]) =>
         await t.test(
-          `unescape(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
+          `unescapeHtml(${JSON.stringify(input)}) should equal ${JSON.stringify(expected)}`,
           () => {
-            assert.deepEqual(unescape(input), expected);
+            assert.deepEqual(unescapeHtml(input), expected);
           },
         ),
     ),

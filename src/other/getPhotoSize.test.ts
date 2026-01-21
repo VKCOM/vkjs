@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-floating-promises -- node тесты */
-import * as test from 'node:test';
 import * as assert from 'node:assert/strict';
+import * as test from 'node:test';
 import { getPhotoSize, type PhotoSizeLike } from './getPhotoSize.ts';
 
 test.test('getPhotoSize', async (t) => {
   await t.test('recognizes an invalid or empty array', () => {
+    // biome-ignore lint/suspicious/noExplicitAny: Testing invalid inputs
     assert.equal(getPhotoSize(1 as any, 1), null);
+    // biome-ignore lint/suspicious/noExplicitAny: Testing invalid inputs
     assert.equal(getPhotoSize(null as any, 1), null);
+    // biome-ignore lint/suspicious/noExplicitAny: Testing invalid inputs
     assert.equal(getPhotoSize({} as any, 1), null);
     assert.equal(getPhotoSize([], 1), null);
   });

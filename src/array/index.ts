@@ -1,10 +1,10 @@
 export {
-  createArray,
-  sumArray,
   averageArray,
-  uniqueArray,
-  shuffleArray,
   chunkArray,
-  omitFromArray,
+  createArray,
   difference,
+  omitFromArray,
+  shuffleArray,
+  sumArray,
+  uniqueArray,
 } from './arrays.ts';

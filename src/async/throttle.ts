@@ -21,7 +21,7 @@ export interface ThrottledFunction<T extends unknown[]> {
  * @param threshold Длительность в миллисекундах
  * @param scope Контекст, с которым будет совершен вызов функции
  */
-export function throttle<T extends any[]>(
+export function throttle<T extends unknown[]>(
   fn: (...args: T) => unknown,
   threshold = 50,
   scope: (Window & typeof globalThis) | undefined = typeof window !== 'undefined'

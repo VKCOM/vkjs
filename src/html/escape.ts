@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/quotes */
-import { Replacer } from '../internal/replacer.ts';
 import { fromCodePoint, getCodePointAt, numericUnicodeMap } from '../internal/codepoints.ts';
-import { type Dictionary } from '../other/types.ts';
+import { Replacer } from '../internal/replacer.ts';
+import type { Dictionary } from '../other/types.ts';
 import { buildFullNamedEntities, fullNamedEntities } from './entity.ts';
 
 const escapeReplacer = /*#__PURE__*/ new Replacer({
@@ -37,6 +36,7 @@ const namedEntities: Record<string, string> = {
  * Safely escape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
+// biome-ignore lint/suspicious/noShadowRestrictedNames: escape is a common function name for HTML escaping
 export function escape(input: string): string {
   return escapeReplacer.replace(input);
 }
@@ -45,6 +45,7 @@ export function escape(input: string): string {
  * Unescape HTML entities such as `&`, `<`, `>`, `"`, and `'`
  * @param {string} input
  */
+// biome-ignore lint/suspicious/noShadowRestrictedNames: unescape is a common function name for HTML unescaping
 export function unescape(input: string): string {
   return unescapeReplacer.replace(input);
 }
@@ -52,6 +53,7 @@ export function unescape(input: string): string {
 const outOfBoundsChar = /*#__PURE__*/ String.fromCharCode(65533);
 
 const ENCODE_REGEX =
+  // biome-ignore lint/suspicious/noControlCharactersInRegex: Control characters are needed to match specific character ranges for HTML encoding
   /(?:[<>'"&\x01-\x08\x11-\x15\x17-\x1F\x7f-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;
 
 export function encodeHTMLEntities(input: string): string {
@@ -61,7 +63,7 @@ export function encodeHTMLEntities(input: string): string {
 
   return input.replace(ENCODE_REGEX, (entity) => {
     const code = entity.length > 1 ? getCodePointAt(entity, 0) : entity.charCodeAt(0);
-    return '&#' + String(code) + ';';
+    return `&#${String(code)};`;
   });
 }
 
@@ -83,7 +85,7 @@ function decodeString(input: string, entities: Record<string, string>): string {
       const code =
         secondChar === 'x' || secondChar === 'X'
           ? parseInt(entity.substr(3).toLowerCase(), 16)
-          : parseInt(entity.substr(2));
+          : parseInt(entity.substr(2), 10);
 
       if (code >= 0x10ffff) {
         return outOfBoundsChar;
