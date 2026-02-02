@@ -79,7 +79,7 @@
     "@swc/core": "^1.15.10",
     "@swc/plugin-transform-imports": "^12.4.0",
     "@types/node": "^25.0.9",
-    "@types/react": "^19.2.8",
+    "@types/react": "^19.2.9",
     "concurrently": "^9.0.0",
     "cross-env": "^10.1.0",
     "global-jsdom": "^27.0.0",
