@@ -28,7 +28,7 @@ export const noop = (): void => {
 export function once<T extends (...args: unknown[]) => unknown>(fn: T) {
   // TODO: once должна кэшировать данные, но она это не делает
   let called = false;
-  return function (...args) {
+  return function (this: unknown, ...args) {
     if (called) {
       return;
     }
