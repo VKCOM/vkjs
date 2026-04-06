@@ -75,9 +75,9 @@
     "@biomejs/biome": "^2.4.10",
     "@size-limit/file": "^12.0.1",
     "@size-limit/webpack": "^12.0.1",
-    "@swc/cli": "^0.8.0",
-    "@swc/core": "^1.15.21",
-    "@swc/plugin-transform-imports": "^12.7.0",
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.15.24",
+    "@swc/plugin-transform-imports": "^12.8.0",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "concurrently": "^9.0.0",
@@ -94,7 +94,7 @@
     "typescript": "^6.0.2"
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.20",
+    "@swc/helpers": "^0.5.21",
     "clsx": "^2.1.1"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
