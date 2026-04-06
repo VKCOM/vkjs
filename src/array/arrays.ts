@@ -153,7 +153,8 @@ export function omitFromArray<T>(array: T[] = [], value: T): T[] {
  */
 export function difference<T>(array1: readonly T[] = [], array2: readonly T[] = []): T[] {
   return array1.reduce<T[]>((res, item) => {
-    if (!array2.includes(item)) {
+    // TODO: после поднятия таргета es, необходимо заменить на includes
+    if (!array2.some((value) => (Number.isNaN(value) && Number.isNaN(item)) || value === item)) {
       res.push(item);
     }
     return res;

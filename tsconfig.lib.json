@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.lib.tsbuildinfo",
+    "module": "nodenext",
+    "target": "es2015",
+    "lib": ["es2015", "dom"],
+    "moduleResolution": "nodenext",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "lib",
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "isolatedDeclarations": true,
+    "skipLibCheck": true,
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "src/**/*test.ts"],
+  "typedocOptions": {
+    "readme": "README.md",
+    "plugin": ["typedoc-plugin-mdn-links"],
+    "entryPoints": [
+      "src/animation/index.ts",
+      "src/array/index.ts",
+      "src/async/index.ts",
+      "src/datetime/index.ts",
+      "src/device/index.ts",
+      "src/html/index.ts",
+      "src/other/index.ts",
+      "src/text/index.ts",
+      "src/typecheck/index.ts"
+    ],
+    "out": "docs"
+  }
+}

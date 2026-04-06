@@ -23,13 +23,13 @@
     "build": "yarn clear && concurrently 'yarn:build:*'",
     "test": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test '**/*.test.*'",
     "lint": "concurrently 'yarn:lint:*'",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc -b --noEmit",
     "lint:biome": "biome check",
     "prepublishOnly": "yarn build",
     "publish-package": "yarn install --check-files && yarn publish --non-interactive",
     "swc-base": "swc src/ --config-file package.swcrc --strip-leading-paths",
     "build:es6": "yarn swc-base -d lib",
-    "build:types": "cross-env NODE_ENV=production tsc --project tsconfig.build.json",
+    "build:types": "cross-env NODE_ENV=production tsc --project tsconfig.lib.json",
     "size": "yarn build && size-limit",
     "docs": "typedoc"
   },
@@ -91,7 +91,7 @@
     "ts-node": "^10.9.2",
     "typedoc": "^0.28.18",
     "typedoc-plugin-mdn-links": "^5.1.1",
-    "typescript": "^5.8.3"
+    "typescript": "^6.0.2"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.20",

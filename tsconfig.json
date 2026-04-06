@@ -1,44 +1,4 @@
 {
-  "compilerOptions": {
-    "module": "nodenext",
-    "target": "es5",
-    "lib": ["es5", "es2015", "dom"],
-    "moduleResolution": "nodenext",
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "strictNullChecks": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "lib",
-    "sourceMap": false,
-    "baseUrl": "src",
-    "esModuleInterop": true,
-    "emitDeclarationOnly": true,
-    "isolatedDeclarations": true,
-    "skipLibCheck": true,
-    "rewriteRelativeImportExtensions": true,
-    "erasableSyntaxOnly": true,
-    "verbatimModuleSyntax": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"],
-  "typedocOptions": {
-    "readme": "README.md",
-    "plugin": ["typedoc-plugin-mdn-links"],
-    "entryPoints": [
-      "src/animation/index.ts",
-      "src/array/index.ts",
-      "src/async/index.ts",
-      "src/datetime/index.ts",
-      "src/device/index.ts",
-      "src/html/index.ts",
-      "src/other/index.ts",
-      "src/text/index.ts",
-      "src/typecheck/index.ts"
-    ],
-    "out": "docs"
-  }
+  "files": [],
+  "references": [{ "path": "./tsconfig.lib.json" }, { "path": "./tsconfig.node.json" }]
 }
