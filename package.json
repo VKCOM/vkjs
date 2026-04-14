@@ -85,7 +85,7 @@
     "global-jsdom": "^29.0.0",
     "jsdom": "^29.0.2",
     "pre-commit": "1.2.2",
-    "react": "^19.2.4",
+    "react": "^19.2.5",
     "shx": "^0.4.0",
     "size-limit": "^12.0.1",
     "ts-node": "^10.9.2",
