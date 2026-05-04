@@ -84,7 +84,7 @@
     "cross-env": "^10.1.0",
     "global-jsdom": "^29.0.0",
     "jsdom": "^29.1.0",
-    "pre-commit": "1.2.2",
+    "pre-commit": "2.0.0",
     "react": "^19.2.5",
     "shx": "^0.4.0",
     "size-limit": "^12.1.0",
