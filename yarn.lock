@@ -501,17 +501,17 @@
   resolved "https://registry.yarnpkg.com/@swc/counter/-/counter-0.1.3.tgz#cc7463bd02949611c6329596fccd2b0ec782b0e9"
   integrity sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==
 
-"@swc/helpers@^0.5.22":
-  version "0.5.22"
-  resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.22.tgz#914130a189205cef611b75948c93b95adf6cf11b"
-  integrity sha512-/e2Ly3Docn9kYByap6TV4oquJ3wQuz3c+kC74riqtkwU9CwTMeuj6t2rW+bRr4pyOx/CYQM4wr0RgaKQwGEz0A==
+"@swc/helpers@^0.5.23":
+  version "0.5.23"
+  resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.23.tgz#19287d0d86d962b111376039a50c792902c9a86a"
+  integrity sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==
   dependencies:
     tslib "^2.8.0"
 
-"@swc/plugin-transform-imports@^12.10.0":
-  version "12.10.0"
-  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-12.10.0.tgz#de8951c656d2b347e0ba58ea627abcd2fc334cf0"
-  integrity sha512-nrJxQkGzXI3+IvRbuqqpxCHc2Jn9HxNRySO+NbZ7B05eHM9mVbF2UCz/GnI84nwP3GiPrVsdUJh365WJEsUFpA==
+"@swc/plugin-transform-imports@^12.12.0":
+  version "12.12.0"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-12.12.0.tgz#821d07e4a63d0a8f209c08271f8326c08b0a67bf"
+  integrity sha512-HblKH6MOf2l9zV+ijHBUBlslZDJ+YIq8Vt5TFXgY44lZZFC8AaF6aWU4nvvyoVQmXKaAPX5SF4D1abcq14PSfw==
   dependencies:
     "@swc/counter" "^0.1.3"
 
