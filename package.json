@@ -78,7 +78,7 @@
     "@swc/cli": "^0.8.1",
     "@swc/core": "^1.15.43",
     "@swc/plugin-transform-imports": "^12.15.0",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.0",
     "@types/react": "^19.2.17",
     "concurrently": "^10.0.3",
     "cross-env": "^10.1.0",
