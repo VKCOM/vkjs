@@ -387,18 +387,18 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-4.0.0.tgz#abb11d99aeb6d27f1b563c38147a72d50058e339"
   integrity sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==
 
-"@size-limit/file@^13.0.1":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-13.0.1.tgz#a46df34a5d3f0b977cc0ccc26846780590ce594d"
-  integrity sha512-qdbGUxRAjym5gnkYEjsNsdOfmkDUvDX06FLhLGUxQ0oJtIWDd2lsOmTMwh5JuAV1XmJCplbqpMJ2b5eIhHl7Lg==
+"@size-limit/file@^13.0.3":
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-13.0.3.tgz#1ce13fcce975f38877f486c9a6eb6efe5fbd5a70"
+  integrity sha512-PWTITIXH5p9aGIf6qq2Fruihn/b9nBQyfkyoAyb6DzFJgS1Ek9MSPJYKxKFLO8jdo0aqSgBPd3sevbS6PyBiJw==
 
-"@size-limit/webpack@^13.0.1":
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-13.0.1.tgz#ab303a7fbf1ff5248e38cfd9adbe28549fe380ab"
-  integrity sha512-ngmSUm7gCwZgGYCDyAQ/rgaKPVOlAlI+uou8wTIi2W1olF6wDXf3kfVy6gM1O7j4HZtt+QV15x6n0Qycx3iwGQ==
+"@size-limit/webpack@^13.0.3":
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-13.0.3.tgz#b79e4540e5aa98a5d4cb43dac3bae0689ba93992"
+  integrity sha512-yNwTz0f1eqFGFPaHG+Xt/ZF3DATgzOBeoQcHjL+qBCLrPS8emha9S+r0iMSjpvR381eEMhVvqVI4mPB6yN6fFg==
   dependencies:
     nanoid "^6.0.0"
-    webpack "^5.108.4"
+    webpack "^5.109.2"
 
 "@swc/cli@^0.8.1":
   version "0.8.1"
@@ -1183,10 +1183,10 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^5.24.2:
-  version "5.24.3"
-  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.24.3.tgz#406bbf1ec20971265a30254f08030fce6a8207fe"
-  integrity sha512-PwKooW9JUzh5chmYfHM3IQl5OkK2u2Nm011MgeZrss3JmFraUx/fqrf78kk8GUMYoibx/14MdwTl/1WKkG7TpQ==
+enhanced-resolve@^5.24.4:
+  version "5.24.5"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.24.5.tgz#b4dad3255b7545f07ba5535189868e9f85f47573"
+  integrity sha512-L1l8TNvomm6UVW5B253AGxQagSQr+vGwhMlrrfRS2qmhx46AMpMVJKQYLvWYbysTMY8VoicOvzHzoHMbyzB+4A==
   dependencies:
     graceful-fs "^4.2.4"
     tapable "^2.3.3"
@@ -2152,15 +2152,14 @@ signal-exit@^4.1.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-4.1.0.tgz#952188c1cbd546070e2dd20d0f41c0ae0530cb04"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
 
-size-limit@^13.0.1:
-  version "13.0.1"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-13.0.1.tgz#6bdd169ecbba87f18fd8d4f8bd43cd6a1e3ad57a"
-  integrity sha512-LKWgnVUfw79W5gcKGIHqjEqBMoZ+YgfYYzlDheYwbRJq1DaaRgOjotFm61YOI/4hbgh4V1Es0uGGp6HLktI3Vw==
+size-limit@^13.0.3:
+  version "13.0.3"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-13.0.3.tgz#879e3e6bf4340d35103c702f0d09544e85ab8e91"
+  integrity sha512-KVb2aNEU49BwTR21SVjD+2QHP9gBV/nWsTHzNB/heRwXtHyA7lLQiDZDQ1TiNh/B/TZXKAZrHYyTt+cvBUrzYw==
   dependencies:
     bytes-iec "^3.1.1"
     lilconfig "^3.1.3"
     nanospinner "^1.2.2"
-    picocolors "^1.1.1"
 
 slash@3.0.0:
   version "3.0.0"
@@ -2518,10 +2517,10 @@ webpack-sources@^3.5.1:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.5.1.tgz#76c2418486dcc02b2aa0694c104176c2858fe84a"
   integrity sha512-jyuiGJdtvY434z5bUZrjz67v76/ePNvFZTp9Mdz29IlH4+GPsgyGjiv0fKI+M7BdkU6ADjulUcKAd3tUK3WlEw==
 
-webpack@^5.108.4:
-  version "5.109.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.109.0.tgz#871d8eee5e2d5e6eaf5ec8d1a6db74ea65491030"
-  integrity sha512-vomrngskVVXEZF9sMZfYAd4pXZUnfaWdJGlF+BTNF+gJBCKYCQBnOeVPlrh39Ewl7nlCsirDplMy6o5g9xJHBg==
+webpack@^5.109.2:
+  version "5.109.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.109.2.tgz#b58dc289561c3282db35c210a99379a836a4c28d"
+  integrity sha512-U9/cvLzxObKNEZ9+TtdqrHM5/9z3lgl2c+c4BzbqGxFQvQvBAq87yql5A8pQ+rrMbS496MZJeF5enVBndIy2hw==
   dependencies:
     "@types/estree" "^1.0.8"
     "@types/json-schema" "^7.0.15"
@@ -2531,7 +2530,7 @@ webpack@^5.108.4:
     acorn "^8.16.0"
     browserslist "^4.28.1"
     chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.24.2"
+    enhanced-resolve "^5.24.4"
     es-module-lexer "^2.1.0"
     eslint-scope "5.1.1"
     events "^3.2.0"
