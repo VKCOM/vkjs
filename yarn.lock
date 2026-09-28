@@ -395,17 +395,17 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-4.0.0.tgz#abb11d99aeb6d27f1b563c38147a72d50058e339"
   integrity sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==
 
-"@size-limit/file@^14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-14.0.0.tgz#3fa73afa6e15687d0db0d23e2a6cb20c31dee4be"
-  integrity sha512-CzlXGYuzt+vZM70NxPwi5uFyYHhORrdpDCJtcH+G57oeUPrgnqdUhDoP4jRxa6i2HNBM5Htatw5X5TcDZ8uBWQ==
+"@size-limit/file@^14.0.1":
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-14.0.1.tgz#6954d83eb3cce1041ca312527e3d354f585614ae"
+  integrity sha512-F1qJqAPcoK+V9KhLHsKLENwaoqdFfXL4OnGNV9kXI9VaWAOu4ykdyGHR1AOd8ZXcnyeA45PBROSmmKCajfc1hA==
 
-"@size-limit/webpack@^14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-14.0.0.tgz#17764e9c74d14d0a62c785dd607117b0131d1415"
-  integrity sha512-xdexROW87KkH4WB+JJcaMPuwLr06d26vv6vHtZFdO05BxRwc5d0V29nA2q6Z81lnk2u0qTJIf8PRkvyFJENuOA==
+"@size-limit/webpack@^14.0.1":
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-14.0.1.tgz#feac60f6c0471b79d835a06c8395c21faed1bde3"
+  integrity sha512-Jh61OMKlYI1kQz28vdhegGE2MAXCV06KIEs116cVaJqbAfcS5/vpD3q5xtINQPiLmH1JQI8E6uzImrlw/wf7qQ==
   dependencies:
-    webpack "^5.111.0"
+    webpack "^5.111.1"
 
 "@swc/cli@^0.8.1":
   version "0.8.1"
@@ -2136,10 +2136,10 @@ signal-exit@^4.1.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-4.1.0.tgz#952188c1cbd546070e2dd20d0f41c0ae0530cb04"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
 
-size-limit@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-14.0.0.tgz#6bfc89f8fe221d5224979b963b27fa81e904cc32"
-  integrity sha512-VqcTCDkYEi+yH6s03bDRWHdC70ipyhI7d8geYiso/rMtUJ5H3uo7bZFYOlUmdrH3N+DCZstBntBJWZBpHp1waQ==
+size-limit@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-14.0.1.tgz#858f573e8de2914bef3da55c590bbca109c92176"
+  integrity sha512-+ht/E62dNimsDEZSIsBubYoUY3V4EkkAZdsOrN6t4IO8h4Xvd9H+xy9okOgj53eodnd7Jub0lsk33kafcjWgRg==
   dependencies:
     lilconfig "^3.1.3"
     nanospinner "^1.2.2"
@@ -2500,7 +2500,7 @@ webpack-sources@^3.5.1:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.5.1.tgz#76c2418486dcc02b2aa0694c104176c2858fe84a"
   integrity sha512-jyuiGJdtvY434z5bUZrjz67v76/ePNvFZTp9Mdz29IlH4+GPsgyGjiv0fKI+M7BdkU6ADjulUcKAd3tUK3WlEw==
 
-webpack@^5.111.0:
+webpack@^5.111.1:
   version "5.111.1"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.111.1.tgz#7c12cd014fbb9bfd8509a6cfc6f1c79f4e06cade"
   integrity sha512-cNypaz0RP+S4cvQVi1M/3bRUkvNP0xZpL0TjFx+c6jg64VbxD+2weWDgY9UnjRI6dhZgtaj8DU76GGFcJ79xPQ==
