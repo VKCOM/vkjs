@@ -10,6 +10,25 @@ permissions:
   pull-requests: write
 
 jobs:
+  changed_files:
+    runs-on: ubuntu-slim
+    name: Get changed files
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      dot_github: ${{ steps.changes.outputs.dot_github }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+
+      - name: Find changes
+        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+        id: changes
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: .github/file-filters.yml
+
   test:
     name: Call reusable unit tests workflow
     uses: ./.github/workflows/reusable_workflow_test.yml
@@ -23,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Run unit tests
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Node setup
         uses: ./.github/actions/node-setup
@@ -36,7 +55,28 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      - uses: actions/checkout@v5
-      - uses: andresz1/size-limit-action@v1
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: andresz1/size-limit-action@e7493a72a44b113341c0cf6186ab49c17c4b65c1 # v1.6.1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  pinact:
+    if: ${{ needs.changed_files.outputs.dot_github == 'true' }}
+    needs: changed_files
+    name: Check actions pin
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+
+      - name: Pin actions
+        uses: suzuki-shunsuke/pinact-action@cf51507d80d4d6522a07348e3d58790290eaf0b6 # v2.0.0
+        with:
+          review: 'true'
+          skip_push: 'true'
           github_token: ${{ secrets.GITHUB_TOKEN }}
