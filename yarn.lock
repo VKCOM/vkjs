@@ -363,15 +363,15 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-4.0.0.tgz#abb11d99aeb6d27f1b563c38147a72d50058e339"
   integrity sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==
 
-"@size-limit/file@^14.1.0":
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-14.1.0.tgz#2da5d8d0a075dd09ee919e787d1b71e192814b05"
-  integrity sha512-mR0uVxzdzV31pk8Iz795dDXxhHsrv9RSsyjeCVboUr1Q2+2KL/GpjeMZ44ydFqI2JfXZ22dOsbY28yPeOse1Nw==
+"@size-limit/file@^14.2.0":
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-14.2.0.tgz#c4e7e274e1565209a98535ce25caf398a4b5129b"
+  integrity sha512-ROqMjC8Pi/ogIIm79Y4u8YieXJb++MaZWbdv/am16l4cS9CxSUXmqP3igIXyv3gK3LMG6DkZdWSM5KVND2ug7g==
 
-"@size-limit/webpack@^14.1.0":
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-14.1.0.tgz#9f9109019f5f8e860c8cb771344893cf49cfa861"
-  integrity sha512-h8Cf5rWtynUEuXuEhK3JPwx9YzhRyinjtyNRtA33rQywbOzy5ylnBHty+gvZRcjiYUM2IEqo2B2Rb9pMqcRsQw==
+"@size-limit/webpack@^14.2.0":
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/webpack/-/webpack-14.2.0.tgz#1ddd79d0f877180fdbf1e9af67e0af787b1876a8"
+  integrity sha512-B+a8lN76GGwvVowtf+LoyZJn1NpbSdDrKqbc1S+SQFK2/Ior5uhXuRLiT6XF0wY5qfwIGYTgKx1cObC6LaNOiA==
   dependencies:
     webpack "^5.111.1"
 
@@ -1841,10 +1841,10 @@ signal-exit@^4.1.0:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-4.1.0.tgz#952188c1cbd546070e2dd20d0f41c0ae0530cb04"
   integrity sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==
 
-size-limit@^14.1.0:
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-14.1.0.tgz#8d7502cce2d11ea441ee65fdfc5ab4f902edb701"
-  integrity sha512-ANW8IDwAK3P84y+bElmWqq8ymV/mNS8Jan+otR5XItVVS4AEyAx7MpT+1BsMULbgDaJ1cle3qN/hkOYQS0vF7g==
+size-limit@^14.2.0:
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-14.2.0.tgz#959a6f020871f7753f588fa19e96dfde4fc1bcec"
+  integrity sha512-/h8+T+2TxSdZhKRv70gtjAfMKK72p6+FEJMqEZHjzbLXfACF6esikRT8aHqmVLQvT+9lNlAa8GOAVFC3XeI1VA==
   dependencies:
     lilconfig "^3.1.3"
     nanospinner "^1.2.2"
