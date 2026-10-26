@@ -72,7 +72,7 @@
   },
   "homepage": "https://github.com/VKCOM/vkjs#readme",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.2",
     "@size-limit/file": "^14.2.0",
     "@size-limit/webpack": "^14.2.0",
     "@swc/cli": "^0.8.1",
