@@ -76,7 +76,7 @@
     "@size-limit/file": "^14.2.0",
     "@size-limit/webpack": "^14.2.0",
     "@swc/cli": "^0.8.1",
-    "@swc/core": "^1.16.18",
+    "@swc/core": "^1.16.20",
     "@swc/plugin-transform-imports": "^17.0.0",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
