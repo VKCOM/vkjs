@@ -1,42 +1,42 @@
 version: 2
 updates:
-  - package-ecosystem: 'npm'
-    directory: '/'
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"
     allow:
-      - dependency-type: 'direct'
+      - dependency-type: "direct"
     versioning-strategy: increase
     groups:
       eslint:
         patterns:
-          - 'eslint*'
-          - '@typescript-eslint/*'
-          - '@vkontakte/eslint-plugin'
+          - "eslint*"
+          - "@typescript-eslint/*"
+          - "@vkontakte/eslint-plugin"
       jest:
         patterns:
-          - 'jest*'
-          - '@jest/*'
-          - '@swc/jest'
+          - "jest*"
+          - "@jest/*"
+          - "@swc/jest"
       typedoc:
         patterns:
-          - 'typedoc*'
+          - "typedoc*"
       size-limit:
         patterns:
-          - 'size-limit'
-          - '@size-limit/*'
+          - "size-limit"
+          - "@size-limit/*"
       prettier:
         patterns:
-          - 'prettier'
-          - '@vkontakte/prettier-config'
+          - "prettier"
+          - "@vkontakte/prettier-config"
       swc:
         patterns:
-          - '@swc/*'
-          - 'swc-plugin-*'
+          - "@swc/*"
+          - "swc-plugin-*"
 
-  - package-ecosystem: 'github-actions'
+  - package-ecosystem: "github-actions"
     # Workflow files stored in the
     # default location of `.github/workflows`
-    directory: '/'
+    directory: "/"
     schedule:
-      interval: 'weekly'
+      interval: "weekly"

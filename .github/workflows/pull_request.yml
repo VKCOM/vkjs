@@ -1,6 +1,6 @@
-name: 'Pull Request'
+name: "Pull Request"
 
-on: ['pull_request']
+on: [ "pull_request" ]
 
 concurrency:
   group: pull_request-${{ github.event.pull_request.number }}
@@ -77,6 +77,6 @@ jobs:
       - name: Pin actions
         uses: suzuki-shunsuke/pinact-action@cf51507d80d4d6522a07348e3d58790290eaf0b6 # v2.0.0
         with:
-          review: 'true'
-          skip_push: 'true'
+          review: "true"
+          skip_push: "true"
           github_token: ${{ secrets.GITHUB_TOKEN }}
