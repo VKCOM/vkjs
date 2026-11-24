@@ -486,10 +486,10 @@
   resolved "https://registry.yarnpkg.com/@swc/helpers/-/helpers-0.5.24.tgz#b1a41a35fcfb1413564981be1bab04b46168961b"
   integrity sha512-6tcXo4kA8HgGO7AVmawB57RYi/piBPYVHVcO6dXjX+SZw8GoHmi262sp4v2Ha2kNP9Cx84qei27yT+fjS1lxgg==
 
-"@swc/plugin-transform-imports@^18.0.2":
-  version "18.0.2"
-  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-18.0.2.tgz#738e311fe1b3292508cb01503b0029f075ec9c51"
-  integrity sha512-Kt+e+/voSObczQn4a0QV4hIVnflogg9TkTcTe0pTUXjBks8Qib7OLhar6DAJAXNKfnMdABkL8Vxn+LGPNCUcnA==
+"@swc/plugin-transform-imports@^18.0.3":
+  version "18.0.3"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-transform-imports/-/plugin-transform-imports-18.0.3.tgz#2350b630afaa7f3f38d92680b29a5dddd9ae9f05"
+  integrity sha512-5KGrvI6VTtouFWQ/yQvRYeGmS/PwSogRWX34l5Bg/Z0PMVQXIY0ebpMTP+VKAZ5dm5TAbr6tbuFDx2wXqfJNLA==
   dependencies:
     "@swc/counter" "^0.1.3"
 
